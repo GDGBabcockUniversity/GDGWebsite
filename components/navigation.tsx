@@ -43,33 +43,27 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 cursor-pointer">
-            <Image
-              src="https://blob.v0.app/w79fI.svg"
-              alt="GDG Babcock"
-              width={180}
-              height={40}
-              className="h-8 sm:h-10 w-auto"
-            />
+            <Image src="/gdg-logo.svg" alt="GDG Babcock" width={180} height={40} className="h-8 sm:h-10 w-auto" />
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link href="/" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Home
             </Link>
             <button
               onClick={() => scrollToSection("tracks")}
-              className="text-sm font-medium hover:text-primary transition-colors"
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
               Tracks
             </button>
             <button
               onClick={() => scrollToSection("events")}
-              className="text-sm font-medium hover:text-primary transition-colors"
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
               Events
             </button>
-            <Link href="/team" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link href="/team" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
               Team
             </Link>
             <Button
@@ -81,7 +75,7 @@ export default function Navigation() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          <button className="md:hidden p-2 text-foreground" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
@@ -90,22 +84,28 @@ export default function Navigation() {
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-border">
             <div className="flex flex-col gap-4">
-              <Link href="/" className="text-left text-sm font-medium hover:text-primary transition-colors">
+              <Link
+                href="/"
+                className="text-left text-sm font-medium text-foreground hover:text-primary transition-colors"
+              >
                 Home
               </Link>
               <button
                 onClick={() => scrollToSection("tracks")}
-                className="text-left text-sm font-medium hover:text-primary transition-colors"
+                className="text-left text-sm font-medium text-foreground hover:text-primary transition-colors"
               >
                 Tracks
               </button>
               <button
                 onClick={() => scrollToSection("events")}
-                className="text-left text-sm font-medium hover:text-primary transition-colors"
+                className="text-left text-sm font-medium text-foreground hover:text-primary transition-colors"
               >
                 Events
               </button>
-              <Link href="/team" className="text-left text-sm font-medium hover:text-primary transition-colors">
+              <Link
+                href="/team"
+                className="text-left text-sm font-medium text-foreground hover:text-primary transition-colors"
+              >
                 Team
               </Link>
               <Button

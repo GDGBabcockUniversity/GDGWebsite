@@ -6,46 +6,53 @@ import Footer from "@/components/footer"
 import TeamMemberCard from "@/components/team-member-card"
 
 const teamMembers = [
-  { name: "Chukwuneku Akpotohwo", role: "Organizer", category: "leads" },
-  { name: "Sophia Odiase", role: "Co-Organizer", category: "leads" },
-  { name: "Habeeb Abayomi", role: "Community Manager", category: "manage" },
-  { name: "Omobolanle Shaibu", role: "Community Manager", category: "manage" },
-  { name: "Victor Ibironke", role: "Technical Lead", category: "leads" },
-  { name: "Favour Oluwatunmibi", role: "Technical Lead", category: "leads" },
-  { name: "Sharon Lawal", role: "Operations Lead", category: "leads" },
-  { name: "Olatilewa Braimah", role: "Operations Lead", category: "leads" },
-  { name: "Chioma Okoli", role: "Media and Marketing Lead", category: "leads" },
-  { name: "Oghenetejiri Efe", role: "Media and Marketing Lead", category: "leads" },
-  { name: "Providence Oduok", role: "Front-End Web Specialist", category: "dev" },
-  { name: "Reuben Alabi", role: "Backend Systems Specialist (Software Track Lead)", category: "dev" },
-  { name: "Oluwafemi Olatunji", role: "Mobile Development Specialist", category: "dev" },
-  { name: "Daniel Bolujo", role: "QA Specialist", category: "dev" },
-  { name: "David Obalabi", role: "Data Science Specialist", category: "dev" },
-  { name: "Ifeoma Ezeaka", role: "Data Engineering Specialist", category: "dev" },
-  { name: "Olaoluwa Ajagbe", role: "Data Analytics Specialist", category: "dev" },
-  { name: "Timilehin Adedayo", role: "Machine Learning Specialist (Data & AI Track Lead)", category: "dev" },
+  // Core Team
+  { name: "Chukwuneku Akpotohwo", role: "Organizer", category: "core" },
+  { name: "Sophia Odiase", role: "Co-Organizer", category: "core" },
+  { name: "Victor Ibironke", role: "Technical Lead", category: "core" },
+  { name: "Favour Oluwatunmibi", role: "Technical Lead", category: "core" },
+  { name: "Sharon Lawal", role: "Operations Lead", category: "core" },
+  { name: "Olatilewa Braimah", role: "Operations Lead", category: "core" },
+  { name: "Chioma Okoli", role: "Media and Marketing Lead", category: "core" },
+  { name: "Oghenetejiri Efe", role: "Media and Marketing Lead", category: "core" },
+
+  // Track Leads
+  { name: "Reuben Alabi", role: "Backend Systems Specialist (Software Track Lead)", category: "track-leads" },
+  { name: "Timilehin Adedayo", role: "Machine Learning Specialist (Data & AI Track Lead)", category: "track-leads" },
   {
     name: "Oluwatomilola Arogundade",
     role: "Cybersecurity Specialist (Infrastructure & Security Track Lead)",
-    category: "dev",
+    category: "track-leads",
   },
-  { name: "Oluwajuwon Otelaja", role: "Networking Specialist", category: "dev" },
-  { name: "Emmanuel Ologunagba", role: "Web3 & Blockchain Specialist", category: "dev" },
   {
     name: "Oluwadayomisi Osisanya",
     role: "Product Design Specialist (Design & Management Track Lead)",
-    category: "design",
+    category: "track-leads",
   },
-  { name: "Daniel Adedoja", role: "Product Management Specialist", category: "manage" },
-  { name: "Boluwatife Dada", role: "Games & Interactive Media Specialist", category: "design" },
-  { name: "Xavier Okpalannajiaku", role: "2D Animations Specialist", category: "design" },
-  { name: "Oluwatamilore Olugbesan", role: "Lead Backend Developer (Dev Team)", category: "dev" },
-  { name: "Ademeso Ademola", role: "Lead Frontend Developer (Dev Team)", category: "dev" },
-  { name: "Offor Chidoziem", role: "Backend Developer (Dev Team)", category: "dev" },
-  { name: "Divine Athora", role: "Lead Product Designer (Dev Team)", category: "design" },
+
+  // Dev Team
+  { name: "Oluwatamilore Olugbesan", role: "Lead Backend Developer (Dev Team)", category: "dev-team" },
+  { name: "Ademeso Ademola", role: "Lead Frontend Developer (Dev Team)", category: "dev-team" },
+  { name: "Offor Chidoziem", role: "Backend Developer (Dev Team)", category: "dev-team" },
+  { name: "Divine Athora", role: "Lead Product Designer (Dev Team)", category: "dev-team" },
+
+  // Specialists
+  { name: "Providence Oduok", role: "Front-End Web Specialist", category: "specialists" },
+  { name: "Oluwafemi Olatunji", role: "Mobile Development Specialist", category: "specialists" },
+  { name: "Daniel Bolujo", role: "QA Specialist", category: "specialists" },
+  { name: "David Obalabi", role: "Data Science Specialist", category: "specialists" },
+  { name: "Ifeoma Ezeaka", role: "Data Engineering Specialist", category: "specialists" },
+  { name: "Olaoluwa Ajagbe", role: "Data Analytics Specialist", category: "specialists" },
+  { name: "Oluwajuwon Otelaja", role: "Networking Specialist", category: "specialists" },
+  { name: "Emmanuel Ologunagba", role: "Web3 & Blockchain Specialist", category: "specialists" },
+  { name: "Daniel Adedoja", role: "Product Management Specialist", category: "specialists" },
+  { name: "Boluwatife Dada", role: "Games & Interactive Media Specialist", category: "specialists" },
+  { name: "Xavier Okpalannajiaku", role: "2D Animations Specialist", category: "specialists" },
+  { name: "Habeeb Abayomi", role: "Community Manager", category: "specialists" },
+  { name: "Omobolanle Shaibu", role: "Community Manager", category: "specialists" },
 ]
 
-type FilterType = "all" | "leads" | "dev" | "design" | "content" | "manage"
+type FilterType = "all" | "core" | "track-leads" | "dev-team" | "specialists"
 
 export default function TeamPage() {
   const [activeFilter, setActiveFilter] = useState<FilterType>("all")
@@ -55,11 +62,10 @@ export default function TeamPage() {
 
   const filters: { label: string; value: FilterType }[] = [
     { label: "All", value: "all" },
-    { label: "Leads", value: "leads" },
-    { label: "Dev", value: "dev" },
-    { label: "Design", value: "design" },
-    { label: "Content", value: "content" },
-    { label: "Manage", value: "manage" },
+    { label: "Core Team", value: "core" },
+    { label: "Track Leads", value: "track-leads" },
+    { label: "Dev Team", value: "dev-team" },
+    { label: "Specialists", value: "specialists" },
   ]
 
   return (

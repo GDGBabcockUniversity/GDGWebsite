@@ -21,7 +21,7 @@ export default function Registration() {
 
         {/* Google Form Embed */}
         <div className="max-w-4xl mx-auto">
-          <div className="bg-card border border-border rounded-xl overflow-hidden">
+          <div className="bg-card border border-border rounded-xl overflow-hidden shadow-lg">
             <iframe
               src="https://docs.google.com/forms/d/e/1FAIpQLSeyFxCLhBFvUmdq4fT6NqQ4iwbadSzBS9J5ROJY0zlXBIRiUw/viewform?embedded=true"
               width="100%"
@@ -29,7 +29,10 @@ export default function Registration() {
               frameBorder="0"
               marginHeight={0}
               marginWidth={0}
-              className="w-full"
+              className="w-full [filter:invert(0.9)_hue-rotate(180deg)_brightness(0.95)_contrast(0.9)]"
+              style={{
+                colorScheme: "dark",
+              }}
             >
               Loading…
             </iframe>
@@ -39,7 +42,12 @@ export default function Registration() {
           <div className="text-center mt-6">
             <Button
               variant="outline"
-              onClick={() => window.open("https://docs.google.com/forms/d/e/1FAIpQLSeyFxCLhBFvUmdq4fT6NqQ4iwbadSzBS9J5ROJY0zlXBIRiUw/viewform?usp=preview", "_blank")}
+              onClick={() =>
+                window.open(
+                  "https://docs.google.com/forms/d/e/1FAIpQLSeyFxCLhBFvUmdq4fT6NqQ4iwbadSzBS9J5ROJY0zlXBIRiUw/viewform?usp=preview",
+                  "_blank",
+                )
+              }
               className="group"
             >
               Open Registration Form
