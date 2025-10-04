@@ -23,7 +23,7 @@ export default function Registration() {
         <div className="max-w-4xl mx-auto">
           <div className="bg-card border border-border rounded-xl overflow-hidden">
             <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLSdDummyFormID/viewform?embedded=true"
+              src="https://docs.google.com/forms/d/e/1FAIpQLSeyFxCLhBFvUmdq4fT6NqQ4iwbadSzBS9J5ROJY0zlXBIRiUw/viewform?embedded=true"
               width="100%"
               height="1200"
               frameBorder="0"
@@ -39,7 +39,7 @@ export default function Registration() {
           <div className="text-center mt-6">
             <Button
               variant="outline"
-              onClick={() => window.open("https://docs.google.com/forms/d/e/1FAIpQLSdDummyFormID/viewform", "_blank")}
+              onClick={() => window.open("https://docs.google.com/forms/d/e/1FAIpQLSeyFxCLhBFvUmdq4fT6NqQ4iwbadSzBS9J5ROJY0zlXBIRiUw/viewform?usp=preview", "_blank")}
               className="group"
             >
               Open Registration Form
