@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Code, Shield, Brain, Palette, ChevronDown } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import { Code, Shield, Brain, Palette, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const tracks = [
   {
@@ -10,7 +10,8 @@ const tracks = [
     icon: Code,
     color: "#4285F4",
     glowClass: "card-glow-blue",
-    description: "Master full-stack web development, mobile apps, system design, and competitive programming",
+    description:
+      "Master full-stack web development, mobile apps, system design, and competitive programming",
     specialists: [
       "Frontend Web Development Specialist",
       "Backend Systems Specialist",
@@ -18,23 +19,40 @@ const tracks = [
       "Data Structures & Algorithms Specialist",
       "QA Specialist (Quality Assurance & Testing)",
     ],
-    focus: ["Full-stack web", "Mobile apps", "System architecture", "DSA", "Software testing"],
+    focus: [
+      "Full-stack web",
+      "Mobile apps",
+      "System architecture",
+      "DSA",
+      "Software testing",
+    ],
   },
   {
     title: "Infrastructure & Security",
     icon: Shield,
     color: "#EA4335",
     glowClass: "card-glow-red",
-    description: "Build secure, scalable cloud infrastructure and explore blockchain technology",
-    specialists: ["Cloud Computing Specialist", "Cybersecurity Specialist", "Web3 & Blockchain Specialist"],
-    focus: ["GCP & AWS", "DevOps & CI/CD", "Cybersecurity", "Blockchain & dApps"],
+    description:
+      "Build secure, scalable cloud infrastructure and explore blockchain technology",
+    specialists: [
+      "Cloud Computing Specialist",
+      "Cybersecurity Specialist",
+      "Web3 & Blockchain Specialist",
+    ],
+    focus: [
+      "GCP & AWS",
+      "DevOps & CI/CD",
+      "Cybersecurity",
+      "Blockchain & dApps",
+    ],
   },
   {
     title: "Data & AI",
     icon: Brain,
     color: "#FBBC04",
     glowClass: "card-glow-yellow",
-    description: "Transform data into insights with data science, machine learning, and AI",
+    description:
+      "Transform data into insights with data science, machine learning, and AI",
     specialists: [
       "Data Science Specialist",
       "Data Analytics Specialist",
@@ -49,13 +67,22 @@ const tracks = [
     color: "#34A853",
     glowClass: "card-glow-green",
     description: "Create beautiful products and lead impactful tech projects",
-    specialists: ["Product Design Specialist", "Product Management Specialist", "Games & Interactive Media Specialist"],
-    focus: ["UI/UX design", "Product strategy", "Game development", "Project management"],
+    specialists: [
+      "Product Design Specialist",
+      "Product Management Specialist",
+      "Games & Interactive Media Specialist",
+    ],
+    focus: [
+      "UI/UX design",
+      "Product strategy",
+      "Game development",
+      "Project management",
+    ],
   },
-]
+];
 
 export default function Tracks() {
-  const [expandedTrack, setExpandedTrack] = useState<number | null>(null)
+  const [expandedTrack, setExpandedTrack] = useState<number | null>(null);
 
   return (
     <section id="tracks" className="py-16 sm:py-24 relative">
@@ -81,56 +108,83 @@ export default function Tracks() {
               }}
             >
               {/* Track Header */}
-              <div className="flex items-start gap-4 mb-4">
-                <div className="p-3 rounded-lg" style={{ backgroundColor: `${track.color}20` }}>
-                  <track.icon className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: track.color }} />
+              <div className="flex items-center gap-4 mb-4">
+                <div
+                  className="p-3 rounded-lg"
+                  style={{ backgroundColor: `${track.color}20` }}
+                >
+                  <track.icon
+                    className="w-6 h-6 sm:w-8 sm:h-8"
+                    style={{ color: track.color }}
+                  />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold mb-2 text-balance">{track.title}</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-balance">
+                    {track.title}
+                  </h3>
                 </div>
               </div>
 
               {/* Description */}
-              <p className="text-secondary-foreground mb-4 leading-relaxed">{track.description}</p>
+              <p className="text-muted-foreground mb-4 leading-relaxed">
+                {track.description}
+              </p>
 
               {/* Focus Areas */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {track.focus.map((area, i) => (
-                  <span key={i} className="px-3 py-1 bg-muted rounded-full text-xs sm:text-sm">
+                  <span
+                    key={i}
+                    className="px-3 py-1 bg-muted/30 text-white rounded-full text-xs sm:text-sm"
+                  >
                     {area}
                   </span>
                 ))}
               </div>
 
               {/* Expandable Specialists */}
-              {expandedTrack === index && (
-                <div className="mt-4 pt-4 border-t border-border animate-in fade-in slide-in-from-top-2 duration-300">
-                  <h4 className="font-semibold mb-3 text-sm uppercase tracking-wide" style={{ color: track.color }}>
-                    Specialist Areas
-                  </h4>
-                  <ul className="space-y-2">
-                    {track.specialists.map((specialist, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-secondary-foreground">
-                        <span style={{ color: track.color }}>•</span>
-                        <span>{specialist}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              {/* {expandedTrack === index && ( */}
+              <div className="mt-4 pt-4 border-t border-border animate-in fade-in slide-in-from-top-2 duration-300">
+                <h4
+                  className="font-semibold mb-3 text-sm uppercase tracking-wide"
+                  style={{ color: track.color }}
+                >
+                  Specialist Areas
+                </h4>
+                <ul className="space-y-2">
+                  {track.specialists.map((specialist, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-2 text-sm text-secondary-foreground"
+                    >
+                      <span style={{ color: track.color }}>•</span>
+                      <span>{specialist}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              {/* )} */}
 
               {/* Learn More Button */}
-              <Button
-                variant="ghost"
-                onClick={() => setExpandedTrack(expandedTrack === index ? null : index)}
+              {/* <Button
+                onClick={() =>
+                  setExpandedTrack(expandedTrack === index ? null : index)
+                }
                 className="w-full mt-4 group"
-                style={{ color: track.color }}
+                style={{
+                  backgroundColor: `${track.color}10`,
+                  color: "#fff",
+                  borderColor: track.color,
+                  borderWidth: "1px",
+                }}
               >
                 {expandedTrack === index ? "Show Less" : "Learn More"}
                 <ChevronDown
-                  className={`ml-2 h-4 w-4 transition-transform ${expandedTrack === index ? "rotate-180" : ""}`}
+                  className={`ml-2 h-4 w-4 transition-transform ${
+                    expandedTrack === index ? "rotate-180" : ""
+                  }`}
                 />
-              </Button>
+              </Button> */}
             </div>
           ))}
         </div>
@@ -141,5 +195,5 @@ export default function Tracks() {
         </p>
       </div>
     </section>
-  )
+  );
 }

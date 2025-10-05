@@ -15,7 +15,7 @@
   --secondary: oklch(0.65 0.15 145); /* #34A853 Google Green */
   --secondary-foreground: oklch(1 0 0); /* #FFFFFF Secondary Text */
   --muted: oklch(0.88 0 0); /* #E0E0E0 Muted Elements */
-  --muted-foreground: oklch(0.08 0 0); /* #121212 Muted Text */
+  --muted-foreground: oklch(0.65 0 0); /* #A5A5A5 Muted Text */
   --accent: oklch(0.8 0.15 85); /* #FBBC05 Google Yellow */
   --accent-foreground: oklch(0.08 0 0); /* #121212 Accent Text */
   --destructive: oklch(0.6 0.2 25); /* #EA4335 Google Red */
@@ -90,7 +90,10 @@ html {
 
 /* Grid pattern background */
 .grid-pattern {
-  background-image: linear-gradient(rgba(66, 133, 244, 0.1) 1px, transparent 1px),
+  background-image: linear-gradient(
+      rgba(66, 133, 244, 0.1) 1px,
+      transparent 1px
+    ),
     linear-gradient(90deg, rgba(66, 133, 244, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
   animation: gridPulse 4s ease-in-out infinite;

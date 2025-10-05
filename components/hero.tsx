@@ -1,18 +1,21 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Sparkles } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 export default function Hero() {
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
+    const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+    >
       {/* Animated Background */}
       <div className="absolute inset-0 grid-pattern opacity-50" />
 
@@ -63,10 +66,12 @@ export default function Hero() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+          {/* <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <Sparkles className="w-4 h-4 text-[#4285F4]" />
-            <span className="text-sm font-medium">Launching October 5, 2025</span>
-          </div>
+            <span className="text-sm font-medium">
+              Launching October 5, 2025
+            </span>
+          </div> */}
 
           {/* Main Heading */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100 text-balance">
@@ -88,8 +93,8 @@ export default function Hero() {
 
           {/* Description */}
           <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-400 leading-relaxed">
-            Join our newly restructured community with 4 specialized tracks designed to take your tech skills to the
-            next level
+            Join our newly restructured community with 4 specialized tracks
+            designed to take your tech skills to the next level
           </p>
 
           {/* CTA Buttons */}
@@ -106,7 +111,7 @@ export default function Hero() {
               size="lg"
               variant="outline"
               onClick={() => scrollToSection("tracks")}
-              className="border-border hover:bg-card hover:scale-[1.02] w-full sm:w-auto transition-all"
+              className="border-border hover:bg-card hover:text-white hover:scale-[1.02] w-full sm:w-auto transition-all"
             >
               Explore Tracks
             </Button>
@@ -123,5 +128,5 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }

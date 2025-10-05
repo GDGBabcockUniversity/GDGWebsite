@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { ExternalLink } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Registration() {
   return (
@@ -9,13 +9,15 @@ export default function Registration() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-balance">Join GDG Babcock</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-balance">
+            Join GDG Babcock
+          </h2>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-4 text-pretty">
             Become part of Nigeria's most innovative campus tech community
           </p>
           <p className="text-base text-secondary-foreground max-w-2xl mx-auto leading-relaxed">
-            Fill out this form to register. You'll choose your track preference and we'll get you started on your tech
-            journey!
+            Fill out this form to register. You'll choose your track preference
+            and we'll get you started on your tech journey!
           </p>
         </div>
 
@@ -29,7 +31,7 @@ export default function Registration() {
               frameBorder="0"
               marginHeight={0}
               marginWidth={0}
-              className="w-full [filter:invert(0.9)_hue-rotate(180deg)_brightness(0.95)_contrast(0.9)]"
+              className="w-full [filter:invert(0.95)_hue-rotate(180deg)_brightness(1.1)_contrast(1.1)]"
               style={{
                 colorScheme: "dark",
               }}
@@ -45,10 +47,10 @@ export default function Registration() {
               onClick={() =>
                 window.open(
                   "https://docs.google.com/forms/d/e/1FAIpQLSeyFxCLhBFvUmdq4fT6NqQ4iwbadSzBS9J5ROJY0zlXBIRiUw/viewform?usp=preview",
-                  "_blank",
+                  "_blank"
                 )
               }
-              className="group"
+              className="group hover:text-white"
             >
               Open Registration Form
               <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -57,10 +59,11 @@ export default function Registration() {
 
           {/* Note */}
           <p className="text-center text-muted-foreground text-sm mt-6">
-            After registration, check your email for next steps and community access links 📧
+            After registration, check your email for next steps and community
+            access links 📧
           </p>
         </div>
       </div>
     </section>
-  )
+  );
 }
