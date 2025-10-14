@@ -6,8 +6,9 @@ import { ThemeProvider } from "@/components/theme-provider";
 export const metadata: Metadata = {
   title: "GDG Babcock - Google Developer Group at Babcock University",
   description:
-    "Join Babcock University's premier tech community. Building the future, one line of code at a time.",
+    "Join Babcock University's premier tech community. Building the future, one line of code at a time.",,
   // generator: "v0.app",
+    generator: 'v0.app'
 };
 
 export default function RootLayout({
