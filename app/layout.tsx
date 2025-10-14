@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "GDG Babcock - Google Developer Group at Babcock University",
   description:
     "Join Babcock University's premier tech community. Building the future, one line of code at a time.",
-  generator: "v0.app",
+  // generator: "v0.app",
 };
 
 export default function RootLayout({
@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="antialiased dark" suppressHydrationWarning>
+    <html lang="en" className="antialiased" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <style
@@ -72,13 +72,13 @@ export default function RootLayout({
         />
       </head>
       <body style={{ fontFamily: "var(--font-google-sans)" }}>
-        <ThemeProvider
+        {/* <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem={false}
-        >
-          {children}
-        </ThemeProvider>
+        > */}
+        {children}
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );

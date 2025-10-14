@@ -1,26 +1,20 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { scrollToSection } from "@/lib/utils";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 export default function Hero() {
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+      className="relative flex items-center justify-center overflow-hidden pt-60 pb-40 bg-gdg-cream"
     >
       {/* Animated Background */}
-      <div className="absolute inset-0 grid-pattern opacity-50" />
+      {/* <div className="absolute inset-0 grid-pattern opacity-50" /> */}
 
       {/* Floating Dots */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* <div className="absolute inset-0 overflow-hidden">
         <div
           className="floating-dot absolute top-20 left-10 w-3 h-3 rounded-full bg-[#4285F4] opacity-60"
           style={{ animationDelay: "0s" }}
@@ -61,70 +55,38 @@ export default function Hero() {
           className="floating-dot-alt absolute bottom-1/2 left-20 w-3 h-3 rounded-full bg-[#EA4335] opacity-70"
           style={{ animationDelay: "4.5s" }}
         />
-      </div>
+      </div> */}
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Badge */}
-          {/* <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <Sparkles className="w-4 h-4 text-[#4285F4]" />
-            <span className="text-sm font-medium">
-              Launching October 5, 2025
-            </span>
-          </div> */}
-
           {/* Main Heading */}
+
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="bg-gdg-green w-10 h-10 rounded-full border" />
+            <div className="bg-gdg-green w-10 h-10 rounded-full border" />
+            <div className="bg-gdg-green w-10 h-10 rounded-full border" />
+          </div>
+
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100 text-balance">
-            Welcome to{" "}
-            <span className="bg-gradient-to-r from-[#4285F4] via-[#EA4335] to-[#FBBC04] bg-clip-text text-transparent">
-              GDG Babcock
-            </span>
+            Your tech journey <br />
+            starts here
           </h1>
 
           {/* Subheading */}
-          <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 text-balance">
-            Babcock University's Premier Tech Community
+          <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-medium mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200 text-balance">
+            Collaborate with designers, developers, and innovators shaping the
+            future of tech at Babcock.
           </p>
 
-          {/* Tagline */}
-          <p className="text-lg sm:text-xl text-secondary-foreground mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 text-pretty">
-            Building the Future, One Line of Code at a Time
-          </p>
-
-          {/* Description */}
-          <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-400 leading-relaxed">
-            Join our newly restructured community with 4 specialized tracks
-            designed to take your tech skills to the next level
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
-            <Button
-              size="lg"
-              onClick={() => scrollToSection("registration")}
-              className="bg-[#4285F4] hover:bg-[#4285F4]/90 text-white glow-blue hover:scale-[1.02] w-full sm:w-auto group transition-all"
-            >
-              Join GDG
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={() => scrollToSection("tracks")}
-              className="border-border hover:bg-card hover:text-white hover:scale-[1.02] w-full sm:w-auto transition-all"
-            >
-              Explore Tracks
-            </Button>
-          </div>
-
-          {/* Pixel Art Badge */}
-          <div className="mt-16 inline-block animate-in fade-in slide-in-from-bottom-4 duration-700 delay-600">
-            <div className="px-6 py-3 bg-card border-2 border-[#4285F4] rounded-lg font-mono text-sm sm:text-base">
-              <span className="text-[#4285F4]">{"<"}</span>
-              <span className="text-foreground">GDG BABCOCK</span>
-              <span className="text-[#4285F4]">{" />"}</span>
+          <Button
+            onClick={() => scrollToSection("registration")}
+            className="h-12 bg-black w-fit hover:bg-black rounded-full font-semibold cursor-pointer text-white glow-blue hover:scale-[1.02] transition-all"
+          >
+            Join The Community
+            <div className="flex items-center justify-center bg-white rounded-full p-1">
+              <ArrowRight className="h-4 w-4 text-black" />
             </div>
-          </div>
+          </Button>
         </div>
       </div>
     </section>

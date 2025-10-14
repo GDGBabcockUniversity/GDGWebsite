@@ -25,7 +25,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-bold mb-4">Quick Links</h3>
+            <h3 className="font-bold mb-4 text-white">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
@@ -64,7 +64,7 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h3 className="font-bold mb-4">Resources</h3>
+            <h3 className="font-bold mb-4 text-white">Resources</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
@@ -103,7 +103,7 @@ export default function Footer() {
 
           {/* Connect */}
           <div>
-            <h3 className="font-bold mb-4">Connect</h3>
+            <h3 className="font-bold mb-4 text-white">Connect</h3>
 
             {/* Social Media */}
             <div className="flex gap-3 mb-6">
@@ -135,7 +135,7 @@ export default function Footer() {
 
             {/* Newsletter */}
             <div>
-              <p className="text-sm font-medium mb-2">
+              <p className="text-sm font-medium mb-2 text-white">
                 Subscribe to TechPulse Babcock
               </p>
               <div className="flex gap-2">
@@ -155,7 +155,9 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-            <p>© 2025 GDG Babcock. All rights reserved.</p>
+            <p>
+              © {new Date().getFullYear()} GDG Babcock. All rights reserved.
+            </p>
             <p className="flex items-center gap-2">
               <span className="inline-block w-2 h-2 rounded-full bg-[#4285F4]" />
               <span className="inline-block w-2 h-2 rounded-full bg-[#EA4335]" />

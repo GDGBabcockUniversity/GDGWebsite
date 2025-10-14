@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -34,14 +34,8 @@ export default function Navigation() {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/80 backdrop-blur-lg border-b border-border"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-black backdrop-blur-lg border-b border-border">
+      <div className="mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 cursor-pointer">
@@ -55,7 +49,7 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-12">
             <Link
               href="/"
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
@@ -82,9 +76,12 @@ export default function Navigation() {
             </Link>
             <Button
               onClick={() => scrollToSection("registration")}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground glow-blue hover:scale-[1.02] transition-all"
+              className="w-fit bg-white hover:bg-white rounded-full font-semibold cursor-pointer text-black glow-blue hover:scale-[1.02] transition-all"
             >
-              Join GDG
+              Join Us
+              <div className="flex items-center justify-center bg-black rounded-full p-1">
+                <ArrowRight className="h-4 w-4 text-white" />
+              </div>
             </Button>
           </div>
 
@@ -131,9 +128,12 @@ export default function Navigation() {
               </Link>
               <Button
                 onClick={() => scrollToSection("registration")}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground w-full glow-blue"
+                className="bg-white hover:bg-white rounded-full font-semibold cursor-pointer text-black glow-blue hover:scale-[1.02] transition-all w-full"
               >
-                Join GDG
+                Join Us
+                <div className="flex items-center justify-center bg-black rounded-full p-1">
+                  <ArrowRight className="h-4 w-4 text-white" />
+                </div>
               </Button>
             </div>
           </div>

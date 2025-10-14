@@ -13,12 +13,11 @@ export default function Registration() {
             Join GDG Babcock
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-4 text-pretty">
-            Become part of Nigeria's most innovative campus tech community
+            Become part of Nigeria's most innovative campus tech community. Fill
+            out this form to register. You'll choose your track preference and
+            we'll get you started on your tech journey!
           </p>
-          <p className="text-base text-secondary-foreground max-w-2xl mx-auto leading-relaxed">
-            Fill out this form to register. You'll choose your track preference
-            and we'll get you started on your tech journey!
-          </p>
+          {/* <p className="text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed"></p> */}
         </div>
 
         {/* Google Form Embed */}
@@ -43,17 +42,18 @@ export default function Registration() {
           {/* Fallback Button */}
           <div className="text-center mt-6">
             <Button
-              variant="outline"
               onClick={() =>
                 window.open(
                   "https://docs.google.com/forms/d/e/1FAIpQLSeyFxCLhBFvUmdq4fT6NqQ4iwbadSzBS9J5ROJY0zlXBIRiUw/viewform?usp=preview",
                   "_blank"
                 )
               }
-              className="group hover:text-white"
+              className="h-12 bg-black w-fit hover:bg-black rounded-full font-semibold cursor-pointer text-white glow-blue hover:scale-[1.02] transition-all"
             >
               Open Registration Form
-              <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              <div className="flex items-center justify-center bg-white rounded-full p-1">
+                <ExternalLink className="h-4 w-4 text-black" />
+              </div>
             </Button>
           </div>
 

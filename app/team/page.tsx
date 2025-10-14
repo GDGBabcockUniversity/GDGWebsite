@@ -4,6 +4,7 @@ import { useState } from "react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import TeamMemberCard from "@/components/team-member-card";
+import CTA from "@/components/cta";
 
 const teamMembers = [
   // Core Team
@@ -209,8 +210,9 @@ const teamMembers = [
     name: "Oluwatomilola Arogundade",
     role: "Cybersecurity Specialist (Infrastructure & Security Track Lead)",
     category: "track-leads",
-    image: "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=Tomilola",
-    wordsToLiveBy: "It is well.",
+    image: "/Oluwatomilola Arogundade- Cybersecurity Specialist.jpg",
+    wordsToLiveBy:
+      "In a world full of threats, I choose to be the light, securing systems, guiding people, and trusting God.",
     links: {
       twitter: "https://x.com/cyberdove_28?s=21",
       linkedin:
@@ -281,13 +283,18 @@ const teamMembers = [
     name: "Offor Chidoziem",
     role: "Backend Developer (Dev Team)",
     category: "dev-team",
-    image: "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=Chidoziem",
-    wordsToLiveBy: "",
-    links: { twitter: "", linkedin: "", portfolio: "" },
+    image: "/Offor Chidoziem - DSA Specialist.jpg",
+    wordsToLiveBy:
+      "Strive not to be a success, but rather to be of value. — Albert Einstein",
+    links: {
+      twitter: "https://x.com/freshakafrancis",
+      linkedin: "https://www.linkedin.com/in/francis-chidoziem/",
+      portfolio: "",
+    },
     music: {
-      name: "",
-      artist: "",
-      url: "",
+      name: "Special",
+      artist: "Wizkid, Don Toliver",
+      url: "https://open.spotify.com/embed/track/6MtFM9kbhhuN04rwDxPvn4?utm_source=generator",
     },
   },
   {
@@ -315,8 +322,12 @@ const teamMembers = [
     role: "Front-End Web Specialist",
     category: "specialists",
     image: "/Providence Oduok -  Frontend Web Specialist.jpg",
-    wordsToLiveBy: "",
-    links: { twitter: "", linkedin: "", portfolio: "" },
+    wordsToLiveBy: "You'll never know unless you try.",
+    links: {
+      twitter: "https://x.com/Pemily_Vianne",
+      linkedin: "https://www.linkedin.com/in/providence-oduok/",
+      portfolio: "https://portfolio-page-vanilla-providence.vercel.app/",
+    },
     music: {
       name: "",
       artist: "",
@@ -348,9 +359,9 @@ const teamMembers = [
     wordsToLiveBy: "",
     links: { twitter: "", linkedin: "", portfolio: "" },
     music: {
-      name: "",
-      artist: "",
-      url: "",
+      name: "On The Radar Freestyle",
+      artist: "Nemzzz",
+      url: "https://open.spotify.com/embed/track/3oi79iqWmUfOObQ0MOw3xF?utm_source=generator",
     },
   },
   {
@@ -534,39 +545,38 @@ export default function TeamPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-gdg-cream">
       <Navigation />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-7xl">
           <div className="flex items-center gap-3 mb-6">
-            <span className="text-5xl">⭐</span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-balance">
-              The Dream Team
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-balance mx-auto">
+              Meet The Dream Team
             </h1>
           </div>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl text-pretty">
-            We even added some songs for you to listen to. And you are very free
-            to judge our exquisite taste in music 😶
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-xl font-medium text-pretty mx-auto text-center">
+            These heroes crafted an excellent experience for you. We do the
+            magic, and we are proud to share all of it with you!
           </p>
 
           {/* Filter Tabs */}
-          <div className="flex flex-wrap gap-4 mt-12 border-b border-border">
+          <div className="flex flex-wrap gap-4 mt-12 mx-auto items-center justify-center">
             {filters.map((filter) => (
               <button
                 key={filter.value}
                 onClick={() => setActiveFilter(filter.value)}
-                className={`pb-4 px-2 text-sm sm:text-base font-medium transition-colors relative ${
+                className={` py-2 rounded-full text-base cursor-pointer font-medium transition-all relative ${
                   activeFilter === filter.value
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground/80"
+                    ? "text-white bg-black px-6"
+                    : "text-black px-2"
                 }`}
               >
                 {filter.label}
-                {activeFilter === filter.value && (
+                {/* {activeFilter === filter.value && (
                   <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
-                )}
+                )} */}
               </button>
             ))}
           </div>
@@ -576,7 +586,7 @@ export default function TeamPage() {
       {/* Team Grid */}
       <section className="pb-24 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredMembers.map((member, index) => (
               <TeamMemberCard
                 key={index}
@@ -592,6 +602,7 @@ export default function TeamPage() {
         </div>
       </section>
 
+      <CTA />
       <Footer />
     </main>
   );

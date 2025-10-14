@@ -85,7 +85,7 @@ export default function Tracks() {
   const [expandedTrack, setExpandedTrack] = useState<number | null>(null);
 
   return (
-    <section id="tracks" className="py-16 sm:py-24 relative">
+    <section id="tracks" className="py-16 sm:py-24 relative bg-gdg-cream">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -102,97 +102,70 @@ export default function Tracks() {
           {tracks.map((track, index) => (
             <div
               key={index}
-              className={`bg-card border border-border rounded-xl p-6 sm:p-8 transition-all duration-300 ${track.glowClass}`}
+              className={`rounded-3xl transition-all duration-300 overflow-hidden ${track.glowClass}`}
               style={{
-                borderColor: expandedTrack === index ? track.color : undefined,
+                backgroundColor: track.color,
               }}
             >
               {/* Track Header */}
-              <div className="flex items-center gap-4 mb-4">
-                <div
-                  className="p-3 rounded-lg"
-                  style={{ backgroundColor: `${track.color}20` }}
-                >
+              <div className="flex items-center gap-4 p-6 sm:p-8">
+                <div className="p-3 rounded-lg bg-black">
                   <track.icon
-                    className="w-6 h-6 sm:w-8 sm:h-8"
+                    className="w-8 h- sm:w-10 sm:h-10"
                     style={{ color: track.color }}
                   />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold text-balance">
+                  <h3 className="text-xl sm:text-2xl font-bold text-balance text-white">
                     {track.title}
                   </h3>
                 </div>
               </div>
 
               {/* Description */}
-              <p className="text-muted-foreground mb-4 leading-relaxed">
-                {track.description}
-              </p>
+              <div className="bg-black p-6 sm:p-8 rounded-t-3xl h-full">
+                <p className="text-white mb-4 leading-relaxed">
+                  {track.description}
+                </p>
 
-              {/* Focus Areas */}
-              <div className="flex flex-wrap gap-2 mb-4">
-                {track.focus.map((area, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 bg-muted/30 text-white rounded-full text-xs sm:text-sm"
-                  >
-                    {area}
-                  </span>
-                ))}
-              </div>
-
-              {/* Expandable Specialists */}
-              {/* {expandedTrack === index && ( */}
-              <div className="mt-4 pt-4 border-t border-border animate-in fade-in slide-in-from-top-2 duration-300">
-                <h4
-                  className="font-semibold mb-3 text-sm uppercase tracking-wide"
-                  style={{ color: track.color }}
-                >
-                  Specialist Areas
-                </h4>
-                <ul className="space-y-2">
-                  {track.specialists.map((specialist, i) => (
-                    <li
+                {/* Focus Areas */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {track.focus.map((area, i) => (
+                    <span
                       key={i}
-                      className="flex items-start gap-2 text-sm text-secondary-foreground"
+                      className="px-3 py-1 text-white rounded-full text-xs sm:text-sm"
+                      style={{
+                        backgroundColor: `${track.color}60`,
+                      }}
                     >
-                      <span style={{ color: track.color }}>•</span>
-                      <span>{specialist}</span>
-                    </li>
+                      {area}
+                    </span>
                   ))}
-                </ul>
-              </div>
-              {/* )} */}
+                </div>
 
-              {/* Learn More Button */}
-              {/* <Button
-                onClick={() =>
-                  setExpandedTrack(expandedTrack === index ? null : index)
-                }
-                className="w-full mt-4 group"
-                style={{
-                  backgroundColor: `${track.color}10`,
-                  color: "#fff",
-                  borderColor: track.color,
-                  borderWidth: "1px",
-                }}
-              >
-                {expandedTrack === index ? "Show Less" : "Learn More"}
-                <ChevronDown
-                  className={`ml-2 h-4 w-4 transition-transform ${
-                    expandedTrack === index ? "rotate-180" : ""
-                  }`}
-                />
-              </Button> */}
+                <div className="mt-4 pt-4 border-t border-border animate-in fade-in slide-in-from-top-2 duration-300">
+                  <h4
+                    className="font-semibold mb-3 text-sm uppercase tracking-wide"
+                    style={{ color: track.color }}
+                  >
+                    Specialist Areas
+                  </h4>
+                  <ul className="space-y-2">
+                    {track.specialists.map((specialist, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-2 text-sm text-secondary-foreground"
+                      >
+                        <span style={{ color: track.color }}>•</span>
+                        <span>{specialist}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
           ))}
         </div>
-
-        {/* Note */}
-        <p className="text-center text-muted-foreground text-sm sm:text-base">
-          You'll choose your track preference when you register below! 👇
-        </p>
       </div>
     </section>
   );
