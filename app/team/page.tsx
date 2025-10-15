@@ -510,7 +510,7 @@ const teamMembers = [
   {
     name: "Omobolanle Shaibu",
     role: "Community Manager",
-    category: "specialists",
+    category: "core",
     image: "/Omobolanle SHAIBU - Community Manager.jpg",
     wordsToLiveBy: "Enjoy the little things.",
     links: {
