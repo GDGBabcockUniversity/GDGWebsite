@@ -1,4 +1,14 @@
-import { Twitter, Linkedin, Instagram, MessageCircle } from "lucide-react";
+import {
+  Twitter,
+  Linkedin,
+  Instagram,
+  MessageCircle,
+  Music,
+  Music2,
+  Music3,
+  Music2Icon,
+  Music3Icon,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
@@ -53,7 +63,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#team"
+                  href="/team"
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   Team
@@ -108,45 +118,46 @@ export default function Footer() {
             {/* Social Media */}
             <div className="flex gap-3 mb-6">
               <a
-                href="#"
+                href="https://x.com/gdgbabcock"
                 className="p-2 rounded-full bg-muted hover:bg-[#4285F4] hover:text-white transition-colors"
               >
                 <Twitter className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/company/gdgbabcock"
                 className="p-2 rounded-full bg-muted hover:bg-[#4285F4] hover:text-white transition-colors"
               >
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/gdgbabcock/"
                 className="p-2 rounded-full bg-muted hover:bg-[#EA4335] hover:text-white transition-colors"
               >
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.tiktok.com/@gdgbabcock"
                 className="p-2 rounded-full bg-muted hover:bg-[#34A853] hover:text-white transition-colors"
               >
-                <MessageCircle className="w-5 h-5" />
+                <Music2Icon className="w-5 h-5" />
               </a>
             </div>
 
             {/* Newsletter */}
             <div>
-              <p className="text-sm font-medium mb-2 text-white">
+              {/* <p className="text-sm font-medium mb-2 text-white">
                 Subscribe to TechPulse Babcock
-              </p>
+              </p> */}
               <div className="flex gap-2">
-                <Input
-                  type="email"
-                  placeholder="Your email"
-                  className="bg-background border-border"
-                />
-                <Button size="sm" className="bg-primary hover:bg-primary/90">
-                  Subscribe
-                </Button>
+                <a
+                  href="https://gdgbabcock.substack.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button size="sm" className="bg-primary hover:bg-primary/90">
+                    GDG Babcock on Substack
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
