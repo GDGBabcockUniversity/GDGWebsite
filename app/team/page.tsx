@@ -546,8 +546,6 @@ export default function TeamPage() {
 
   return (
     <main className="min-h-screen bg-gdg-cream">
-      <Navigation />
-
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-7xl">
@@ -601,9 +599,6 @@ export default function TeamPage() {
           </div>
         </div>
       </section>
-
-      <CTA />
-      <Footer />
     </main>
   );
 }

@@ -11,15 +11,15 @@ import CTA from "@/components/cta";
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <Navigation />
+      {/* <Navigation /> */}
       <Hero />
       <WhyJoin />
       {/* <Stats /> */}
       {/* <EventSpotlight /> */}
       <Tracks />
       <Registration />
-      <CTA />
-      <Footer />
+      {/* <CTA /> */}
+      {/* <Footer /> */}
     </main>
   );
 }

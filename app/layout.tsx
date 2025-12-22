@@ -1,6 +1,9 @@
 import type React from "react";
 import type { Metadata } from "next";
 import "./globals.css";
+import Navigation from "@/components/navigation";
+import CTA from "@/components/cta";
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "GDG Babcock - Google Developer Groups at Babcock University",
@@ -17,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="antialiased" suppressHydrationWarning>
       <body>
+        <Navigation />
         {/* <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -24,6 +28,9 @@ export default function RootLayout({
         > */}
         {children}
         {/* </ThemeProvider> */}
+
+        <CTA />
+        <Footer />
       </body>
     </html>
   );
