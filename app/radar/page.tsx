@@ -457,6 +457,20 @@ export default function RadarPage() {
                             {children}
                           </code>
                         ),
+                        img: ({ src, alt }) => (
+                          <figure className="my-6">
+                            <img
+                              src={src}
+                              alt={alt || ""}
+                              className="rounded-lg w-full max-w-md mx-auto"
+                            />
+                            {alt && (
+                              <figcaption className="text-center text-sm text-muted-foreground mt-2 italic">
+                                {alt}
+                              </figcaption>
+                            )}
+                          </figure>
+                        ),
                       }}
                     >
                       {story.content}
