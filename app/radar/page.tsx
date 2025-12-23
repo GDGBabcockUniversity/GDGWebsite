@@ -467,11 +467,6 @@ export default function RadarPage() {
                               alt={alt || ""}
                               className="rounded-lg w-full max-w-md mx-auto"
                             />
-                            {alt && (
-                              <figcaption className="text-center text-sm text-muted-foreground mt-2 italic">
-                                {alt}
-                              </figcaption>
-                            )}
                           </figure>
                         ),
                       }}
