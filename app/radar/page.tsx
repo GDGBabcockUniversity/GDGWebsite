@@ -13,6 +13,7 @@ import Medium from "@/components/svgs/medium";
 import Mail from "@/components/svgs/mail";
 import ShareButton from "@/components/share-button";
 import MeetTheTeam from "@/components/meet-the-team";
+import RecapGallery from "@/components/recap-gallery";
 
 // GDG colors for rotating through elements
 const gdgColors = ["#4285F4", "#EA4335", "#FAAB00", "#34A853"];
@@ -341,6 +342,8 @@ export default function RadarPage() {
                 <div className="prose prose-invert prose-lg max-w-none">
                   {story.slug === "two" ? (
                     <MeetTheTeam />
+                  ) : story.slug === "three" ? (
+                    <RecapGallery />
                   ) : (
                     <ReactMarkdown
                       components={{
