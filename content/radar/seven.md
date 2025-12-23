@@ -4,8 +4,6 @@ date: 2025-12-24
 author: "Itamah Osedebame"
 ---
 
-# Your Tech Stack as a Nigerian Meal
-
 Ever wondered what your favorite programming language would taste like?
 Let’s break down the tech stack using something we all understand: Nigerian food.
 

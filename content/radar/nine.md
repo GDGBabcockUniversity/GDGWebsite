@@ -4,8 +4,6 @@ date: 2025-12-24
 author: "Freda"
 ---
 
-# The 2025 Tech Legend Roadmap: A Digital Holiday Workshop
-
 Becoming a tech pro is about more than just writing code; it is about learning to solve problems in ways that truly matter to people.
 
 At Christmas, this feels even more real, as developers act like modern-day Santas, building digital experiences that bring joy and ease to life.
