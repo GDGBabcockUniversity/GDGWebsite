@@ -4,8 +4,6 @@ date: 2025-12-24
 author: "Andrea"
 ---
 
-# Academic weapon in battle + harnessing the best of AI
-
 Yes, if you’re reading this, you know I relate to you. We are probably fighting the same battles.
 
 I’m lying cross-legged on my roommate’s single bed, listening to _For My Hand_ by Burna and Ed Sheeran, and it’s rather ironic because I can’t relate to any of the lyrics — not when Babcock and my department have me bent over with the weight I’m carrying this semester.
