@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 // Custom SVG icons
@@ -35,13 +37,17 @@ const teamMembers: TeamMember[] = [
     displayName: "Deba",
     role: "RADAR Team Lead",
     department: "Computer Science",
-    songObsession: "D.T.M.M.B by Indi",
+    songObsession: "Leaveyourlove by Parcels",
     favoriteColor: "Blue, Black and Brown",
     colorMeaning: "Younger me was interested in lots",
     favoriteBook: "Harry Potter by J.K Rowling",
     managePressure: "Music and sleep",
     socials: [
-      { platform: "substack", handle: "@debaitamah", url: "https://substack.com/@debaitamah" },
+      {
+        platform: "substack",
+        handle: "@debaitamah",
+        url: "https://substack.com/@debaitamah",
+      },
     ],
     photoFile: "deba.jpeg",
     signatureFile: "deba-signature.jpeg",
@@ -53,11 +59,17 @@ const teamMembers: TeamMember[] = [
     department: "Software Engineering",
     songObsession: "ONLY WHAT GOD CAN GIVE by Sondae",
     favoriteColor: "Pink, Black and White",
-    colorMeaning: "Pink is such a feminine and soft color; anytime I see it, I feel warmth. I saw a question somewhere that asked, 'Is black a color or just the absence of it?' and ever since then, I've been very intrigued by the color Black. And then white is just such a peaceful color.",
+    colorMeaning:
+      "Pink is such a feminine and soft color; anytime I see it, I feel warmth. I saw a question somewhere that asked, 'Is black a color or just the absence of it?' and ever since then, I've been very intrigued by the color Black. And then white is just such a peaceful color.",
     favoriteBook: "Burn for Burn by Jenny Han and Siobhan Vivian",
-    managePressure: "Honestly, I feel like I've become accustomed to it, but when it becomes more than I can handle, I blast some worship music and talk to God about it.",
+    managePressure:
+      "Honestly, I feel like I've become accustomed to it, but when it becomes more than I can handle, I blast some worship music and talk to God about it.",
     socials: [
-      { platform: "instagram", handle: "@q_.teytey", url: "https://www.instagram.com/q_.teytey" },
+      {
+        platform: "instagram",
+        handle: "@q_.teytey",
+        url: "https://www.instagram.com/q_.teytey",
+      },
       { platform: "x", handle: "@q_teytey", url: "https://x.com/q_teytey" },
     ],
     photoFile: "tejiri.jpeg",
@@ -90,7 +102,11 @@ const teamMembers: TeamMember[] = [
     favoriteBook: "Nearly All The Men In Lagos Are Mad by Damilare Kuku",
     managePressure: "Sleep",
     socials: [
-      { platform: "medium", handle: "@haffydos18", url: "https://medium.com/@haffydos18" },
+      {
+        platform: "medium",
+        handle: "@haffydos18",
+        url: "https://medium.com/@haffydos18",
+      },
       { platform: "x", handle: "@haf33zzz", url: "https://x.com/haf33zzz" },
     ],
     photoFile: "hafeez.jpeg", // Missing - placeholder will be used
@@ -103,12 +119,21 @@ const teamMembers: TeamMember[] = [
     department: "Information Technology",
     songObsession: "Davido's songs",
     favoriteColor: "Black, white and gold",
-    colorMeaning: "They make me feel special, unique, and full of wisdom and self-worth",
+    colorMeaning:
+      "They make me feel special, unique, and full of wisdom and self-worth",
     favoriteBook: "Anything comedic and/or tech-related",
     managePressure: "Being calm, relaxation techniques and music",
     socials: [
-      { platform: "email", handle: "fredaosadolor@gmail.com", url: "mailto:fredaosadolor@gmail.com" },
-      { platform: "instagram", handle: "@fr.eda4779", url: "https://www.instagram.com/fr.eda4779" },
+      {
+        platform: "email",
+        handle: "fredaosadolor@gmail.com",
+        url: "mailto:fredaosadolor@gmail.com",
+      },
+      {
+        platform: "instagram",
+        handle: "@fr.eda4779",
+        url: "https://www.instagram.com/fr.eda4779",
+      },
     ],
     photoFile: "freda.jpeg", // Missing - placeholder will be used
     signatureFile: "freda-signature.jpeg",
@@ -124,7 +149,11 @@ const teamMembers: TeamMember[] = [
     favoriteBook: "Pride and Prejudice",
     managePressure: "I do not",
     socials: [
-      { platform: "substack", handle: "@tayoadefila", url: "https://substack.com/@tayoadefila" },
+      {
+        platform: "substack",
+        handle: "@tayoadefila",
+        url: "https://substack.com/@tayoadefila",
+      },
     ],
     photoFile: "tayo.jpeg", // Missing - placeholder will be used
     signatureFile: "tayo-signature.jpeg",
@@ -140,7 +169,11 @@ const teamMembers: TeamMember[] = [
     favoriteBook: "Darkest Minds by Alexandra Bracken",
     managePressure: "Music, Gaming and the Subtle Art of Not Giving a…",
     socials: [
-      { platform: "substack", handle: "@18aesir", url: "https://substack.com/@18aesir" },
+      {
+        platform: "substack",
+        handle: "@18aesir",
+        url: "https://substack.com/@18aesir",
+      },
       { platform: "x", handle: "@iam_aesir", url: "https://x.com/iam_aesir" },
     ],
     photoFile: "ayomide.jpeg",
@@ -153,13 +186,26 @@ const teamMembers: TeamMember[] = [
     department: "Software Engineering",
     songObsession: "1sa l0t by Zayleveltn",
     favoriteColor: "Black",
-    colorMeaning: "It is expressive. It literally screams to me. It's daring. It's safe.",
+    colorMeaning:
+      "It is expressive. It literally screams to me. It's daring. It's safe.",
     favoriteBook: "How to sell to Nigerians by Akinola Alabi",
     managePressure: "Music and scrolling through tiktok.",
     socials: [
-      { platform: "snapchat", handle: "@theandreaandy", url: "https://snapchat.com/t/JbWR1kwC" },
-      { platform: "x", handle: "@talehAndrea", url: "https://x.com/talehandrea" },
-      { platform: "substack", handle: "@talehandy", url: "https://substack.com/@talehandy" },
+      {
+        platform: "snapchat",
+        handle: "@theandreaandy",
+        url: "https://snapchat.com/t/JbWR1kwC",
+      },
+      {
+        platform: "x",
+        handle: "@talehAndrea",
+        url: "https://x.com/talehandrea",
+      },
+      {
+        platform: "substack",
+        handle: "@talehandy",
+        url: "https://substack.com/@talehandy",
+      },
     ],
     photoFile: "andrea.jpeg",
     signatureFile: "andrea-signature.jpeg",
@@ -170,15 +216,35 @@ function SocialIcon({ platform }: { platform: SocialLink["platform"] }) {
   const iconClass = "w-4 h-4";
   switch (platform) {
     case "instagram":
-      return <span style={{ color: "#E4405F" }}><Instagram className={iconClass} /></span>;
+      return (
+        <span style={{ color: "#E4405F" }}>
+          <Instagram className={iconClass} />
+        </span>
+      );
     case "x":
-      return <span style={{ color: "#FFFFFF" }}><XTwitter className={iconClass} /></span>;
+      return (
+        <span style={{ color: "#FFFFFF" }}>
+          <XTwitter className={iconClass} />
+        </span>
+      );
     case "substack":
-      return <span style={{ color: "#FF6719" }}><Substack className={iconClass} /></span>;
+      return (
+        <span style={{ color: "#FF6719" }}>
+          <Substack className={iconClass} />
+        </span>
+      );
     case "snapchat":
-      return <span style={{ color: "#FFFC00" }}><Snapchat className={iconClass} /></span>;
+      return (
+        <span style={{ color: "#FFFC00" }}>
+          <Snapchat className={iconClass} />
+        </span>
+      );
     case "medium":
-      return <span style={{ color: "#FFFFFF" }}><Medium className={iconClass} /></span>;
+      return (
+        <span style={{ color: "#FFFFFF" }}>
+          <Medium className={iconClass} />
+        </span>
+      );
     case "email":
       return <Mail className="w-5 h-5" />;
     default:
@@ -188,53 +254,45 @@ function SocialIcon({ platform }: { platform: SocialLink["platform"] }) {
 
 function PolaroidCard({ member }: { member: TeamMember }) {
   const imagePath = `/radar/images/meet-the-team/${member.photoFile}`;
-  const signaturePath = `/radar/images/meet-the-team/${member.signatureFile}`;
   const hasPhoto = member.photoFile !== null;
 
   return (
     <div className="flex flex-col lg:flex-row gap-6 items-start">
       {/* Polaroid Frame */}
       <div className="flex-shrink-0 mx-auto lg:mx-0 self-start">
-        <div 
+        <div
           className="p-3 pb-4 shadow-xl rotate-[-2deg] hover:rotate-0 transition-transform duration-300 w-fit"
           style={{ backgroundColor: "#f5f5f5" }}
         >
           {/* Photo */}
-          <div className="w-48 h-48 relative overflow-hidden" style={{ backgroundColor: "#1a1a1a" }}>
+          <div
+            className="w-48 h-48 relative overflow-hidden"
+            style={{ backgroundColor: "#1a1a1a" }}
+          >
             {hasPhoto ? (
               <Image
                 src={imagePath}
                 alt={member.name}
                 fill
                 className="object-cover"
+                onError={(e) => {
+                  e.currentTarget.src = `https://api.dicebear.com/9.x/notionists/svg?seed=${member.name}`;
+                }}
               />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-4xl opacity-30">
-                📷
-              </div>
-            )}
+            ) : null}
           </div>
-          
-          {/* Name tag and signature area */}
-          <div className="mt-3 flex items-center justify-between gap-2">
-            <span 
+
+          {/* Name tag - centered */}
+          <div className="mt-3 text-center">
+            <span
               className="text-lg font-bold"
-              style={{ 
+              style={{
                 color: "#E91E8C",
                 fontFamily: "cursive",
               }}
             >
               &lt;/{member.displayName}&gt;
             </span>
-            {/* Signature - 3:1 aspect ratio */}
-            <div className="w-20 h-7 relative flex-shrink-0">
-              <Image
-                src={signaturePath}
-                alt={`${member.displayName}'s signature`}
-                fill
-                className="object-contain"
-              />
-            </div>
           </div>
         </div>
       </div>
@@ -249,19 +307,23 @@ function PolaroidCard({ member }: { member: TeamMember }) {
 
         <div className="space-y-2 text-sm">
           <p className="text-muted-foreground">
-            <span className="text-white">🎵 Song obsession:</span> {member.songObsession}
+            <span className="text-white">🎵 New song obsession:</span>{" "}
+            {member.songObsession}
           </p>
           <p className="text-muted-foreground">
-            <span className="text-white">🎨 Favorite color:</span> {member.favoriteColor}
+            <span className="text-white">🎨 Favorite color:</span>{" "}
+            {member.favoriteColor}
           </p>
           <p className="text-muted-foreground italic text-xs">
             &ldquo;{member.colorMeaning}&rdquo;
           </p>
           <p className="text-muted-foreground">
-            <span className="text-white">📚 Favorite book:</span> {member.favoriteBook}
+            <span className="text-white">📚 Favorite book:</span>{" "}
+            {member.favoriteBook}
           </p>
           <p className="text-muted-foreground">
-            <span className="text-white">💪 Managing pressure:</span> {member.managePressure}
+            <span className="text-white">💪 How I manage pressure:</span>{" "}
+            {member.managePressure}
           </p>
         </div>
 
@@ -291,17 +353,20 @@ export default function MeetTheTeam() {
       {/* Intro */}
       <div className="space-y-4 text-muted-foreground leading-relaxed">
         <p>
-          Behind every word, line of statement and piece, there&apos;s a voice — a person.
+          Behind every word, line of statement and piece, there&apos;s a voice —
+          a person.
         </p>
         <p>
-          This season, as we slow down for Christmas and look ahead to a new year, we wanted to introduce you to the people who make up our creative writing community beyond screens, submissions, and stand-ups.
+          This season, as we slow down for Christmas and look ahead to a new
+          year, we wanted to introduce you to the people who make up our
+          creative writing community beyond screens, submissions, and stand-ups.
         </p>
         <p>
-          A team of thinkers, dreamers, music lovers, night sleepers (or chronic sleepers), and individuals navigating school, life, and growth in their own way.
+          A team of thinkers, dreamers, music lovers, night sleepers (or chronic
+          sleepers), and individuals navigating school, life, and growth in
+          their own way.
         </p>
-        <p>
-          This is us — unfiltered, human, and learning as we go.
-        </p>
+        <p>This is us — unfiltered, human, and learning as we go.</p>
         <p className="text-white font-semibold">
           Welcome to the faces behind RADAR.
         </p>
@@ -329,19 +394,26 @@ export default function MeetTheTeam() {
       {/* Outro */}
       <div className="space-y-4 text-muted-foreground leading-relaxed pt-8">
         <p>
-          And that&apos;s our team — different tastes, different stories, different coping mechanisms, but one shared journey.
+          And that&apos;s our team — different tastes, different stories,
+          different coping mechanisms, but one shared journey.
         </p>
         <p>
-          What stands out isn&apos;t just what we study or what we build, but <span className="text-white font-semibold">who we are while doing it</span>.
+          What stands out isn&apos;t just what we study or what we build, but{" "}
+          <span className="text-white font-semibold">
+            who we are while doing it
+          </span>
+          .
         </p>
         <p>
-          We manage pressure differently. We find meaning in different things. We recharge in our own ways.
+          We manage pressure differently. We find meaning in different things.
+          We recharge in our own ways.
         </p>
         <p>
-          And yet, we come together as a community driven by curiosity, growth, and the desire to build something meaningful and we hope that you enjoy this RADAR issue as much as we do!
+          And yet, we come together as a community driven by curiosity, growth,
+          and the desire to build something meaningful and we hope that you
+          enjoy this RADAR issue as much as we do!
         </p>
       </div>
     </div>
   );
 }
-
