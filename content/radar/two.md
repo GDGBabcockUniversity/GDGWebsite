@@ -77,7 +77,7 @@ This is us — unfiltered, human, and learning as we go.
 - **What it means to you:** They make me feel special, unique, and full of wisdom and self-worth
 - **Favorite book:** Anything comedic and/ or tech-related
 - **How you manage school pressure:** Being calm, relaxation techniques and music
-- **Connect with me:** Email: fredaosadolor@gmail.com, [Instagram: @fr.eda4779](https://www.instagram.com/fr.eda4779?igsh=Zm50dTNpNGVjdWgx)
+- **Connect with me:** [Email: fredaosadolor@gmail.com](mailto:fredaosadolor@gmail.com), [Instagram: @fr.eda4779](https://www.instagram.com/fr.eda4779?igsh=Zm50dTNpNGVjdWgx)
 
 ---
 
