@@ -25,7 +25,7 @@ This is us — unfiltered, human, and learning as we go.
 - **What it means to you:** Younger me was interested in lots
 - **Favorite book:** Harry Potter by J.K Rowling
 - **How you manage school pressure:** Music and sleep
-- **Connect with me:** [Snapchat: @debahitamah](https://snapchat.com/t/SrLlfUl5), [Substack: @debaitamah](https://substack.com/@debaitamah?r=64clyo&utm_medium=ios)
+- **Connect with me:** [Substack: @debaitamah](https://substack.com/@debaitamah?r=64clyo&utm_medium=ios)
 
 ---
 
