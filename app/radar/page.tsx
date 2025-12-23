@@ -12,6 +12,7 @@ import Snapchat from "@/components/svgs/snapchat";
 import Medium from "@/components/svgs/medium";
 import Mail from "@/components/svgs/mail";
 import ShareButton from "@/components/share-button";
+import MeetTheTeam from "@/components/meet-the-team";
 
 // GDG colors for rotating through elements
 const gdgColors = ["#4285F4", "#EA4335", "#FAAB00", "#34A853"];
@@ -338,125 +339,129 @@ export default function RadarPage() {
 
                 {/* Content */}
                 <div className="prose prose-invert prose-lg max-w-none">
-                  <ReactMarkdown
-                    components={{
-                      h1: ({ children }) => (
-                        <h1 className="text-2xl font-bold text-white mt-8 mb-4">
-                          {children}
-                        </h1>
-                      ),
-                      h2: ({ children }) => (
-                        <h2 className="text-xl font-bold text-white mt-6 mb-3">
-                          {children}
-                        </h2>
-                      ),
-                      h3: ({ children }) => (
-                        <h3 className="text-lg font-semibold text-white mt-5 mb-2">
-                          {children}
-                        </h3>
-                      ),
-                      p: ({ children }) => (
-                        <p className="text-muted-foreground leading-relaxed mb-4">
-                          {children}
-                        </p>
-                      ),
-                      strong: ({ children }) => (
-                        <strong className="text-white font-semibold">
-                          {children}
-                        </strong>
-                      ),
-                      em: ({ children }) => (
-                        <em className="text-muted-foreground italic">
-                          {children}
-                        </em>
-                      ),
-                      blockquote: ({ children }) => {
-                        const color =
-                          gdgColors[blockquoteIndex % gdgColors.length];
-                        blockquoteIndex++;
-                        return (
-                          <blockquote
-                            className="border-l-4 pl-4 my-4 text-muted-foreground italic"
-                            style={{ borderColor: color }}
-                          >
+                  {story.slug === "two" ? (
+                    <MeetTheTeam />
+                  ) : (
+                    <ReactMarkdown
+                      components={{
+                        h1: ({ children }) => (
+                          <h1 className="text-2xl font-bold text-white mt-8 mb-4">
                             {children}
-                          </blockquote>
-                        );
-                      },
-                      ul: ({ children }) => (
-                        <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-4">
-                          {children}
-                        </ul>
-                      ),
-                      ol: ({ children }) => (
-                        <ol className="list-decimal list-inside space-y-2 text-muted-foreground mb-4">
-                          {children}
-                        </ol>
-                      ),
-                      li: ({ children }) => (
-                        <li className="text-muted-foreground">{children}</li>
-                      ),
-                      a: ({ href, children }) => {
-                        const text = String(children);
-                        const isSocialLink =
-                          href &&
-                          (href.includes("instagram.com") ||
-                            href.includes("x.com") ||
-                            href.includes("twitter.com") ||
-                            href.includes("substack.com") ||
-                            href.includes("snapchat.com") ||
-                            href.includes("medium.com"));
-                        const isEmailLink = href?.startsWith("mailto:");
+                          </h1>
+                        ),
+                        h2: ({ children }) => (
+                          <h2 className="text-xl font-bold text-white mt-6 mb-3">
+                            {children}
+                          </h2>
+                        ),
+                        h3: ({ children }) => (
+                          <h3 className="text-lg font-semibold text-white mt-5 mb-2">
+                            {children}
+                          </h3>
+                        ),
+                        p: ({ children }) => (
+                          <p className="text-muted-foreground leading-relaxed mb-4">
+                            {children}
+                          </p>
+                        ),
+                        strong: ({ children }) => (
+                          <strong className="text-white font-semibold">
+                            {children}
+                          </strong>
+                        ),
+                        em: ({ children }) => (
+                          <em className="text-muted-foreground italic">
+                            {children}
+                          </em>
+                        ),
+                        blockquote: ({ children }) => {
+                          const color =
+                            gdgColors[blockquoteIndex % gdgColors.length];
+                          blockquoteIndex++;
+                          return (
+                            <blockquote
+                              className="border-l-4 pl-4 my-4 text-muted-foreground italic"
+                              style={{ borderColor: color }}
+                            >
+                              {children}
+                            </blockquote>
+                          );
+                        },
+                        ul: ({ children }) => (
+                          <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-4">
+                            {children}
+                          </ul>
+                        ),
+                        ol: ({ children }) => (
+                          <ol className="list-decimal list-inside space-y-2 text-muted-foreground mb-4">
+                            {children}
+                          </ol>
+                        ),
+                        li: ({ children }) => (
+                          <li className="text-muted-foreground">{children}</li>
+                        ),
+                        a: ({ href, children }) => {
+                          const text = String(children);
+                          const isSocialLink =
+                            href &&
+                            (href.includes("instagram.com") ||
+                              href.includes("x.com") ||
+                              href.includes("twitter.com") ||
+                              href.includes("substack.com") ||
+                              href.includes("snapchat.com") ||
+                              href.includes("medium.com"));
+                          const isEmailLink = href?.startsWith("mailto:");
 
-                        if (isSocialLink && href) {
-                          const handle = extractHandle(text);
+                          if (isSocialLink && href) {
+                            const handle = extractHandle(text);
+                            return (
+                              <a
+                                href={href}
+                                className="inline-flex items-center gap-1.5 text-primary hover:underline"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {getSocialIcon(href)}
+                                {handle && <span>{handle}</span>}
+                              </a>
+                            );
+                          }
+
+                          if (isEmailLink && href) {
+                            const email = href.replace("mailto:", "");
+                            return (
+                              <a
+                                href={href}
+                                className="inline-flex items-center gap-1.5 text-primary hover:underline"
+                              >
+                                {getSocialIcon(href)}
+                                <span>{email}</span>
+                              </a>
+                            );
+                          }
+
                           return (
                             <a
                               href={href}
-                              className="inline-flex items-center gap-1.5 text-primary hover:underline"
+                              className="text-primary hover:underline"
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              {getSocialIcon(href)}
-                              {handle && <span>{handle}</span>}
+                              {children}
                             </a>
                           );
-                        }
-
-                        if (isEmailLink && href) {
-                          const email = href.replace("mailto:", "");
-                          return (
-                            <a
-                              href={href}
-                              className="inline-flex items-center gap-1.5 text-primary hover:underline"
-                            >
-                              {getSocialIcon(href)}
-                              <span>{email}</span>
-                            </a>
-                          );
-                        }
-
-                        return (
-                          <a
-                            href={href}
-                            className="text-primary hover:underline"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
+                        },
+                        hr: () => <hr className="border-border my-6" />,
+                        code: ({ children }) => (
+                          <code className="bg-background px-1.5 py-0.5 rounded text-sm text-primary">
                             {children}
-                          </a>
-                        );
-                      },
-                      hr: () => <hr className="border-border my-6" />,
-                      code: ({ children }) => (
-                        <code className="bg-background px-1.5 py-0.5 rounded text-sm text-primary">
-                          {children}
-                        </code>
-                      ),
-                    }}
-                  >
-                    {story.content}
-                  </ReactMarkdown>
+                          </code>
+                        ),
+                      }}
+                    >
+                      {story.content}
+                    </ReactMarkdown>
+                  )}
                 </div>
               </div>
 
