@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "@/components/navigation";
 import CTA from "@/components/cta";
 import Footer from "@/components/footer";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "GDG Babcock - Google Developer Groups at Babcock University",
@@ -31,6 +32,7 @@ export default function RootLayout({
 
         <CTA />
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
