@@ -150,12 +150,12 @@ export default function Footer() {
               </p> */}
               <div className="flex gap-2">
                 <a
-                  href="https://gdgbabcock.substack.com/"
+                  href="https://radar.gdgbabcock.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <Button size="sm" className="bg-primary hover:bg-primary/90">
-                    GDG Babcock on Substack
+                    RADAR by GDG Babcock
                   </Button>
                 </a>
               </div>
