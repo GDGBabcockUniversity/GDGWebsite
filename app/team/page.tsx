@@ -266,7 +266,7 @@ const teamMembers = [
     name: "Ademeso Ademola",
     role: "Lead Frontend Developer (Dev Team)",
     category: "dev-team",
-    image: "/Ademeso, Ademola Michael - Lead Frontend Developer.jpg",
+    image: "/Ademeso, Ademola Michael - Lead Frontend Developer.PNG",
     wordsToLiveBy: "Some days you just show up, and that's enough.",
     links: {
       twitter: "https://x.com/kingdez_04",
