@@ -5,6 +5,7 @@ import Navigation from "@/components/navigation";
 import CTA from "@/components/cta";
 import Footer from "@/components/footer";
 import { Analytics } from "@vercel/analytics/next";
+import { AuthProvider } from "@/components/auth-provider";
 
 export const metadata: Metadata = {
   title: "GDG Babcock - Google Developer Groups at Babcock University",
@@ -21,17 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="antialiased" suppressHydrationWarning>
       <body>
-        <Navigation />
-        {/* <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-        > */}
-        {children}
-        {/* </ThemeProvider> */}
-
-        <CTA />
-        <Footer />
+        <AuthProvider>
+          <Navigation />
+          {children}
+          <CTA />
+          <Footer />
+        </AuthProvider>
         <Analytics />
       </body>
     </html>
