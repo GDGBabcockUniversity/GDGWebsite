@@ -1,9 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/components/auth-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  GENDERS,
+  TEAMS,
+  STUDENT_STATUSES,
+  TRACKS,
+  DEPARTMENTS,
+  FACULTIES,
+  SKILL_LEVELS,
+  MONTHS,
+} from "@/lib/constants";
 import {
   User,
   Mail,
@@ -18,74 +28,73 @@ import {
   Building,
   Code2,
   ChevronDown,
+  Users,
+  Search,
 } from "lucide-react";
 import Link from "next/link";
 import type { ProfileUpdatePayload } from "@/lib/auth-service";
-
-const TRACKS = [
-  "Web Development",
-  "Mobile Development",
-  "Cloud Computing",
-  "Machine Learning / AI",
-  "UI/UX Design",
-  "Cybersecurity",
-  "Data Science",
-  "DevOps",
-  "Game Development",
-  "Blockchain",
-];
-
-const SKILL_LEVELS = ["Beginner", "Intermediate", "Advanced", "Expert"];
-
-const STUDENT_STATUSES = [
-  "100 Level",
-  "200 Level",
-  "300 Level",
-  "400 Level",
-  "500 Level",
-  "Postgraduate",
-  "Alumni",
-];
-
-const GENDERS = ["Male", "Female", "Prefer not to say"];
-
-const MONTHS = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
 
 export default function ProfilePage() {
   const { user, logout, updateUserProfile, loading, error } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [saving, setSaving] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");
+  const [deptSearch, setDeptSearch] = useState("");
+  const [facultySearch, setFacultySearch] = useState("");
+
+  // Build form state from user
+  const buildFormFromUser = () => {
+    // Parse birthday from API's 'birthday' field
+    let bDay: number | undefined = user?.birthday_day;
+    let bMonth: number | undefined = user?.birthday_month;
+    if (!bDay && user?.birthday) {
+      const d = new Date(user.birthday);
+      if (!isNaN(d.getTime())) {
+        bDay = d.getUTCDate();
+        bMonth = d.getUTCMonth() + 1;
+      }
+    }
+    return {
+      full_name: user?.full_name || "",
+      whatsapp_number: user?.whatsapp_number || "",
+      gender: user?.gender || "",
+      birthday_day: bDay ?? undefined,
+      birthday_month: bMonth ?? undefined,
+      teams: user?.teams || [],
+      student_status: user?.student_status || "",
+      matric_no: user?.matric_no || "",
+      department: user?.department || "",
+      faculty: user?.faculty || "",
+      primary_track: user?.primary_track || "",
+      secondary_track: user?.secondary_track || "",
+      primary_skill_level: user?.primary_skill_level || "",
+      secondary_skill_level: user?.secondary_skill_level || "",
+      avatar_url: user?.avatar_url || undefined,
+    };
+  };
 
   // Form state
-  const [form, setForm] = useState<ProfileUpdatePayload>({
-    full_name: user?.full_name || "",
-    whatsapp_number: user?.whatsapp_number || "",
-    gender: user?.gender || "",
-    birthday_day: user?.birthday_day || undefined,
-    birthday_month: user?.birthday_month || undefined,
-    student_status: user?.student_status || "",
-    matric_no: user?.matric_no || "",
-    department: user?.department || "",
-    faculty: user?.faculty || "",
-    primary_track: user?.primary_track || "",
-    secondary_track: user?.secondary_track || "",
-    primary_skill_level: user?.primary_skill_level || "",
-    secondary_skill_level: user?.secondary_skill_level || "",
-  });
+  const [form, setForm] = useState<ProfileUpdatePayload>(buildFormFromUser());
+
+  // Sync form state when user data arrives/changes
+  useEffect(() => {
+    if (user) {
+      setForm(buildFormFromUser());
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
+  const filteredDepts = deptSearch
+    ? DEPARTMENTS.filter((d) =>
+        d.toLowerCase().includes(deptSearch.toLowerCase())
+      )
+    : DEPARTMENTS;
+
+  const filteredFaculties = facultySearch
+    ? FACULTIES.filter((f) =>
+        f.toLowerCase().includes(facultySearch.toLowerCase())
+      )
+    : FACULTIES;
 
   const updateField = (field: keyof ProfileUpdatePayload, value: any) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -95,7 +104,29 @@ export default function ProfilePage() {
     setSaving(true);
     setSuccessMsg("");
     try {
-      await updateUserProfile(form);
+      // Strip undefined values so we don't accidentally null out fields on the backend
+      const payload: ProfileUpdatePayload = {};
+      if (form.full_name) payload.full_name = form.full_name;
+      if (form.whatsapp_number) payload.whatsapp_number = form.whatsapp_number;
+      if (form.gender) payload.gender = form.gender;
+      if (form.birthday_day != null && form.birthday_month != null) {
+        // API expects 'birthday' as ISO date string — use year 2000 as placeholder
+        const m = String(form.birthday_month).padStart(2, "0");
+        const d = String(form.birthday_day).padStart(2, "0");
+        payload.birthday = `2000-${m}-${d}`;
+      }
+      if (form.teams && form.teams.length > 0) payload.teams = form.teams;
+      if (form.student_status) payload.student_status = form.student_status;
+      if (form.matric_no) payload.matric_no = form.matric_no;
+      if (form.department) payload.department = form.department;
+      if (form.faculty) payload.faculty = form.faculty;
+      if (form.primary_track) payload.primary_track = form.primary_track;
+      if (form.secondary_track) payload.secondary_track = form.secondary_track;
+      if (form.primary_skill_level) payload.primary_skill_level = form.primary_skill_level;
+      if (form.secondary_skill_level) payload.secondary_skill_level = form.secondary_skill_level;
+      if (form.avatar_url) payload.avatar_url = form.avatar_url;
+
+      await updateUserProfile(payload);
       setIsEditing(false);
       setSuccessMsg("Profile updated successfully!");
       setTimeout(() => setSuccessMsg(""), 3000);
@@ -107,21 +138,9 @@ export default function ProfilePage() {
   };
 
   const handleStartEditing = () => {
-    setForm({
-      full_name: user?.full_name || "",
-      whatsapp_number: user?.whatsapp_number || "",
-      gender: user?.gender || "",
-      birthday_day: user?.birthday_day || undefined,
-      birthday_month: user?.birthday_month || undefined,
-      student_status: user?.student_status || "",
-      matric_no: user?.matric_no || "",
-      department: user?.department || "",
-      faculty: user?.faculty || "",
-      primary_track: user?.primary_track || "",
-      secondary_track: user?.secondary_track || "",
-      primary_skill_level: user?.primary_skill_level || "",
-      secondary_skill_level: user?.secondary_skill_level || "",
-    });
+    setForm(buildFormFromUser());
+    setDeptSearch("");
+    setFacultySearch("");
     setIsEditing(true);
   };
 
@@ -156,6 +175,20 @@ export default function ProfilePage() {
       </main>
     );
   }
+
+  // Parse birthday from API's 'birthday' field (ISO date string) into day/month
+  const parsedBirthday = (() => {
+    if (user.birthday) {
+      const d = new Date(user.birthday);
+      if (!isNaN(d.getTime())) {
+        return { day: d.getUTCDate(), month: d.getUTCMonth() + 1 };
+      }
+    }
+    if (user.birthday_day && user.birthday_month) {
+      return { day: user.birthday_day, month: user.birthday_month };
+    }
+    return null;
+  })();
 
   // Get initials for avatar fallback
   const initials = user.full_name
@@ -315,8 +348,8 @@ export default function ProfilePage() {
                   value={
                     isEditing
                       ? undefined
-                      : user.birthday_day && user.birthday_month
-                        ? `${MONTHS[(user.birthday_month || 1) - 1]} ${user.birthday_day}`
+                      : parsedBirthday
+                        ? `${MONTHS[parsedBirthday.month - 1]} ${parsedBirthday.day}`
                         : undefined
                   }
                   editing={isEditing}
@@ -392,37 +425,147 @@ export default function ProfilePage() {
                     />
                   }
                 />
-                <FieldRow
-                  icon={<Building className="h-4 w-4" />}
-                  label="Department"
-                  value={isEditing ? undefined : user.department}
-                  editing={isEditing}
-                  input={
-                    <Input
-                      value={form.department}
-                      onChange={(e) =>
-                        updateField("department", e.target.value)
-                      }
-                      placeholder="e.g. Computer Science"
-                      className="h-11 rounded-xl bg-background"
-                    />
-                  }
-                />
-                <FieldRow
-                  icon={<Building className="h-4 w-4" />}
-                  label="Faculty"
-                  value={isEditing ? undefined : user.faculty}
-                  editing={isEditing}
-                  input={
-                    <Input
-                      value={form.faculty}
-                      onChange={(e) => updateField("faculty", e.target.value)}
-                      placeholder="e.g. Computing & Engineering Sciences"
-                      className="h-11 rounded-xl bg-background"
-                    />
-                  }
-                />
+                {/* Department — searchable list when editing */}
+                <div>
+                  <label className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground mb-1.5">
+                    <Building className="h-4 w-4" />
+                    Department
+                  </label>
+                  {isEditing ? (
+                    <>
+                      <div className="relative mb-1.5">
+                        <Search className="h-4 w-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
+                        <Input
+                          placeholder="Search departments..."
+                          value={deptSearch}
+                          onChange={(e) => setDeptSearch(e.target.value)}
+                          className="h-10 rounded-xl bg-background pl-9 text-sm"
+                        />
+                      </div>
+                      <div className="max-h-36 overflow-y-auto rounded-xl border border-border bg-background p-1 space-y-0.5">
+                        {filteredDepts.map((d) => (
+                          <button
+                            key={d}
+                            type="button"
+                            onClick={() => {
+                              updateField("department", d);
+                              setDeptSearch("");
+                            }}
+                            className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                              form.department === d
+                                ? "bg-gdg-blue text-white"
+                                : "hover:bg-white/5 text-foreground"
+                            }`}
+                          >
+                            {d}
+                          </button>
+                        ))}
+                        {filteredDepts.length === 0 && (
+                          <p className="text-sm text-muted-foreground px-3 py-2">No results</p>
+                        )}
+                      </div>
+                    </>
+                  ) : (
+                    <p className="text-sm text-foreground">{user.department || "—"}</p>
+                  )}
+                </div>
+                {/* Faculty — searchable list when editing */}
+                <div>
+                  <label className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground mb-1.5">
+                    <Building className="h-4 w-4" />
+                    Faculty / School
+                  </label>
+                  {isEditing ? (
+                    <>
+                      <div className="relative mb-1.5">
+                        <Search className="h-4 w-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
+                        <Input
+                          placeholder="Search faculties..."
+                          value={facultySearch}
+                          onChange={(e) => setFacultySearch(e.target.value)}
+                          className="h-10 rounded-xl bg-background pl-9 text-sm"
+                        />
+                      </div>
+                      <div className="max-h-36 overflow-y-auto rounded-xl border border-border bg-background p-1 space-y-0.5">
+                        {filteredFaculties.map((f) => (
+                          <button
+                            key={f}
+                            type="button"
+                            onClick={() => {
+                              updateField("faculty", f);
+                              setFacultySearch("");
+                            }}
+                            className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                              form.faculty === f
+                                ? "bg-gdg-blue text-white"
+                                : "hover:bg-white/5 text-foreground"
+                            }`}
+                          >
+                            {f}
+                          </button>
+                        ))}
+                        {filteredFaculties.length === 0 && (
+                          <p className="text-sm text-muted-foreground px-3 py-2">No results</p>
+                        )}
+                      </div>
+                    </>
+                  ) : (
+                    <p className="text-sm text-foreground">{user.faculty || "—"}</p>
+                  )}
+                </div>
               </div>
+            </section>
+
+            {/* Teams */}
+            <section className="bg-card border border-border rounded-2xl p-6 sm:p-8">
+              <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
+                <Users className="h-5 w-5 text-gdg-red" />
+                Teams
+              </h2>
+              {isEditing ? (
+                <div className="grid grid-cols-2 gap-2">
+                  {TEAMS.map((team) => {
+                    const selected = (form.teams || []).includes(team);
+                    const maxed = (form.teams || []).length >= 2 && !selected;
+                    return (
+                      <button
+                        key={team}
+                        type="button"
+                        disabled={maxed}
+                        onClick={() => {
+                          const current = form.teams || [];
+                          const next = selected
+                            ? current.filter((t) => t !== team)
+                            : [...current, team];
+                          updateField("teams", next);
+                        }}
+                        className={`px-3 py-2.5 rounded-xl text-sm font-medium border transition-all text-left ${
+                          selected
+                            ? "bg-gdg-blue text-white border-gdg-blue"
+                            : "bg-background border-border text-foreground hover:border-gdg-blue/50"
+                        } ${maxed ? "opacity-40 cursor-not-allowed" : ""}`}
+                      >
+                        {team}
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="flex flex-wrap gap-2">
+                  {user.teams && user.teams.length > 0 ? (
+                    user.teams.map((t) => (
+                      <span
+                        key={t}
+                        className="px-3 py-1 text-sm font-medium rounded-full bg-gdg-red/20 text-gdg-red border border-gdg-red/30"
+                      >
+                        {t}
+                      </span>
+                    ))
+                  ) : (
+                    <p className="text-sm text-muted-foreground">—</p>
+                  )}
+                </div>
+              )}
             </section>
 
             {/* Track & Skills */}
@@ -451,7 +594,8 @@ export default function ProfilePage() {
                       : user.primary_skill_level
                   }
                   editing={isEditing}
-                  options={SKILL_LEVELS}
+                  options={SKILL_LEVELS.map((sl) => sl.label)}
+                  optionValues={SKILL_LEVELS.map((sl) => sl.value)}
                   onChange={(v) => updateField("primary_skill_level", v)}
                 />
                 <SelectRow
@@ -463,28 +607,32 @@ export default function ProfilePage() {
                       : user.secondary_track
                   }
                   editing={isEditing}
-                  options={TRACKS}
+                  options={TRACKS.filter((t) => t !== (isEditing ? form.primary_track : user.primary_track))}
                   onChange={(v) => updateField("secondary_track", v)}
+                  allowEmpty
                 />
-                <SelectRow
-                  icon={<Code2 className="h-4 w-4" />}
-                  label="Secondary Skill Level"
-                  value={
-                    isEditing
-                      ? form.secondary_skill_level
-                      : user.secondary_skill_level
-                  }
-                  editing={isEditing}
-                  options={SKILL_LEVELS}
-                  onChange={(v) => updateField("secondary_skill_level", v)}
-                />
+                {(isEditing ? form.secondary_track : user.secondary_track) && (
+                  <SelectRow
+                    icon={<Code2 className="h-4 w-4" />}
+                    label="Secondary Skill Level"
+                    value={
+                      isEditing
+                        ? form.secondary_skill_level
+                        : user.secondary_skill_level
+                    }
+                    editing={isEditing}
+                    options={SKILL_LEVELS.map((sl) => sl.label)}
+                    optionValues={SKILL_LEVELS.map((sl) => sl.value)}
+                    onChange={(v) => updateField("secondary_skill_level", v)}
+                  />
+                )}
               </div>
             </section>
 
             {/* Account Info (read only) */}
             <section className="bg-card border border-border rounded-2xl p-6 sm:p-8">
               <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
-                <Briefcase className="h-5 w-5 text-gdg-red" />
+                <Briefcase className="h-5 w-5 text-gdg-blue" />
                 Account
               </h2>
               <div className="grid gap-5 sm:grid-cols-2">
@@ -560,15 +708,29 @@ function SelectRow({
   value,
   editing,
   options,
+  optionValues,
   onChange,
+  allowEmpty,
 }: {
   icon?: React.ReactNode;
   label: string;
   value?: string | null;
   editing?: boolean;
   options: string[];
+  optionValues?: string[];
   onChange?: (value: string) => void;
+  allowEmpty?: boolean;
 }) {
+  // For display: map stored value to label if optionValues provided
+  const displayValue = (() => {
+    if (!value) return "—";
+    if (optionValues) {
+      const idx = optionValues.indexOf(value);
+      return idx >= 0 ? options[idx] : value;
+    }
+    return value;
+  })();
+
   return (
     <div>
       <label className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground mb-1.5">
@@ -582,9 +744,9 @@ function SelectRow({
             onChange={(e) => onChange?.(e.target.value)}
             className="w-full h-11 rounded-xl bg-background border border-border px-3 text-foreground text-sm appearance-none cursor-pointer"
           >
-            <option value="">Select…</option>
-            {options.map((opt) => (
-              <option key={opt} value={opt}>
+            <option value="">{allowEmpty ? "None" : "Select\u2026"}</option>
+            {options.map((opt, i) => (
+              <option key={opt} value={optionValues ? optionValues[i] : opt}>
                 {opt}
               </option>
             ))}
@@ -592,7 +754,7 @@ function SelectRow({
           <ChevronDown className="h-4 w-4 text-muted-foreground absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
         </div>
       ) : (
-        <p className="text-sm text-foreground">{value || "—"}</p>
+        <p className="text-sm text-foreground">{displayValue}</p>
       )}
     </div>
   );
