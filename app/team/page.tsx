@@ -421,7 +421,7 @@ const teamMembers = [
     name: "Oluwajuwon Otelaja",
     role: "Networking Specialist",
     category: "specialists",
-    image: "/Oluwajuwonlo Otelaja-Networking Specialist_.jpg",
+    image: "/Oluwajuwonlo Otelaja-Networking Specialist.jpeg",
     wordsToLiveBy:
       "Do what you're good at. Blood don't make you family, loyalty does and loyalty is not a word, it's a lifestyle.",
     links: {
