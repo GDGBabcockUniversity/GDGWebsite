@@ -21,48 +21,20 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import type { ProfileUpdatePayload } from "@/lib/auth-service";
+import {
+  TRACKS as TRACK_CONFIG,
+  SKILL_LEVELS,
+  STUDENT_STATUSES,
+  GENDERS,
+  MONTHS,
+  getTrack,
+  COMMUNITY_WHATSAPP_URL,
+} from "@/lib/tracks";
+import { GDG_HEX, TEXT_CLASS } from "@/lib/colors";
+import WhatsApp from "@/components/svgs/whatsapp";
 
-const TRACKS = [
-  "Web Development",
-  "Mobile Development",
-  "Cloud Computing",
-  "Machine Learning / AI",
-  "UI/UX Design",
-  "Cybersecurity",
-  "Data Science",
-  "DevOps",
-  "Game Development",
-  "Blockchain",
-];
-
-const SKILL_LEVELS = ["Beginner", "Intermediate", "Advanced", "Expert"];
-
-const STUDENT_STATUSES = [
-  "100 Level",
-  "200 Level",
-  "300 Level",
-  "400 Level",
-  "500 Level",
-  "Postgraduate",
-  "Alumni",
-];
-
-const GENDERS = ["Male", "Female", "Prefer not to say"];
-
-const MONTHS = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+// Track select options come from the shared config (single source of truth)
+const TRACKS = TRACK_CONFIG.map((t) => t.value);
 
 export default function ProfilePage() {
   const { user, logout, updateUserProfile, loading, error } = useAuth();
@@ -137,7 +109,7 @@ export default function ProfilePage() {
     return (
       <main className="min-h-screen pt-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-          <div className="max-w-md mx-auto bg-card border border-border rounded-2xl p-8">
+          <div className="max-w-md mx-auto rounded-3xl border border-white/15 bg-[#171717] p-8">
             <User className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
             <h1 className="text-2xl font-bold text-foreground mb-2">
               Not signed in
@@ -181,7 +153,7 @@ export default function ProfilePage() {
 
         <div className="max-w-3xl mx-auto">
           {/* Profile Header Card */}
-          <div className="bg-card border border-border rounded-2xl overflow-hidden mb-6">
+          <div className="rounded-3xl border border-white/15 bg-[#171717] overflow-hidden mb-6">
             {/* Gradient banner */}
             <div className="h-32 bg-gradient-to-r from-gdg-blue via-gdg-red to-gdg-yellow" />
 
@@ -261,7 +233,7 @@ export default function ProfilePage() {
           {/* Profile Details */}
           <div className="grid gap-6">
             {/* Personal Information */}
-            <section className="bg-card border border-border rounded-2xl p-6 sm:p-8">
+            <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
               <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                 <User className="h-5 w-5 text-gdg-blue" />
                 Personal Information
@@ -362,7 +334,7 @@ export default function ProfilePage() {
             </section>
 
             {/* Academic Information */}
-            <section className="bg-card border border-border rounded-2xl p-6 sm:p-8">
+            <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
               <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                 <GraduationCap className="h-5 w-5 text-gdg-green" />
                 Academic Information
@@ -426,7 +398,7 @@ export default function ProfilePage() {
             </section>
 
             {/* Track & Skills */}
-            <section className="bg-card border border-border rounded-2xl p-6 sm:p-8">
+            <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
               <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                 <Code2 className="h-5 w-5 text-gdg-yellow" />
                 Tracks & Skills
@@ -481,8 +453,82 @@ export default function ProfilePage() {
               </div>
             </section>
 
+            {/* Track group chats */}
+            <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
+              <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
+                <WhatsApp className="h-5 w-5 text-[#25D366]" />
+                Your track group chats
+              </h2>
+              {(() => {
+                const memberTracks = [
+                  getTrack(user.primary_track),
+                  getTrack(user.secondary_track),
+                ].filter(
+                  (t, i, arr) => !!t && arr.indexOf(t) === i
+                ) as NonNullable<ReturnType<typeof getTrack>>[];
+
+                if (memberTracks.length === 0) {
+                  return (
+                    <div className="text-sm text-muted-foreground">
+                      Pick your track to get your WhatsApp group chat links.{" "}
+                      <Link
+                        href="/onboarding"
+                        className="font-medium text-gdg-blue hover:underline"
+                      >
+                        Complete your profile →
+                      </Link>
+                    </div>
+                  );
+                }
+                return (
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {memberTracks.map((track) => (
+                      <a
+                        key={track.slug}
+                        href={track.whatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between gap-3 rounded-2xl border bg-background p-4 transition-transform hover:scale-[1.01]"
+                        style={{ borderColor: GDG_HEX[track.color] }}
+                      >
+                        <div className="min-w-0">
+                          <p
+                            className={`text-sm font-bold ${TEXT_CLASS[track.color]}`}
+                          >
+                            {track.label}
+                          </p>
+                          <p className="mt-0.5 text-xs text-muted-foreground">
+                            {track.whatsappUrl !== "#"
+                              ? "Join the group chat"
+                              : "Link coming soon"}
+                          </p>
+                        </div>
+                        <WhatsApp className="h-5 w-5 shrink-0 text-[#25D366]" />
+                      </a>
+                    ))}
+                    <a
+                      href={COMMUNITY_WHATSAPP_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between gap-3 rounded-2xl border border-border bg-background p-4 transition-transform hover:scale-[1.01]"
+                    >
+                      <div className="min-w-0">
+                        <p className="text-sm font-bold text-gdg-cream">
+                          GDG Babcock Community
+                        </p>
+                        <p className="mt-0.5 text-xs text-muted-foreground">
+                          The general group for everyone
+                        </p>
+                      </div>
+                      <WhatsApp className="h-5 w-5 shrink-0 text-[#25D366]" />
+                    </a>
+                  </div>
+                );
+              })()}
+            </section>
+
             {/* Account Info (read only) */}
-            <section className="bg-card border border-border rounded-2xl p-6 sm:p-8">
+            <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
               <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                 <Briefcase className="h-5 w-5 text-gdg-red" />
                 Account
