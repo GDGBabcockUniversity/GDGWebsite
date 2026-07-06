@@ -5,11 +5,22 @@
 
 import type { GdgColor } from "@/lib/tracks";
 
-export const NAV_LINKS = [
+/** Where leadership applications live. */
+export const APPLY_URL = "https://apply.gdgbabcock.com";
+
+export interface NavLink {
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
+export const NAV_LINKS: NavLink[] = [
+  { label: "About", href: "/about" },
   { label: "What We Do", href: "/#what-we-do" },
+  { label: "Products", href: "/products" },
   { label: "Team", href: "/team" },
-  { label: "Events", href: "/#events" },
-  { label: "Become a Partner", href: "/#partner" },
+  { label: "Apply", href: APPLY_URL, external: true },
+  { label: "Partner", href: "/#partner" },
 ];
 
 export const SOCIAL_LINKS = {
@@ -26,9 +37,11 @@ export const MARQUEE_ITEMS = [
   "GDG BABCOCK",
   "500+ MEMBERS",
   "4 YEARS ACTIVE",
-  "ORBIT SUMMIT",
+  "ORBIT",
   "RADAR",
   "THE 100",
+  "BUILD WITH AI",
+  "MONTHLY MEETUP",
   "GDG WEEK",
 ];
 

@@ -16,23 +16,35 @@ export const PROGRAMS: Program[] = [
   {
     name: "ORBIT",
     color: "red",
-    description: "Our annual summit — a full day of talks, demos, and community.",
+    description:
+      "Our flagship first-semester initiative — a full arc of talks, demos, and community.",
+    href: "https://orbit.gdgbabcock.com/",
   },
   {
     name: "RADAR",
     color: "blue",
-    description: "Monthly scouting of the tools and trends worth your attention.",
+    description:
+      "Our publication and signal platform — what's next in the Babcock tech ecosystem.",
     href: "https://radar.gdgbabcock.com/",
   },
   {
-    name: "THE 100",
-    color: "yellow",
-    description: "A cohort-based deep dive for our most active 100 builders.",
+    name: "MONTHLY MEETUP",
+    color: "green",
+    description:
+      "Our recurring community touchpoint — every month, the whole chapter in one room.",
   },
   {
-    name: "GDG WEEK",
-    color: "green",
-    description: "A week of daily workshops closing out every semester.",
+    name: "GDG WEEK / BUILD WITH AI",
+    color: "yellow",
+    description:
+      "Our second-semester concentrated program — a week of daily hands-on AI workshops.",
+  },
+  {
+    name: "THE 100",
+    color: "red",
+    description:
+      "Our annual recognition platform — celebrating our 100 most active builders.",
+    href: "https://babcock100.com/",
   },
 ];
 

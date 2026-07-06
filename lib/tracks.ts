@@ -22,35 +22,21 @@ export interface Track {
 
 export const TRACKS: Track[] = [
   {
-    value: "Software Dev & Engineering",
+    value: "Software Development & Engineering",
     slug: "software",
-    label: "Software Dev & Engineering",
+    label: "Software Development & Engineering",
     color: "blue",
     description:
       "Web, mobile, backend, and everything in between — build products real people use.",
-    whatsappUrl: "#", // TODO: paste real invite link
+    whatsappUrl: "https://chat.whatsapp.com/CHIWG2ov7OAL8TlScKQmbH",
     aliases: [
+      "Software Dev & Engineering",
+      "Software Dev and Engineering",
+      "Software Development",
       "Web Development",
       "Mobile Development",
       "Game Development",
       "Blockchain",
-      "Software Development",
-      "Software Dev and Engineering",
-    ],
-  },
-  {
-    value: "Infrastructure & Security",
-    slug: "infra",
-    label: "Infrastructure & Security",
-    color: "red",
-    description:
-      "Cloud, DevOps, networking, and cybersecurity — keep systems running and safe.",
-    whatsappUrl: "#", // TODO: paste real invite link
-    aliases: [
-      "Cloud Computing",
-      "Cybersecurity",
-      "DevOps",
-      "Infrastructure and Security",
     ],
   },
   {
@@ -60,7 +46,7 @@ export const TRACKS: Track[] = [
     color: "yellow",
     description:
       "Data science, analytics, and machine learning — turn data into decisions.",
-    whatsappUrl: "#", // TODO: paste real invite link
+    whatsappUrl: "https://chat.whatsapp.com/L6tZpiji4zv4R2cAd3arDz",
     aliases: [
       "Machine Learning / AI",
       "Data Science",
@@ -70,19 +56,45 @@ export const TRACKS: Track[] = [
     ],
   },
   {
+    value: "Infrastructure & Security",
+    slug: "infra",
+    label: "Infrastructure & Security",
+    color: "green",
+    description:
+      "Cloud, DevOps, networking, and cybersecurity — keep systems running and safe.",
+    whatsappUrl: "https://chat.whatsapp.com/IM7GLUYtVlmJqtbLMtdT49",
+    aliases: [
+      "Infrastructure and Security",
+      "Infrasture & Security", // legacy misspelling from the form
+      "Cloud Computing",
+      "Cybersecurity",
+      "DevOps",
+    ],
+  },
+  {
     value: "Design & Management",
     slug: "design",
     label: "Design & Management",
-    color: "green",
+    color: "red",
     description:
       "UI/UX, product design, and product management — shape what gets built and why.",
-    whatsappUrl: "#", // TODO: paste real invite link
-    aliases: ["UI/UX Design", "Product Design", "Product Management", "Design and Management"],
+    whatsappUrl: "https://chat.whatsapp.com/KMudBQKGv037dt4xKcPgPy",
+    aliases: [
+      "Design and Management",
+      "UI/UX Design",
+      "Product Design",
+      "Product Management",
+    ],
   },
 ];
 
-/** General community group every member can join. TODO: paste real invite link */
-export const COMMUNITY_WHATSAPP_URL = "#";
+/** General community group every member can join. */
+export const COMMUNITY_WHATSAPP_URL =
+  "https://chat.whatsapp.com/CI57lyG7PAf3ZFF0cSTHgh";
+
+/** Register here to be officially part of GDG worldwide. */
+export const GDG_COMMUNITY_DEV_URL =
+  "https://gdg.community.dev/gdg-on-campus-babcock-university-ilishan-remo-nigeria/";
 
 export const SKILL_LEVELS = ["Beginner", "Intermediate", "Advanced", "Expert"];
 
