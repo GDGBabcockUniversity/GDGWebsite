@@ -1,109 +1,90 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowRight, Menu, X, User, LogOut, Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X, User, LogOut, Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useAuth } from "@/components/auth-provider";
 import LoginModal from "@/components/login-modal";
+import { NAV_LINKS } from "@/lib/content/site";
+import { getInitials } from "@/components/initials-avatar";
+import { useMemberCta } from "@/components/use-member-cta";
+import { cn } from "@/lib/utils";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const pathname = usePathname();
-  const isTeamPage = pathname === "/team";
   const { user, isAuthenticated, loading, logout } = useAuth();
+  const { becomeMember, isLoginOpen, setIsLoginOpen } = useMemberCta();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    if (isTeamPage && id !== "team") {
-      window.location.href = `/#${id}`;
-      return;
-    }
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsMobileMenuOpen(false);
-    }
-  };
-
   return (
     <>
-    <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-black backdrop-blur-lg border-b border-border">
-      <div className="mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 cursor-pointer">
+      <nav className="fixed top-0 left-0 right-0 z-50 px-3 pt-3 sm:px-6 sm:pt-4">
+        <div
+          className={cn(
+            "mx-auto flex max-w-7xl items-center justify-between gap-3 transition-all duration-300",
+            isScrolled ? "opacity-95" : "opacity-100"
+          )}
+        >
+          {/* Left: pill with nav links (desktop) */}
+          <div className="hidden items-center gap-1 rounded-full border border-white/15 bg-[#0f0f0f]/70 px-2 py-1.5 backdrop-blur-md lg:flex">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="rounded-full px-4 py-2 text-sm font-medium text-white/85 transition-colors hover:bg-white/10 hover:text-white"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Center: logo */}
+          <Link
+            href="/"
+            className="flex items-center rounded-full border border-white/15 bg-[#0f0f0f]/70 p-2.5 backdrop-blur-md lg:absolute lg:left-1/2 lg:-translate-x-1/2"
+            aria-label="GDG Babcock — home"
+          >
             <Image
               src="/gdg-logo.svg"
               alt="GDG Babcock"
-              width={180}
-              height={40}
-              className="w-64"
+              width={140}
+              height={32}
+              className="h-7 w-auto sm:h-8"
+              priority
             />
           </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-12">
-            <Link
-              href="/"
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
-              Home
-            </Link>
-            <button
-              onClick={() => scrollToSection("tracks")}
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
-              Tracks
-            </button>
-            <button
-              onClick={() => scrollToSection("events")}
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
-              Events
-            </button>
-            <Link
-              href="/team"
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
-              Team
-            </Link>
+          {/* Right: auth + member CTA */}
+          <div className="hidden items-center gap-2 lg:flex">
             {loading ? (
-              <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+              <div className="flex h-11 w-24 items-center justify-center rounded-full border border-white/15 bg-[#0f0f0f]/70 backdrop-blur-md">
+                <Loader2 className="h-4 w-4 animate-spin text-white/60" />
+              </div>
             ) : isAuthenticated && user ? (
               <div className="relative">
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="flex items-center gap-2 cursor-pointer"
+                  className="flex cursor-pointer items-center rounded-full border border-white/15 bg-[#0f0f0f]/70 p-1.5 backdrop-blur-md"
+                  aria-label="Account menu"
                 >
                   {user.avatar_url ? (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={user.avatar_url}
                       alt={user.full_name}
-                      className="w-8 h-8 rounded-full object-cover border-2 border-gdg-blue"
+                      className="h-8 w-8 rounded-full border-2 border-gdg-blue object-cover"
                     />
                   ) : (
-                    <div className="w-8 h-8 rounded-full bg-gdg-blue flex items-center justify-center text-white text-xs font-bold">
-                      {user.full_name
-                        ? user.full_name
-                            .split(" ")
-                            .map((n) => n[0])
-                            .join("")
-                            .toUpperCase()
-                            .slice(0, 2)
-                        : "?"}
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gdg-blue text-xs font-bold text-white">
+                      {user.full_name ? getInitials(user.full_name) : "?"}
                     </div>
                   )}
                 </button>
@@ -113,19 +94,19 @@ export default function Navigation() {
                       className="fixed inset-0 z-40"
                       onClick={() => setIsDropdownOpen(false)}
                     />
-                    <div className="absolute right-0 mt-2 w-56 bg-card border border-border rounded-xl shadow-xl z-50 py-2 animate-in fade-in slide-in-from-top-2 duration-150">
-                      <div className="px-4 py-3 border-b border-border">
-                        <p className="text-sm font-medium text-foreground truncate">
+                    <div className="absolute right-0 z-50 mt-2 w-56 animate-in rounded-2xl border border-white/15 bg-[#171717] py-2 shadow-xl fade-in slide-in-from-top-2 duration-150">
+                      <div className="border-b border-white/10 px-4 py-3">
+                        <p className="truncate text-sm font-medium text-white">
                           {user.full_name || "GDG Member"}
                         </p>
-                        <p className="text-xs text-muted-foreground truncate">
+                        <p className="truncate text-xs text-white/50">
                           {user.email}
                         </p>
                       </div>
                       <Link
                         href="/profile"
                         onClick={() => setIsDropdownOpen(false)}
-                        className="flex items-center gap-2 px-4 py-2.5 text-sm text-foreground hover:bg-white/5 transition-colors"
+                        className="flex items-center gap-2 px-4 py-2.5 text-sm text-white/85 transition-colors hover:bg-white/5"
                       >
                         <User className="h-4 w-4" />
                         Profile
@@ -135,7 +116,7 @@ export default function Navigation() {
                           setIsDropdownOpen(false);
                           logout();
                         }}
-                        className="flex items-center gap-2 px-4 py-2.5 text-sm text-destructive hover:bg-white/5 transition-colors w-full"
+                        className="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-gdg-red transition-colors hover:bg-white/5"
                       >
                         <LogOut className="h-4 w-4" />
                         Sign Out
@@ -145,103 +126,99 @@ export default function Navigation() {
                 )}
               </div>
             ) : (
-              <Button
+              <button
                 onClick={() => setIsLoginOpen(true)}
-                className="w-fit bg-white hover:bg-white rounded-full font-semibold cursor-pointer text-black glow-blue hover:scale-[1.02] transition-all"
+                className="cursor-pointer rounded-full border border-white/15 bg-[#0f0f0f]/70 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-md transition-colors hover:bg-white/10"
               >
                 Sign In
-                <div className="flex items-center justify-center bg-black rounded-full p-1">
-                  <ArrowRight className="h-4 w-4 text-white" />
-                </div>
-              </Button>
+              </button>
             )}
+            <button
+              onClick={becomeMember}
+              className="cursor-pointer rounded-full bg-gdg-cream px-5 py-2.5 text-sm font-semibold text-[#0f0f0f] transition-transform hover:scale-[1.03]"
+            >
+              Become a member
+            </button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile: menu button */}
           <button
-            className="md:hidden p-2 text-foreground"
+            className="rounded-full border border-white/15 bg-[#0f0f0f]/70 p-2.5 text-white backdrop-blur-md lg:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
             {isMobileMenuOpen ? (
-              <X className="h-6 w-6" />
+              <X className="h-5 w-5" />
             ) : (
-              <Menu className="h-6 w-6" />
+              <Menu className="h-5 w-5" />
             )}
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border">
-            <div className="flex flex-col gap-4">
-              <Link
-                href="/"
-                className="text-left text-sm font-medium text-foreground hover:text-primary transition-colors"
-              >
-                Home
-              </Link>
-              <button
-                onClick={() => scrollToSection("tracks")}
-                className="text-left text-sm font-medium text-foreground hover:text-primary transition-colors"
-              >
-                Tracks
-              </button>
-              <button
-                onClick={() => scrollToSection("events")}
-                className="text-left text-sm font-medium text-foreground hover:text-primary transition-colors"
-              >
-                Events
-              </button>
-              <Link
-                href="/team"
-                className="text-left text-sm font-medium text-foreground hover:text-primary transition-colors"
-              >
-                Team
-              </Link>
-              {isAuthenticated && user ? (
-                <>
-                  <Link
-                    href="/profile"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-left text-sm font-medium text-foreground hover:text-primary transition-colors flex items-center gap-2"
-                  >
-                    <User className="h-4 w-4" />
-                    Profile
-                  </Link>
-                  <Button
+          <div className="mx-auto mt-2 max-w-7xl rounded-3xl border border-white/15 bg-[#0f0f0f]/95 p-4 backdrop-blur-md lg:hidden">
+            <div className="flex flex-col gap-1">
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="rounded-full px-4 py-3 text-sm font-medium text-white/85 transition-colors hover:bg-white/10"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <div className="mt-2 flex flex-col gap-2 border-t border-white/10 pt-3">
+                {isAuthenticated && user ? (
+                  <>
+                    <Link
+                      href="/profile"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center gap-2 rounded-full px-4 py-3 text-sm font-medium text-white/85 hover:bg-white/10"
+                    >
+                      <User className="h-4 w-4" />
+                      Profile
+                    </Link>
+                    <button
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        logout();
+                      }}
+                      className="flex items-center gap-2 rounded-full px-4 py-3 text-left text-sm font-medium text-gdg-red hover:bg-white/10"
+                    >
+                      <LogOut className="h-4 w-4" />
+                      Sign Out
+                    </button>
+                  </>
+                ) : (
+                  <button
                     onClick={() => {
                       setIsMobileMenuOpen(false);
-                      logout();
+                      setIsLoginOpen(true);
                     }}
-                    variant="outline"
-                    className="rounded-full text-destructive border-destructive/30 hover:bg-destructive/10 w-full"
+                    className="rounded-full border border-white/15 px-4 py-3 text-sm font-medium text-white hover:bg-white/10"
                   >
-                    <LogOut className="h-4 w-4 mr-2" />
-                    Sign Out
-                  </Button>
-                </>
-              ) : (
-                <Button
+                    Sign In
+                  </button>
+                )}
+                <button
                   onClick={() => {
                     setIsMobileMenuOpen(false);
-                    setIsLoginOpen(true);
+                    becomeMember();
                   }}
-                  className="bg-white hover:bg-white rounded-full font-semibold cursor-pointer text-black glow-blue hover:scale-[1.02] transition-all w-full"
+                  className="rounded-full bg-gdg-cream px-4 py-3 text-sm font-semibold text-[#0f0f0f]"
                 >
-                  Sign In
-                  <div className="flex items-center justify-center bg-black rounded-full p-1">
-                    <ArrowRight className="h-4 w-4 text-white" />
-                  </div>
-                </Button>
-              )}
+                  Become a member
+                </button>
+              </div>
             </div>
           </div>
         )}
-      </div>
-    </nav>
+      </nav>
 
-    {/* Login Modal - rendered outside nav to avoid z-index stacking context */}
-    <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
+      {/* Login Modal — outside nav to avoid z-index stacking context */}
+      <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
     </>
   );
 }
