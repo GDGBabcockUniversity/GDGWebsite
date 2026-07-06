@@ -10,10 +10,21 @@ import { SmartImage } from "@/components/placeholder-image";
  * every image except the hovered one goes black & white — handled by the
  * .gallery-strip / .gallery-item utilities in globals.css.
  */
-export default function GalleryStrips() {
+interface GalleryStripsProps {
+  /** Render only these strip titles (in this order). Omit to render all. */
+  titles?: string[];
+}
+
+export default function GalleryStrips({ titles }: GalleryStripsProps) {
+  const strips = titles
+    ? titles
+        .map((t) => GALLERY_STRIPS.find((s) => s.title === t))
+        .filter((s): s is (typeof GALLERY_STRIPS)[number] => !!s)
+    : GALLERY_STRIPS;
+
   return (
     <section aria-label="Event galleries">
-      {GALLERY_STRIPS.map((strip) => (
+      {strips.map((strip) => (
         <div key={strip.title} className="relative">
           <div className="gallery-strip flex h-64 w-full sm:h-80 lg:h-[420px]">
             {strip.images.map((image, i) => (
