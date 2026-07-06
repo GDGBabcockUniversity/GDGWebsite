@@ -3,7 +3,12 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { PlatformUser } from "@/lib/auth-service";
-import { getTrack, COMMUNITY_WHATSAPP_URL, type Track } from "@/lib/tracks";
+import {
+  getTrack,
+  COMMUNITY_WHATSAPP_URL,
+  GDG_COMMUNITY_DEV_URL,
+  type Track,
+} from "@/lib/tracks";
 import { GDG_HEX, TEXT_CLASS } from "@/lib/colors";
 import WhatsApp from "@/components/svgs/whatsapp";
 import { cn } from "@/lib/utils";
@@ -73,6 +78,23 @@ export default function Completion({ user }: { user: PlatformUser }) {
             </p>
           </div>
           <WhatsApp className="h-6 w-6 shrink-0 text-[#25D366]" />
+        </a>
+        <a
+          href={GDG_COMMUNITY_DEV_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-between gap-4 rounded-2xl border border-white/15 bg-[#161616] p-5 transition-transform hover:scale-[1.01]"
+        >
+          <div>
+            <p className="text-sm font-bold text-gdg-cream">
+              Register on GDG Community
+            </p>
+            <p className="mt-1 text-xs text-white/60">
+              One more step — be officially part of GDG worldwide and unlock
+              events from every chapter.
+            </p>
+          </div>
+          <ArrowRight className="h-5 w-5 shrink-0 text-gdg-blue" />
         </a>
       </div>
 

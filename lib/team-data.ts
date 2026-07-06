@@ -1,14 +1,31 @@
 /**
- * Team data — the full member roster, shared by the /team page and the
- * home page team-preview section. Moved verbatim from app/team/page.tsx.
+ * Team data — the full roster, browsable by year and organized into sections.
+ * Shared by the /team page and the home team-preview section.
+ *
+ * How it works: the raw per-member objects (name, role, photo, music, links)
+ * live in `roster2526Raw`. Their org placement — which section, which subteam,
+ * whether they lead it — lives in the `ASSIGNMENTS` table below, keyed by name.
+ * This keeps the bulky member data untouched while making the structure a
+ * single legible thing to edit. To BACKFILL a past year: add a new roster
+ * array + assignment table and push a `{ id, label, members }` entry onto
+ * `TEAM_YEARS`.
  */
 
 export type TeamCategory = "core" | "track-leads" | "dev-team" | "specialists";
 
+/** Top-level sections, in display order. */
+export type TeamSection = "core" | "tracks" | "dev" | "media" | "events";
+
 export interface TeamMember {
   name: string;
   role: string;
-  category: TeamCategory;
+  /** @deprecated legacy grouping — use `section` */
+  category?: TeamCategory;
+  section?: TeamSection;
+  /** Sub-group within a section (track name, "Frontend", "Photographers", …) */
+  subteam?: string;
+  /** Leads render first, in the first row of their group. */
+  isLead?: boolean;
   image: string;
   wordsToLiveBy: string;
   links: {
@@ -23,7 +40,7 @@ export interface TeamMember {
   };
 }
 
-export const teamMembers: TeamMember[] = [
+const roster2526Raw: TeamMember[] = [
   // Core Team
   {
     name: "Chukwuneku Akpotohwo",
@@ -541,6 +558,107 @@ export const teamMembers: TeamMember[] = [
       url: "https://open.spotify.com/embed/track/6J2LdBN97cDWn0MLxYh9HB?utm_source=generator",
     },
   },
+];
+
+// ─── Section / subteam structure ─────────────────────────────────────────────
+
+/** Track subteam names (color-coded to the four brand tracks). */
+export const TRACK_SUBTEAMS = [
+  "Software Development & Engineering",
+  "Data & AI",
+  "Infrastructure & Security",
+  "Design & Management",
+] as const;
+
+export interface SectionDef {
+  id: TeamSection;
+  label: string;
+  /** Ordered subteams; members outside these render under "" (no header). */
+  subteams: string[];
+}
+
+export const TEAM_SECTIONS: SectionDef[] = [
+  { id: "core", label: "Core Team", subteams: [] },
+  { id: "tracks", label: "Tracks", subteams: [...TRACK_SUBTEAMS] },
+  { id: "dev", label: "Dev Team", subteams: ["Frontend", "Backend", "Product Design"] },
+  {
+    id: "media",
+    label: "Media Team",
+    subteams: ["Photographers", "Content Creators", "Graphic Designers", "Video Editors", "RADAR"],
+  },
+  { id: "events", label: "Events Planning Team", subteams: [] },
+];
+
+/**
+ * Org placement per member, inferred from their role strings.
+ * `// ?` marks a best-effort guess worth confirming.
+ */
+type Assignment = { section: TeamSection; subteam?: string; isLead?: boolean };
+
+const ASSIGNMENTS: Record<string, Assignment> = {
+  // Core leadership
+  "Chukwuneku Akpotohwo": { section: "core", isLead: true }, // Organizer
+  "Sophia Odiase": { section: "core", isLead: true }, // Co-Organizer
+  "Victor Ibironke": { section: "core" }, // Technical Lead
+  "Favour Oluwatunmibi": { section: "core" }, // Technical Lead
+  "Sharon Lawal": { section: "core" }, // Operations Lead
+  "Olatilewa Braimah": { section: "core" }, // Operations Lead
+  "Habeeb Abayomi": { section: "core" }, // Community Manager
+  "Omobolanle Shaibu": { section: "core" }, // Community Manager
+
+  // Tracks — leads first, specialists under their track
+  "Reuben Alabi": { section: "tracks", subteam: "Software Development & Engineering", isLead: true },
+  "Timilehin Adedayo": { section: "tracks", subteam: "Data & AI", isLead: true },
+  "Oluwatomilola Arogundade": { section: "tracks", subteam: "Infrastructure & Security", isLead: true },
+  "Oluwadayomisi Osisanya": { section: "tracks", subteam: "Design & Management", isLead: true },
+  "Providence Oduok": { section: "tracks", subteam: "Software Development & Engineering" },
+  "Oluwafemi Olatunji": { section: "tracks", subteam: "Software Development & Engineering" },
+  "Daniel Bolujo": { section: "tracks", subteam: "Software Development & Engineering" }, // ? QA
+  "Emmanuel Ologunagba": { section: "tracks", subteam: "Software Development & Engineering" }, // ? Web3
+  "Boluwatife Dada": { section: "tracks", subteam: "Software Development & Engineering" }, // ? Games
+  "Obalabi Adepoju": { section: "tracks", subteam: "Data & AI" },
+  "Ifeoma Ezeaka": { section: "tracks", subteam: "Data & AI" },
+  "Olaoluwa Ajagbe": { section: "tracks", subteam: "Data & AI" },
+  "Oluwajuwon Otelaja": { section: "tracks", subteam: "Infrastructure & Security" }, // ? Networking
+  "Daniel Adedoja": { section: "tracks", subteam: "Design & Management" }, // Product Management
+  "Xavier Okpalannajiaku": { section: "tracks", subteam: "Design & Management" }, // ? 2D Animation → maybe Media
+
+  // Dev Team — leads first
+  "Ademeso Ademola": { section: "dev", subteam: "Frontend", isLead: true },
+  "Oluwatamilore Olugbesan": { section: "dev", subteam: "Backend", isLead: true },
+  "Offor Chidoziem": { section: "dev", subteam: "Backend" },
+  "Divine Athora": { section: "dev", subteam: "Product Design", isLead: true },
+
+  // Media Team — leads
+  "Chioma Okoli": { section: "media", isLead: true }, // Media & Marketing Lead
+  "Oghenetejiri Efe": { section: "media", isLead: true }, // Media & Marketing Lead
+};
+
+/** Default placement for any member missing from ASSIGNMENTS. */
+const DEFAULT_ASSIGNMENT: Assignment = { section: "core" };
+
+function enrich(roster: TeamMember[]): TeamMember[] {
+  return roster.map((m) => ({ ...m, ...(ASSIGNMENTS[m.name] ?? DEFAULT_ASSIGNMENT) }));
+}
+
+/** Current-year roster with section/subteam/isLead applied. */
+export const teamMembers: TeamMember[] = enrich(roster2526Raw);
+
+export interface TeamYear {
+  id: string;
+  label: string;
+  members: TeamMember[];
+}
+
+/**
+ * Rosters by year, newest first. Past years are empty until backfilled —
+ * add `{ id, label, members: enrich(rosterYYYYRaw) }` to fill one in.
+ */
+export const TEAM_YEARS: TeamYear[] = [
+  { id: "current", label: "Current Team", members: teamMembers },
+  { id: "2024", label: "2024/25", members: [] },
+  { id: "2023", label: "2023/24", members: [] },
+  { id: "2022", label: "2022/23", members: [] },
 ];
 
 /** Slice shown in the home page "The people behind the pixels." section */

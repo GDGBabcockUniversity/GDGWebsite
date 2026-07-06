@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { GDG_HEX, colorByIndex } from "@/lib/colors";
+import type { GdgColor } from "@/lib/tracks";
 
 interface TeamMemberCardProps {
   name: string;
@@ -23,6 +24,8 @@ interface TeamMemberCardProps {
   };
   /** Rotates the border through the four Google colors */
   accentIndex?: number;
+  /** Explicit border color (e.g. a track color) — overrides accentIndex */
+  accentColor?: GdgColor;
 }
 
 export default function TeamMemberCard({
@@ -33,9 +36,10 @@ export default function TeamMemberCard({
   music,
   image,
   accentIndex = 0,
+  accentColor,
 }: TeamMemberCardProps) {
   const [showPlayer, setShowPlayer] = useState(false);
-  const accent = GDG_HEX[colorByIndex(accentIndex)];
+  const accent = accentColor ? GDG_HEX[accentColor] : GDG_HEX[colorByIndex(accentIndex)];
   return (
     <div>
       <div
