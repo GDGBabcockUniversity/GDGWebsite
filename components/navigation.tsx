@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, User, LogOut, Loader2 } from "lucide-react";
+import { Menu, X, User, LogOut, Loader2, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@/components/auth-provider";
@@ -39,9 +39,14 @@ export default function Navigation() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="rounded-full px-4 py-2 text-sm font-medium text-white/85 transition-colors hover:bg-white/10 hover:text-white"
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+                className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-white/85 transition-colors hover:bg-white/10 hover:text-white"
               >
                 {link.label}
+                {link.external && (
+                  <ArrowUpRight className="h-3.5 w-3.5 opacity-60" aria-hidden />
+                )}
               </Link>
             ))}
           </div>
@@ -163,10 +168,15 @@ export default function Navigation() {
                 <Link
                   key={link.label}
                   href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="rounded-full px-4 py-3 text-sm font-medium text-white/85 transition-colors hover:bg-white/10"
+                  className="flex items-center gap-1.5 rounded-full px-4 py-3 text-sm font-medium text-white/85 transition-colors hover:bg-white/10"
                 >
                   {link.label}
+                  {link.external && (
+                    <ArrowUpRight className="h-3.5 w-3.5 opacity-60" aria-hidden />
+                  )}
                 </Link>
               ))}
               <div className="mt-2 flex flex-col gap-2 border-t border-white/10 pt-3">

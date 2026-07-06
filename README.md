@@ -29,22 +29,49 @@ profile with one `PUT /auth/profile`.
 Next.js 14 (App Router) · React 18 · TypeScript · Tailwind CSS v4 (tokens in
 `app/globals.css`, no tailwind.config) · Firebase client auth · Vercel.
 
+## Pages
+
+| Route | What |
+| --- | --- |
+| `/` | Home — who we are, annual structure, products, member pathway, campus, partner, team, latest RADAR |
+| `/about` | Institutional About — pillars, structure, what membership means |
+| `/products` | Everything we've shipped (RADAR, ORBIT, Babcock 100, BabcockVotes, …) |
+| `/team` | The team, browsable by year and organized into sections |
+| `/onboarding` | Native membership registration (replaces the Google Form) |
+| `/profile` | The linked member profile |
+
 ## Editing content (no code required)
 
 | What | Where |
 | --- | --- |
 | Tracks + **WhatsApp group links** | `lib/tracks.ts` |
-| Nav, socials, marquee, hero slides | `lib/content/site.ts` |
+| Nav, socials, marquee, hero slides, Apply URL | `lib/content/site.ts` |
+| Products (names, statuses, links) | `lib/content/products.ts` |
+| Programs + descriptions | `lib/content/programs.ts` |
+| Member pathway + key CTAs | `lib/content/engage.ts` |
+| Across-campus cards | `lib/content/campus.ts` |
 | Hero quote cards | `lib/content/quotes.ts` |
 | Gallery strips | `lib/content/gallery.ts` |
-| Programs + descriptions | `lib/content/programs.ts` |
 | What-we-do polaroids | `lib/content/what-we-do.ts` |
 | Partner pills | `lib/content/partner.ts` |
-| Team roster | `lib/team-data.ts` |
+| Team roster + org structure | `lib/team-data.ts` |
 | Photos | drop files per `public/images/README.md` |
 
 Missing photos render as **labeled placeholders** on the live page describing
 exactly what to shoot/crop — see `public/images/README.md`.
+
+### Team page (`lib/team-data.ts`)
+
+Member data (name, role, photo, music, links) lives in `roster2526Raw`. Their
+org placement — **section**, **subteam**, whether they **lead** it — lives in
+the `ASSIGNMENTS` table, keyed by name. To move someone or fix an inferred
+placement (marked `// ?`), edit that one entry. Sections render in the order
+declared in `TEAM_SECTIONS` (Core → Tracks → Dev → Media → Events); leads sort
+to the first row; track subteams are color-coded to the four brand tracks.
+
+**Backfill a past year:** add a `rosterYYYYRaw` array + its `ASSIGNMENTS` (or
+reuse `enrich(...)`), then push `{ id, label, members: enrich(rosterYYYYRaw) }`
+onto `TEAM_YEARS`. Empty years show an "archive being assembled" placeholder.
 
 ## Development
 
@@ -64,11 +91,16 @@ NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=…
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=…
 NEXT_PUBLIC_FIREBASE_APP_ID=…
 NEXT_PUBLIC_AUTH_API_URL=https://auth.gdgbabcock.com
+
+# RADAR feed on the homepage + /products (same Sanity project as radar.gdgbabcock.com).
+# Omit these and those sections fall back to an editorial "Read RADAR" card.
+NEXT_PUBLIC_SANITY_PROJECT_ID=…
+NEXT_PUBLIC_SANITY_DATASET=production
 ```
 
-Without these the site renders but sign-in is disabled. Note that the build
-skips type errors (`next.config.mjs`), so run `pnpm exec tsc --noEmit` before
-shipping.
+Without the Firebase keys the site renders but sign-in is disabled. Note that
+the build skips type errors (`next.config.mjs`), so run `pnpm exec tsc --noEmit`
+before shipping.
 
 ---
 
