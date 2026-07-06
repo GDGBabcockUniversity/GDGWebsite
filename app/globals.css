@@ -6,7 +6,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.08 0 0); /* #121212 Dark Background */
+  --background: #0f0f0f; /* Website 2026 near-black background */
   --foreground: oklch(1 0 0); /* #FFFFFF Text */
   --card: oklch(0.12 0 0); /* #1E1E1E Card Background */
   --card-foreground: oklch(0.88 0 0); /* #E0E0E0 Card Text */
@@ -87,9 +87,9 @@
   * {
     @apply border-border outline-ring/50;
   }
-  /* body {
+  body {
     @apply bg-background text-foreground;
-  } */
+  }
 }
 
 * {
@@ -225,6 +225,102 @@ html {
 .card-glow-green:hover {
   box-shadow: 0 0 30px rgba(52, 168, 83, 0.3);
   transform: translateY(-4px);
+}
+
+/* ─── Website 2026 utilities ─────────────────────────────────────────────── */
+
+/* Marquee ticker — content must be rendered exactly twice inside the track
+   for the -50% translate loop to be seamless */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Outlined display text */
+.text-outline {
+  -webkit-text-stroke: 2px var(--color-gdg-cream);
+  color: transparent;
+}
+
+.text-outline-blue {
+  -webkit-text-stroke: 2px var(--color-gdg-blue);
+  color: transparent;
+}
+
+.text-outline-red {
+  -webkit-text-stroke: 2px var(--color-gdg-red);
+  color: transparent;
+}
+
+.text-outline-yellow {
+  -webkit-text-stroke: 2px var(--color-gdg-yellow);
+  color: transparent;
+}
+
+.text-outline-green {
+  -webkit-text-stroke: 2px var(--color-gdg-green);
+  color: transparent;
+}
+
+@media (max-width: 48rem) {
+  .text-outline,
+  .text-outline-blue,
+  .text-outline-red,
+  .text-outline-yellow,
+  .text-outline-green {
+    -webkit-text-stroke-width: 1px;
+  }
+}
+
+.text-outline-fill {
+  transition: color 0.3s ease;
+}
+
+.text-outline-blue.text-outline-fill:hover {
+  color: var(--color-gdg-blue);
+}
+
+.text-outline-red.text-outline-fill:hover {
+  color: var(--color-gdg-red);
+}
+
+.text-outline-yellow.text-outline-fill:hover {
+  color: var(--color-gdg-yellow);
+}
+
+.text-outline-green.text-outline-fill:hover {
+  color: var(--color-gdg-green);
+}
+
+/* Gallery strips — all images colored until one is hovered, then every image
+   EXCEPT the hovered one goes black & white (designer spec, :not() approach) */
+.gallery-strip .gallery-item img {
+  filter: grayscale(0);
+  transition: filter 0.35s ease;
+}
+
+.gallery-strip:hover .gallery-item:not(:hover) img {
+  filter: grayscale(1);
+}
+
+/* Glass card — fallback surface under the liquid-glass refraction effect */
+.glass-card {
+  background: rgba(15, 15, 15, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 /* Custom scrollbar */
