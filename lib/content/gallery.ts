@@ -22,27 +22,27 @@ export const GALLERY_STRIPS: GalleryStrip[] = [
     dividerColors: ["green", "red", "yellow", "blue"],
     images: [
       {
-        src: undefined, // drop in /images/gallery/orbit/01.png
+        src: "/images/gallery/orbit/01.png",
         label: "ORBIT gallery 1 — attendees listening, portrait/square crop ~800×1000",
         alt: "Attendees at ORBIT summit",
       },
       {
-        src: undefined, // drop in /images/gallery/orbit/02.png
+        src: "/images/gallery/orbit/02.png",
         label: "ORBIT gallery 2 — panel or roundtable discussion, ~800×1000",
         alt: "Panel discussion at ORBIT",
       },
       {
-        src: undefined, // drop in /images/gallery/orbit/03.png
+        src: "/images/gallery/orbit/03.png",
         label: "ORBIT gallery 3 — audience mid-session, ~800×1000",
         alt: "Audience at ORBIT",
       },
       {
-        src: undefined, // drop in /images/gallery/orbit/04.png
+        src: "/images/gallery/orbit/04.png",
         label: "ORBIT gallery 4 — member wearing GDG merch, ~800×1000",
         alt: "GDG Babcock member at ORBIT",
       },
       {
-        src: undefined, // drop in /images/gallery/orbit/05.png
+        src: "/images/gallery/orbit/05.png",
         label: "ORBIT gallery 5 — speaker or demo moment, ~800×1000",
         alt: "Speaker at ORBIT",
       },

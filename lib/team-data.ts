@@ -46,7 +46,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Chukwuneku Akpotohwo",
     role: "Organizer",
     category: "core",
-    image: "/Chukwuneku Akpotohwo - Organizer.png",
+    image: "/Chukwuneku Akpotohwo - Organizer.jpg",
     wordsToLiveBy:
       "Anyone that claims to know anything with 100% certainty is either deluded or lying to you.",
     links: {
@@ -64,7 +64,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Sophia Odiase",
     role: "Co-Organizer",
     category: "core",
-    image: "/Sophia Odiase - Co-Organizer.png",
+    image: "/Sophia Odiase - Co-Organizer.jpg",
     wordsToLiveBy: "Live life, Love life!",
     links: {
       twitter: "https://x.com/Sophia__Odiase?t=iyafs4z2NCPqDm0G5eibEg&s=09",
@@ -82,7 +82,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Victor Ibironke",
     role: "Technical Lead",
     category: "core",
-    image: "/Victor Ibironke - Technical Lead.png",
+    image: "/Victor Ibironke - Technical Lead.jpg",
     wordsToLiveBy: "Why worry when you can just not?",
     links: {
       twitter: "https://x.com/victoribironke_",
@@ -99,7 +99,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Favour Oluwatunmibi",
     role: "Technical Lead",
     category: "core",
-    image: "/Favour Oluwatunmibi - Technical Lead.png",
+    image: "/Favour Oluwatunmibi - Technical Lead.jpg",
     wordsToLiveBy:
       "Keep learning, keep building — even when you don't feel the change happening, it is. Growth takes time, but every step counts, so don't give up.",
     links: {
@@ -117,7 +117,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Sharon Lawal",
     role: "Operations Lead",
     category: "core",
-    image: "/Sharon Lawal - Operations Lead.png",
+    image: "/Sharon Lawal - Operations Lead.jpg",
     wordsToLiveBy:
       "No rush, just vibes and progress. Do what you can, the rest will sort itself out.",
     links: {
@@ -170,7 +170,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Oghenetejiri Efe",
     role: "Media and Marketing Lead",
     category: "core",
-    image: "/Oghenetejiri EFEGHERIMONI  - Media & Marketing Lead_.png",
+    image: "/Oghenetejiri EFEGHERIMONI  - Media & Marketing Lead_.jpg",
     wordsToLiveBy:
       "The only thing standing between your dreams and your reality is the effort you're willing to put in.",
     links: {
@@ -189,7 +189,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Habeeb Abayomi",
     role: "Community Manager",
     category: "core",
-    image: "/Habeeb Abayomi - COMMUNITY MANAGER.png",
+    image: "/Habeeb Abayomi - COMMUNITY MANAGER.jpg",
     wordsToLiveBy: "A mistake is proof that you tried.",
     links: {
       twitter: "https://x.com/ycent003?s=21",
@@ -209,7 +209,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Reuben Alabi",
     role: "Backend Systems Specialist (Software Track Lead)",
     category: "track-leads",
-    image: "/Reuben Alabi - Backend Systems Specialist.png",
+    image: "/Reuben Alabi - Backend Systems Specialist.jpg",
     wordsToLiveBy: "Success is when preparation meets opportunity.",
     links: {
       twitter: "https://x.com/rubydevv",
@@ -226,7 +226,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Timilehin Adedayo",
     role: "Machine Learning Specialist (Data & AI Track Lead)",
     category: "track-leads",
-    image: "/Timilehin ADEDAYO - Machine Learning Specialist.png",
+    image: "/Timilehin ADEDAYO - Machine Learning Specialist.JPG",
     wordsToLiveBy:
       "If you aren't going to aim to be the best at what you do, why do it at all?",
     links: {
@@ -244,7 +244,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Oluwatomilola Arogundade",
     role: "Cybersecurity Specialist (Infrastructure & Security Track Lead)",
     category: "track-leads",
-    image: "/Oluwatomilola Arogundade- Cybersecurity Specialist.png",
+    image: "/Oluwatomilola Arogundade- Cybersecurity Specialist.jpg",
     wordsToLiveBy:
       "In a world full of threats, I choose to be the light, securing systems, guiding people, and trusting God.",
     links: {
@@ -263,7 +263,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Oluwadayomisi Osisanya",
     role: "Product Design Specialist (Design & Management Track Lead)",
     category: "track-leads",
-    image: "/Oluwadayomisi Osisanya- Product Design specialist_.png",
+    image: "/Oluwadayomisi Osisanya- Product Design specialist_.jpg",
     wordsToLiveBy: "Don't stop until you get what you want.",
     links: {
       twitter: "https://x.com/Oluwadayomisi_O",
@@ -283,7 +283,7 @@ const roster2526Raw: TeamMember[] = [
     role: "Lead Backend Developer (Dev Team)",
     category: "dev-team",
     image:
-      "/Olugbesan,  Oluwatamilore Ayooluwakiitan - Lead Backend Developer.png",
+      "/Olugbesan,  Oluwatamilore Ayooluwakiitan - Lead Backend Developer.jpg",
     wordsToLiveBy: "Carpe Diem",
     links: {
       twitter: "https://x.com/tami_cp0",
@@ -317,7 +317,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Offor Chidoziem",
     role: "Backend Developer (Dev Team)",
     category: "dev-team",
-    image: "/Offor Chidoziem - DSA Specialist.png",
+    image: "/Offor Chidoziem - DSA Specialist.jpg",
     wordsToLiveBy:
       "Strive not to be a success, but rather to be of value. — Albert Einstein",
     links: {
@@ -355,7 +355,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Providence Oduok",
     role: "Front-End Web Specialist",
     category: "specialists",
-    image: "/Providence Oduok -  Frontend Web Specialist.png",
+    image: "/Providence Oduok -  Frontend Web Specialist.jpg",
     wordsToLiveBy: "You'll never know unless you try.",
     links: {
       twitter: "https://x.com/Pemily_Vianne",
@@ -389,7 +389,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Daniel Bolujo",
     role: "QA Specialist",
     category: "specialists",
-    image: "/Daniel BOLUJO - QA Specialist.png",
+    image: "/Daniel BOLUJO - QA Specialist.jpg",
     wordsToLiveBy: "",
     links: { twitter: "", linkedin: "", portfolio: "" },
     music: {
@@ -420,7 +420,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Ifeoma Ezeaka",
     role: "Data Engineering Specialist",
     category: "specialists",
-    image: "/Ifeoma Ezeka - Data engineering specialist_.png",
+    image: "/Ifeoma Ezeka - Data engineering specialist_.jpg",
     wordsToLiveBy: "No matter what, God will work it out.",
     links: {
       twitter: "",
@@ -437,7 +437,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Olaoluwa Ajagbe",
     role: "Data Analytics Specialist",
     category: "specialists",
-    image: "/Olaoluwa Ajagbe - Data Analytics Specialist.png",
+    image: "/Olaoluwa Ajagbe - Data Analytics Specialist.jpg",
     wordsToLiveBy: "Whatever is worth doing is worth doing well.",
     links: {
       twitter: "https://x.com/olaoluwaaj24377?s=21",
@@ -474,7 +474,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Emmanuel Ologunagba",
     role: "Web3 & Blockchain Specialist",
     category: "specialists",
-    image: "/Emmanuel Ologunagba - Web3 & Blockchain Specialist.png",
+    image: "/Emmanuel Ologunagba - Web3 & Blockchain Specialist.jpg",
     wordsToLiveBy: "Love God With All Your Heart.",
     links: {
       twitter: "https://x.com/citizen01__eth",
@@ -491,7 +491,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Daniel Adedoja",
     role: "Product Management Specialist",
     category: "specialists",
-    image: "/Daniel Adedoja - Product Management Specialist.png",
+    image: "/Daniel Adedoja - Product Management Specialist.jpg",
     wordsToLiveBy: "You only live once.",
     links: {
       twitter: "https://x.com/Doja_Demola?t=D_rwOZI7X_LbJ8gfTI1noA&s=09",
@@ -545,7 +545,7 @@ const roster2526Raw: TeamMember[] = [
     name: "Omobolanle Shaibu",
     role: "Community Manager",
     category: "core",
-    image: "/Omobolanle SHAIBU - Community Manager.png",
+    image: "/Omobolanle SHAIBU - Community Manager.jpg",
     wordsToLiveBy: "Enjoy the little things.",
     links: {
       twitter: "https://x.com/lanle_xoxoxo",

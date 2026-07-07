@@ -20,7 +20,7 @@ export const WHAT_WE_DO: WhatWeDoItem[] = [
     color: "blue",
     rotation: "-rotate-3",
     image: {
-      src: undefined, // drop in /images/what-we-do/workshops.png
+      src: "/images/what-we-do/workshops.png",
       label: "Workshops photo — member presenting/teaching at a whiteboard or screen, portrait ~900×1100",
       alt: "A member leading a workshop",
     },
@@ -30,7 +30,7 @@ export const WHAT_WE_DO: WhatWeDoItem[] = [
     color: "green",
     rotation: "rotate-2",
     image: {
-      src: undefined, // drop in /images/what-we-do/tech-talks.png
+      src: "/images/what-we-do/tech-talks.png",
       label: "Tech talks photo — seated audience in a classroom session, portrait ~900×1100",
       alt: "Audience at a tech talk",
     },
@@ -40,7 +40,7 @@ export const WHAT_WE_DO: WhatWeDoItem[] = [
     color: "red",
     rotation: "rotate-3",
     image: {
-      src: undefined, // drop in /images/what-we-do/community.png
+      src: "/images/what-we-do/community.png",
       label: "Community photo — close-up of a member speaking/mingling, portrait ~900×1100",
       alt: "Members networking",
     },
@@ -50,7 +50,7 @@ export const WHAT_WE_DO: WhatWeDoItem[] = [
     color: "yellow",
     rotation: "-rotate-2",
     image: {
-      src: undefined, // drop in /images/what-we-do/hackathons.png
+      src: "/images/what-we-do/hackathons.png",
       label: "Hackathons photo — group photo of a build-day cohort, portrait ~900×1100",
       alt: "Hackathon participants",
     },

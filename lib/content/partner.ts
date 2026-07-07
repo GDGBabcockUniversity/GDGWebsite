@@ -20,7 +20,7 @@ export const PARTNER_PILLS: PartnerPill[] = [
 ];
 
 export const PARTNER_PHOTO: SlideImage = {
-  src: undefined, // drop in /images/partner/group-photo.png
+  src: "/images/partner/group-photo.png",
   label:
     "Partner section background — large outdoor group photo of the whole community (like the mockup), landscape 1920×1080",
   alt: "GDG Babcock community group photo",
