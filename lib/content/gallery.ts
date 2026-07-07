@@ -22,42 +22,42 @@ export const GALLERY_STRIPS: GalleryStrip[] = [
     dividerColors: ["green", "red", "yellow", "blue"],
     images: [
       {
-        src: "/images/gallery/orbit/01.png",
+        src: "/images/gallery/orbit/01.jpg",
         label: "ORBIT gallery 1 — attendees listening, portrait/square crop ~800×1000",
         alt: "Attendees at ORBIT summit",
       },
       {
-        src: "/images/gallery/orbit/02.png",
+        src: "/images/gallery/orbit/02.jpg",
         label: "ORBIT gallery 2 — panel or roundtable discussion, ~800×1000",
         alt: "Panel discussion at ORBIT",
       },
       {
-        src: "/images/gallery/orbit/03.png",
+        src: "/images/gallery/orbit/03.jpg",
         label: "ORBIT gallery 3 — audience mid-session, ~800×1000",
         alt: "Audience at ORBIT",
       },
       {
-        src: "/images/gallery/orbit/04.png",
+        src: "/images/gallery/orbit/04.jpg",
         label: "ORBIT gallery 4 — member wearing GDG merch, ~800×1000",
         alt: "GDG Babcock member at ORBIT",
       },
       {
-        src: "/images/gallery/orbit/05.png",
+        src: "/images/gallery/orbit/05.jpg",
         label: "ORBIT gallery 5 — speaker or demo moment, ~800×1000",
         alt: "Speaker at ORBIT",
       },
       {
-        src: "/images/gallery/orbit/06.png",
+        src: "/images/gallery/orbit/06.jpg",
         label: "ORBIT gallery 6 — community event moment, ~800×1000",
         alt: "GDG Babcock members at ORBIT",
       },
       {
-        src: "/images/gallery/orbit/07.png",
+        src: "/images/gallery/orbit/07.jpg",
         label: "ORBIT gallery 7 — attendee or speaker moment, ~800×1000",
         alt: "An ORBIT event moment",
       },
       {
-        src: "/images/gallery/orbit/08.png",
+        src: "/images/gallery/orbit/08.jpg",
         label: "ORBIT gallery 8 — community moment, ~800×1000",
         alt: "GDG Babcock community at ORBIT",
       },

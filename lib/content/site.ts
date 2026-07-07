@@ -55,66 +55,66 @@ export interface SlideImage {
 
 export const HERO_SLIDES: SlideImage[] = [
   {
-    src: "/images/hero/hero-01.png",
+    src: "/images/hero/hero-01.jpg",
     label:
       "Hero slide 1 — landscape event photo, audience close-up at a GDG session (like the mockup's lecture-hall shot), 1920×1080",
     alt: "GDG Babcock members at an event",
   },
   {
-    src: "/images/hero/hero-02.png",
+    src: "/images/hero/hero-02.jpg",
     label:
       "Hero slide 2 — landscape photo, speaker on stage or workshop in progress, 1920×1080",
     alt: "A speaker presenting at a GDG Babcock event",
   },
   {
-    src: "/images/hero/hero-03.png",
+    src: "/images/hero/hero-03.jpg",
     label:
       "Hero slide 3 — landscape photo, group of members collaborating on laptops, 1920×1080",
     alt: "GDG Babcock members collaborating",
   },
   {
-    src: "/images/hero/hero-04.png",
+    src: "/images/hero/hero-04.jpg",
     label:
       "Hero slide 4 — landscape crowd shot, full room at ORBIT summit or GDG Week, 1920×1080",
     alt: "Crowd at a GDG Babcock summit",
   },
   {
-    src: "/images/hero/hero-05.png",
+    src: "/images/hero/hero-05.jpg",
     label: "Hero slide 5 — landscape GDG Babcock event photo, 1920×1080",
     alt: "GDG Babcock event moment",
   },
   {
-    src: "/images/hero/hero-06.png",
+    src: "/images/hero/hero-06.jpg",
     label: "Hero slide 6 — landscape GDG Babcock event photo, 1920×1080",
     alt: "GDG Babcock members at an event",
   },
   {
-    src: "/images/hero/hero-07.png",
+    src: "/images/hero/hero-07.jpg",
     label: "Hero slide 7 — landscape GDG Babcock event photo, 1920×1080",
     alt: "GDG Babcock event audience",
   },
   {
-    src: "/images/hero/hero-08.png",
+    src: "/images/hero/hero-08.jpg",
     label: "Hero slide 8 — landscape GDG Babcock event photo, 1920×1080",
     alt: "GDG Babcock members learning together",
   },
   {
-    src: "/images/hero/hero-09.png",
+    src: "/images/hero/hero-09.jpg",
     label: "Hero slide 9 — landscape GDG Babcock event photo, 1920×1080",
     alt: "A GDG Babcock session in progress",
   },
   {
-    src: "/images/hero/hero-10.png",
+    src: "/images/hero/hero-10.jpg",
     label: "Hero slide 10 — landscape GDG Babcock event photo, 1920×1080",
     alt: "GDG Babcock community event",
   },
   {
-    src: "/images/hero/hero-11.png",
+    src: "/images/hero/hero-11.jpg",
     label: "Hero slide 11 — landscape GDG Babcock event photo, 1920×1080",
     alt: "GDG Babcock members at a tech event",
   },
   {
-    src: "/images/hero/hero-12.png",
+    src: "/images/hero/hero-12.jpg",
     label: "Hero slide 12 — landscape GDG Babcock event photo, 1920×1080",
     alt: "GDG Babcock event attendees",
   },
