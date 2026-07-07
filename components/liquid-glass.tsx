@@ -146,11 +146,11 @@ function buildDisplacementMap(
 export function LiquidGlass({
   children,
   className,
-  radius = 16,
+  radius = 18,
   refractiveIndex = 1.5,
-  bevel = 14,
-  thickness = 24,
-  blur = 10,
+  bevel = 16,
+  thickness = 28,
+  blur = 12,
   style,
 }: LiquidGlassProps) {
   const id = useId().replace(/[:]/g, "");
@@ -202,13 +202,18 @@ export function LiquidGlass({
   return (
     <div
       ref={ref}
-      className={cn(!enabled && "glass-card", className)}
+      className={cn(
+        "relative isolate overflow-hidden shadow-[0_18px_54px_rgba(0,0,0,0.28),inset_0_1px_0_rgba(255,255,255,0.18),inset_0_-18px_36px_rgba(255,255,255,0.035)]",
+        !enabled && "glass-card",
+        className
+      )}
       style={{
         borderRadius: radius,
         ...(enabled && map
           ? {
-              background: "rgba(15, 15, 15, 0.45)",
-              border: "1px solid rgba(255, 255, 255, 0.14)",
+              background:
+                "linear-gradient(135deg, rgba(255,255,255,0.13), rgba(15,15,15,0.46) 44%, rgba(15,15,15,0.34))",
+              border: "1px solid rgba(255, 255, 255, 0.18)",
               backdropFilter: `url(#${filterId}) blur(${blur}px)`,
               WebkitBackdropFilter: `url(#${filterId}) blur(${blur}px)`,
             }
@@ -252,7 +257,15 @@ export function LiquidGlass({
           </defs>
         </svg>
       )}
-      {children}
+      <span
+        className="pointer-events-none absolute inset-px rounded-[inherit] bg-[linear-gradient(140deg,rgba(255,255,255,0.2),rgba(255,255,255,0.035)_34%,rgba(255,255,255,0)_68%)]"
+        aria-hidden
+      />
+      <span
+        className="pointer-events-none absolute -left-1/4 -top-1/2 h-full w-2/3 rotate-12 rounded-full bg-white/[0.12] blur-2xl"
+        aria-hidden
+      />
+      <div className="relative z-10">{children}</div>
     </div>
   );
 }

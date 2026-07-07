@@ -46,6 +46,21 @@ export const GALLERY_STRIPS: GalleryStrip[] = [
         label: "ORBIT gallery 5 — speaker or demo moment, ~800×1000",
         alt: "Speaker at ORBIT",
       },
+      {
+        src: "/images/gallery/orbit/06.png",
+        label: "ORBIT gallery 6 — community event moment, ~800×1000",
+        alt: "GDG Babcock members at ORBIT",
+      },
+      {
+        src: "/images/gallery/orbit/07.png",
+        label: "ORBIT gallery 7 — attendee or speaker moment, ~800×1000",
+        alt: "An ORBIT event moment",
+      },
+      {
+        src: "/images/gallery/orbit/08.png",
+        label: "ORBIT gallery 8 — community moment, ~800×1000",
+        alt: "GDG Babcock community at ORBIT",
+      },
     ],
   },
   {

@@ -54,15 +54,15 @@ export default function Navigation() {
           {/* Center: logo */}
           <Link
             href="/"
-            className="flex items-center rounded-full border border-white/15 bg-[#0f0f0f]/70 p-2.5 backdrop-blur-md lg:absolute lg:left-1/2 lg:-translate-x-1/2"
+            className="flex h-12 w-16 items-center justify-center rounded-full border border-white/15 bg-[#0f0f0f]/65 p-2 shadow-[0_12px_36px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.16)] backdrop-blur-md transition-transform hover:scale-[1.04] lg:absolute lg:left-1/2 lg:-translate-x-1/2"
             aria-label="GDG Babcock — home"
           >
             <Image
-              src="/gdg-logo.svg"
+              src="/Sticker Logomark.png"
               alt="GDG Babcock"
-              width={140}
-              height={32}
-              className="h-7 w-auto sm:h-8"
+              width={50}
+              height={34}
+              className="h-8 w-auto drop-shadow-[0_2px_10px_rgba(255,255,255,0.22)]"
               priority
             />
           </Link>

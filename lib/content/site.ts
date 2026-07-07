@@ -78,6 +78,46 @@ export const HERO_SLIDES: SlideImage[] = [
       "Hero slide 4 — landscape crowd shot, full room at ORBIT summit or GDG Week, 1920×1080",
     alt: "Crowd at a GDG Babcock summit",
   },
+  {
+    src: "/images/hero/hero-05.png",
+    label: "Hero slide 5 — landscape GDG Babcock event photo, 1920×1080",
+    alt: "GDG Babcock event moment",
+  },
+  {
+    src: "/images/hero/hero-06.png",
+    label: "Hero slide 6 — landscape GDG Babcock event photo, 1920×1080",
+    alt: "GDG Babcock members at an event",
+  },
+  {
+    src: "/images/hero/hero-07.png",
+    label: "Hero slide 7 — landscape GDG Babcock event photo, 1920×1080",
+    alt: "GDG Babcock event audience",
+  },
+  {
+    src: "/images/hero/hero-08.png",
+    label: "Hero slide 8 — landscape GDG Babcock event photo, 1920×1080",
+    alt: "GDG Babcock members learning together",
+  },
+  {
+    src: "/images/hero/hero-09.png",
+    label: "Hero slide 9 — landscape GDG Babcock event photo, 1920×1080",
+    alt: "A GDG Babcock session in progress",
+  },
+  {
+    src: "/images/hero/hero-10.png",
+    label: "Hero slide 10 — landscape GDG Babcock event photo, 1920×1080",
+    alt: "GDG Babcock community event",
+  },
+  {
+    src: "/images/hero/hero-11.png",
+    label: "Hero slide 11 — landscape GDG Babcock event photo, 1920×1080",
+    alt: "GDG Babcock members at a tech event",
+  },
+  {
+    src: "/images/hero/hero-12.png",
+    label: "Hero slide 12 — landscape GDG Babcock event photo, 1920×1080",
+    alt: "GDG Babcock event attendees",
+  },
 ];
 
 export interface FooterColumn {
