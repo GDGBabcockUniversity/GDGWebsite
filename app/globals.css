@@ -280,13 +280,17 @@ html {
    multi-selector rule — the whole group) rather than preserving all five.
    Pair this class with a color variant below on every element. */
 .text-outline-base {
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
   line-height: 1.18;
   font-weight: 700;
-  letter-spacing: 0.045em;
+  font-variation-settings: "wght" 700;
+  letter-spacing: 0.055em;
+  word-spacing: 0.12em;
   font-synthesis: none;
   paint-order: stroke fill;
+  text-rendering: geometricPrecision;
+  text-wrap: balance;
 }
 
 .text-outline-cream {
@@ -320,23 +324,13 @@ html {
 }
 
 .text-outline-fill {
-  transition: color 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
-.text-outline-blue.text-outline-fill:hover {
-  color: var(--color-gdg-blue);
-}
-
-.text-outline-red.text-outline-fill:hover {
-  color: var(--color-gdg-red);
-}
-
-.text-outline-yellow.text-outline-fill:hover {
-  color: var(--color-gdg-yellow);
-}
-
-.text-outline-green.text-outline-fill:hover {
-  color: var(--color-gdg-green);
+.text-outline-fill:hover {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  opacity: 0.82;
 }
 
 /* Gallery strips — grey by default; hovering (or tapping, on touch
