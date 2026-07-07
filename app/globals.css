@@ -112,6 +112,13 @@ html {
   animation: gridPulse 4s ease-in-out infinite;
 }
 
+.editorial-grid {
+  background-image:
+    linear-gradient(rgba(66, 133, 244, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(66, 133, 244, 0.07) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
 @keyframes gridPulse {
   0%,
   100% {

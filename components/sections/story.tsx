@@ -38,58 +38,54 @@ function CurvedArrow({ className }: { className?: string }) {
 export default function Story() {
   return (
     <section className="relative overflow-hidden bg-[#0f0f0f]">
-      <div className="grid-pattern absolute inset-0 opacity-30" aria-hidden />
+      <div className="editorial-grid absolute inset-0 opacity-80" aria-hidden />
+      <div
+        className="absolute inset-0 bg-[radial-gradient(circle_at_35%_50%,rgba(66,133,244,0.07),transparent_34%),linear-gradient(90deg,rgba(15,15,15,0.15),rgba(15,15,15,0.55))]"
+        aria-hidden
+      />
 
-      <div className="relative mx-auto max-w-7xl px-6 py-24 lg:py-32">
-        <div className="grid items-center gap-14 lg:grid-cols-2">
+      <div className="relative mx-auto flex min-h-[680px] max-w-7xl items-center px-6 py-24 sm:px-8 lg:min-h-[800px] lg:py-28">
+        <div className="grid w-full items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
           {/* Tilted polaroid */}
-          <div className="relative mx-auto w-full max-w-md">
-            <div className="-rotate-3 rounded-md bg-gdg-cream p-3 pb-10 shadow-2xl">
+          <div className="relative mx-auto w-full max-w-xl lg:mx-0">
+            <div className="-rotate-3 rounded-[10px] bg-gdg-cream p-4 pb-14 shadow-[0_34px_80px_rgba(0,0,0,0.38)] sm:p-5 sm:pb-16">
               <SmartImage
                 src="/images/story/founding-photo.png"
                 alt="Early GDG Babcock members"
                 label="Founding-story photo — group shot of early members in GDG merch, ~1200×900"
-                className="aspect-[4/3] w-full"
+                className="aspect-[4/3] w-full rounded-[8px]"
                 sizes="(max-width: 1024px) 90vw, 40vw"
               />
             </div>
-            <span className="absolute -top-2 left-6 rounded-full bg-gdg-red px-3 py-1 text-xs font-bold text-white shadow-lg -rotate-6">
+            <span className="absolute -top-4 left-10 rounded-full bg-gdg-red px-4 py-1.5 text-xs font-bold text-white shadow-lg -rotate-6 sm:left-16 sm:text-sm">
               Generic caption
             </span>
-            <span className="absolute bottom-4 right-2 rounded-full bg-gdg-yellow px-3 py-1 text-xs font-bold text-[#0f0f0f] shadow-lg rotate-3">
+            <span className="absolute bottom-8 right-0 rounded-full bg-gdg-yellow px-4 py-1.5 text-xs font-bold text-[#0f0f0f] shadow-lg rotate-3 sm:right-6">
               Generic caption
             </span>
-            <Starburst className="absolute -bottom-8 -left-8 h-24 w-24 rotate-12" />
+            <Starburst className="absolute -bottom-8 -left-7 h-28 w-28 rotate-12 sm:-bottom-10 sm:-left-10 sm:h-36 sm:w-36" />
           </div>
 
           {/* Copy */}
-          <div className="text-center lg:text-right">
-            <h2 className="text-4xl font-bold leading-tight text-gdg-cream sm:text-5xl lg:text-6xl">
-              Founded to close the gap.
+          <div className="relative text-center lg:text-right">
+            <h2 className="ml-auto max-w-2xl text-5xl font-bold leading-[1.12] text-gdg-cream sm:text-6xl lg:text-7xl xl:text-8xl">
+              Founded to close
+              <br />
+              the gap.
             </h2>
-            <p className="mt-6 text-base leading-relaxed text-white/70 lg:ml-auto lg:max-w-md">
+            <p className="mt-8 text-base leading-relaxed text-white/65 sm:text-lg lg:ml-auto lg:max-w-[620px]">
               Officially affiliated with Google Developer Groups, giving our
               community direct access to Google technologies, developer
               resources, and the global GDG network.
             </p>
-            <div className="relative mt-10 inline-block">
-              <CurvedArrow className="absolute -top-14 left-1/2 h-16 w-24 -translate-x-1/2" />
-              <span className="rounded-full bg-gdg-blue px-4 py-1.5 text-xs font-bold text-white -rotate-3 inline-block">
+            <div className="relative mt-14 inline-block lg:mr-32">
+              <CurvedArrow className="absolute -left-12 -top-16 h-20 w-28 -rotate-[28deg] sm:-left-20 sm:-top-20 sm:h-24 sm:w-36" />
+              <span className="inline-block -rotate-3 rounded-full bg-gdg-blue px-5 py-2 text-xs font-bold text-white shadow-[0_12px_32px_rgba(66,133,244,0.28)]">
                 Definitely not AI Generated.
               </span>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Giant faint outline word bridging into the next section */}
-      <div
-        className="pointer-events-none relative -mb-8 overflow-hidden"
-        aria-hidden
-      >
-        <p className="text-outline select-none whitespace-nowrap text-center text-[clamp(6rem,20vw,18rem)] font-extrabold leading-none opacity-15">
-          BUILD
-        </p>
       </div>
     </section>
   );
