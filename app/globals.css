@@ -314,12 +314,20 @@ html {
 }
 
 @media (max-width: 48rem) {
+  .text-outline-base {
+    line-height: 1.24;
+    font-weight: 600;
+    font-variation-settings: "wght" 600;
+    letter-spacing: 0.07em;
+    word-spacing: 0.16em;
+  }
+
   .text-outline-cream,
   .text-outline-blue,
   .text-outline-red,
   .text-outline-yellow,
   .text-outline-green {
-    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-width: 0.75px;
   }
 }
 
