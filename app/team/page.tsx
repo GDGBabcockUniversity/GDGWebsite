@@ -66,10 +66,10 @@ function Pill({
 
 /**
  * Size-aware, centered layout.
- * Mobile (below sm): a 2-column grid — a lone card (e.g. a single track
- * lead) spans both columns so it reads as the large, featured card; a pair
- * (e.g. Organizer + Co-Organizer) fills the two columns side by side; 3+
- * wrap normally.
+ * Mobile (below sm): a lone card (e.g. a single track lead) renders as one
+ * normal, modestly-sized centered card — not stretched full-width; a pair
+ * (e.g. Organizer + Co-Organizer) fills a 2-column grid side by side; 3+
+ * wrap in that same 2-column grid.
  * sm and up: the org-chart look — 1 member → one centered card; 2 → a
  * centered pair on one row; 3+ → a centered wrapping grid (trailing cards
  * never float left). Leads render first.
@@ -86,13 +86,20 @@ function MemberRow({
   if (members.length === 0) return null;
   const isLone = members.length === 1;
   return (
-    <div className="grid grid-cols-2 gap-4 sm:flex sm:flex-wrap sm:justify-center sm:gap-8">
+    <div
+      className={cn(
+        isLone
+          ? "flex justify-center"
+          : "grid grid-cols-2 gap-4",
+        "sm:flex sm:flex-wrap sm:justify-center sm:gap-8"
+      )}
+    >
       {members.map((member, i) => (
         <div
           key={member.name}
           className={cn(
-            "w-full sm:w-[330px] sm:max-w-[360px]",
-            isLone && "col-span-2"
+            isLone ? "w-3/4 max-w-[300px]" : "w-full",
+            "sm:w-[330px] sm:max-w-[360px]"
           )}
         >
           <TeamMemberCard
