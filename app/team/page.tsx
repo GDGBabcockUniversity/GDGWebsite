@@ -84,24 +84,10 @@ function MemberRow({
   accentOffset: number;
 }) {
   if (members.length === 0) return null;
-  const isLone = members.length === 1;
   return (
-    <div
-      className={cn(
-        isLone
-          ? "flex justify-center"
-          : "grid grid-cols-2 gap-4",
-        "sm:flex sm:flex-wrap sm:justify-center sm:gap-8"
-      )}
-    >
+    <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
       {members.map((member, i) => (
-        <div
-          key={member.name}
-          className={cn(
-            isLone ? "w-3/4 max-w-[300px]" : "w-full",
-            "sm:w-[330px] sm:max-w-[360px]"
-          )}
-        >
+        <div key={member.name} className="w-[45%] max-w-[300px] sm:w-[330px] sm:max-w-[360px]">
           <TeamMemberCard
             name={member.name}
             role={member.role}
