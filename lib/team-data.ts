@@ -629,9 +629,10 @@ const ASSIGNMENTS: Record<string, Assignment> = {
   "Offor Chidoziem": { section: "dev", subteam: "Backend" },
   "Divine Athora": { section: "dev", subteam: "Product Design", isLead: true },
 
-  // Media Team — leads
-  "Chioma Okoli": { section: "media", isLead: true }, // Media & Marketing Lead
-  "Oghenetejiri Efe": { section: "media", isLead: true }, // Media & Marketing Lead
+  // Media & Marketing Leads — sit in Core leadership (they appear once here,
+  // not under the Media team, which the form will populate).
+  "Chioma Okoli": { section: "core" },
+  "Oghenetejiri Efe": { section: "core" },
 };
 
 /** Default placement for any member missing from ASSIGNMENTS. */

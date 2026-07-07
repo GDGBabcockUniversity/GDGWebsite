@@ -46,14 +46,14 @@ export default function AnnualStructure() {
     <section id="events" className="scroll-mt-24 bg-[#0f0f0f]">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:py-32">
         <p className="text-xs font-bold uppercase tracking-[0.25em] text-gdg-green">
-          The annual structure
+          Our year
         </p>
         <h2 className="mt-4 max-w-2xl text-4xl font-bold leading-tight text-gdg-cream sm:text-5xl">
-          One year, structured like an institution.
+          Programs worth marking your calendar for.
         </h2>
         <p className="mt-5 max-w-xl text-base leading-relaxed text-white/70">
-          GDG Babcock runs on a rhythm. Every semester has its flagship, every
-          month has its touchpoint, and the year closes on recognition.
+          Every semester has its flagship, every month its touchpoint, and the
+          year closes on recognition.
         </p>
 
         {/* Timeline: 4 nodes across on lg, stacked on mobile */}

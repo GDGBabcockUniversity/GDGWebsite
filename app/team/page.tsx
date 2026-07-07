@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Users } from "lucide-react";
 import TeamMemberCard from "@/components/team-member-card";
 import {
   TEAM_YEARS,
@@ -9,55 +10,99 @@ import {
   type SectionDef,
 } from "@/lib/team-data";
 import { getTrack, type GdgColor } from "@/lib/tracks";
-import { BG_CLASS } from "@/lib/colors";
+import { GDG_HEX } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 
 /** Leads first, everyone else in their original order. */
 function leadsFirst(members: TeamMember[]): TeamMember[] {
-  return [...members].sort(
-    (a, b) => (b.isLead ? 1 : 0) - (a.isLead ? 1 : 0)
-  );
+  return [...members].sort((a, b) => (b.isLead ? 1 : 0) - (a.isLead ? 1 : 0));
 }
 
-/** Track subteams get their brand color; other sections cycle by index. */
+/** Track subteams get their brand color; other sections have no accent. */
 function subteamColor(section: string, subteam: string): GdgColor | undefined {
   if (section === "tracks") return getTrack(subteam)?.color;
   return undefined;
 }
 
-function MemberGrid({
+/** Vertical org-chart connector between a pill and the cards below it. */
+function Connector() {
+  return (
+    <div
+      className="mx-auto hidden h-8 w-px bg-white/15 lg:block"
+      aria-hidden
+    />
+  );
+}
+
+/** Centered dark pill header — the org-chart node. */
+function Pill({
+  label,
+  color,
+  size = "section",
+}: {
+  label: string;
+  color?: GdgColor;
+  size?: "section" | "sub";
+}) {
+  return (
+    <div
+      className={cn(
+        "mx-auto flex w-fit items-center gap-2.5 rounded-full border bg-[#171717]",
+        size === "section" ? "px-6 py-3" : "px-4 py-2"
+      )}
+      style={{ borderColor: color ? GDG_HEX[color] : "rgba(255,255,255,0.15)" }}
+    >
+      <Users
+        className={cn(size === "section" ? "h-4 w-4" : "h-3.5 w-3.5")}
+        style={{ color: color ? GDG_HEX[color] : "#fff6e0" }}
+        aria-hidden
+      />
+      <span
+        className={cn(
+          "font-bold uppercase tracking-widest text-gdg-cream",
+          size === "section" ? "text-sm" : "text-xs"
+        )}
+      >
+        {label}
+      </span>
+    </div>
+  );
+}
+
+/**
+ * Size-aware, centered layout: 1 member → one centered card; 2 → a centered
+ * pair on one row; 3+ → a centered wrapping grid (trailing cards never float
+ * left). Leads render first.
+ */
+function GroupBlock({
   members,
   accentColor,
 }: {
   members: TeamMember[];
   accentColor?: GdgColor;
 }) {
+  const ordered = leadsFirst(members);
   return (
-    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {leadsFirst(members).map((member, i) => (
-        <TeamMemberCard
-          key={member.name}
-          name={member.name}
-          role={member.role}
-          wordsToLiveBy={member.wordsToLiveBy}
-          image={member.image}
-          music={member.music}
-          links={member.links}
-          accentColor={accentColor}
-          accentIndex={i}
-        />
+    <div className="flex flex-wrap justify-center gap-8">
+      {ordered.map((member, i) => (
+        <div key={member.name} className="w-full max-w-[360px] sm:w-[330px]">
+          <TeamMemberCard
+            name={member.name}
+            role={member.role}
+            wordsToLiveBy={member.wordsToLiveBy}
+            image={member.image}
+            music={member.music}
+            links={member.links}
+            accentColor={accentColor}
+            accentIndex={i}
+          />
+        </div>
       ))}
     </div>
   );
 }
 
-function Section({
-  def,
-  members,
-}: {
-  def: SectionDef;
-  members: TeamMember[];
-}) {
+function Section({ def, members }: { def: SectionDef; members: TeamMember[] }) {
   if (members.length === 0) return null;
 
   // Group by subteam, honoring the section's declared order; anything else
@@ -76,30 +121,26 @@ function Section({
     grouped.push({ subteam: "", members });
   }
 
+  const hasSubteams = grouped.some((g) => g.subteam);
+
   return (
     <section id={`section-${def.id}`} className="scroll-mt-28">
-      <h2 className="text-outline text-3xl font-extrabold uppercase leading-none sm:text-5xl">
-        {def.label}
-      </h2>
-      <div className="mt-10 space-y-12">
+      <Pill label={def.label} />
+      <Connector />
+      <div className="mt-8 space-y-14 lg:mt-0">
         {grouped.map((g) => {
           const color = subteamColor(def.id, g.subteam);
           return (
             <div key={g.subteam || "_"}>
               {g.subteam && (
-                <div className="mb-6 flex items-center gap-3">
-                  {color && (
-                    <span
-                      className={cn("h-3 w-3 rounded-full", BG_CLASS[color])}
-                      aria-hidden
-                    />
-                  )}
-                  <h3 className="text-lg font-bold text-gdg-cream">
-                    {g.subteam}
-                  </h3>
-                </div>
+                <>
+                  <Pill label={g.subteam} color={color} size="sub" />
+                  <Connector />
+                </>
               )}
-              <MemberGrid members={g.members} accentColor={color} />
+              <div className={cn(g.subteam ? "mt-6 lg:mt-0" : "")}>
+                <GroupBlock members={g.members} accentColor={color} />
+              </div>
             </div>
           );
         })}

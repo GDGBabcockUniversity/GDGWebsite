@@ -18,7 +18,7 @@ you can browse the site itself as a shot list.
 
 | File | Subject | Orientation / size |
 | --- | --- | --- |
-| `hero/hero-01.png` … `hero-04.png` | Event photos for the hero carousel (audience close-up, speaker on stage, members collaborating, crowd at ORBIT/GDG Week) | landscape, 1920×1080 |
+| `hero/hero-01.png` … `hero-13.png` | Event photos for the hero carousel (up to 13; audience close-ups, speakers, workshops, crowds at ORBIT/GDG Week). `hero-13` is the last open slot. | landscape, 1920×1080 |
 | `gallery/orbit/01.png` … `05.png` | ORBIT summit gallery strip | portrait-ish, ~800×1000 |
 | `gallery/field-trip/01.png` … `04.png` | Field trip / company visit strip | portrait-ish, ~800×1000 |
 | `gallery/monthly-meetup/01.png` … `04.png` | Monthly meetup strip | portrait-ish, ~800×1000 |
