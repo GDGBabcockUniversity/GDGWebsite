@@ -55,25 +55,25 @@ export interface SlideImage {
 
 export const HERO_SLIDES: SlideImage[] = [
   {
-    src: undefined, // drop in /images/hero/hero-01.jpg
+    src: undefined, // drop in /images/hero/hero-01.png
     label:
       "Hero slide 1 — landscape event photo, audience close-up at a GDG session (like the mockup's lecture-hall shot), 1920×1080",
     alt: "GDG Babcock members at an event",
   },
   {
-    src: undefined, // drop in /images/hero/hero-02.jpg
+    src: undefined, // drop in /images/hero/hero-02.png
     label:
       "Hero slide 2 — landscape photo, speaker on stage or workshop in progress, 1920×1080",
     alt: "A speaker presenting at a GDG Babcock event",
   },
   {
-    src: undefined, // drop in /images/hero/hero-03.jpg
+    src: undefined, // drop in /images/hero/hero-03.png
     label:
       "Hero slide 3 — landscape photo, group of members collaborating on laptops, 1920×1080",
     alt: "GDG Babcock members collaborating",
   },
   {
-    src: undefined, // drop in /images/hero/hero-04.jpg
+    src: undefined, // drop in /images/hero/hero-04.png
     label:
       "Hero slide 4 — landscape crowd shot, full room at ORBIT summit or GDG Week, 1920×1080",
     alt: "Crowd at a GDG Babcock summit",

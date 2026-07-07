@@ -7,4 +7,4 @@ Upload images for:
 - Operations Leads
 - Media and Marketing Leads
 
-Example filename: `chukwuneku-akpotohwo.jpg`
+Example filename: `chukwuneku-akpotohwo.png`

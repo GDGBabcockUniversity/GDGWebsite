@@ -18,17 +18,17 @@ you can browse the site itself as a shot list.
 
 | File | Subject | Orientation / size |
 | --- | --- | --- |
-| `hero/hero-01.jpg` … `hero-04.jpg` | Event photos for the hero carousel (audience close-up, speaker on stage, members collaborating, crowd at ORBIT/GDG Week) | landscape, 1920×1080 |
-| `gallery/orbit/01.jpg` … `05.jpg` | ORBIT summit gallery strip | portrait-ish, ~800×1000 |
-| `gallery/field-trip/01.jpg` … `04.jpg` | Field trip / company visit strip | portrait-ish, ~800×1000 |
-| `gallery/monthly-meetup/01.jpg` … `04.jpg` | Monthly meetup strip | portrait-ish, ~800×1000 |
-| `story/founding-photo.jpg` | Group shot of early members ("Founded to close the gap" polaroid) | landscape, ~1200×900 |
-| `what-we-do/workshops.jpg` | Member presenting/teaching | portrait, ~900×1100 |
-| `what-we-do/tech-talks.jpg` | Seated audience at a talk | portrait, ~900×1100 |
-| `what-we-do/community.jpg` | Members networking/mingling | portrait, ~900×1100 |
-| `what-we-do/hackathons.jpg` | Build-day cohort group photo | portrait, ~900×1100 |
-| `events/orbit-circle.jpg` | Square group shot (shown in a circle crop next to "Our Events") | square, ~600×600 |
-| `partner/group-photo.jpg` | Big outdoor community group photo ("Let's build together" background) | landscape, 1920×1080 |
+| `hero/hero-01.png` … `hero-04.png` | Event photos for the hero carousel (audience close-up, speaker on stage, members collaborating, crowd at ORBIT/GDG Week) | landscape, 1920×1080 |
+| `gallery/orbit/01.png` … `05.png` | ORBIT summit gallery strip | portrait-ish, ~800×1000 |
+| `gallery/field-trip/01.png` … `04.png` | Field trip / company visit strip | portrait-ish, ~800×1000 |
+| `gallery/monthly-meetup/01.png` … `04.png` | Monthly meetup strip | portrait-ish, ~800×1000 |
+| `story/founding-photo.png` | Group shot of early members ("Founded to close the gap" polaroid) | landscape, ~1200×900 |
+| `what-we-do/workshops.png` | Member presenting/teaching | portrait, ~900×1100 |
+| `what-we-do/tech-talks.png` | Seated audience at a talk | portrait, ~900×1100 |
+| `what-we-do/community.png` | Members networking/mingling | portrait, ~900×1100 |
+| `what-we-do/hackathons.png` | Build-day cohort group photo | portrait, ~900×1100 |
+| `events/orbit-circle.png` | Square group shot (shown in a circle crop next to "Our Events") | square, ~600×600 |
+| `partner/group-photo.png` | Big outdoor community group photo ("Let's build together" background) | landscape, 1920×1080 |
 
 Content data files that reference these paths:
 
@@ -42,7 +42,7 @@ Content data files that reference these paths:
 ## Housekeeping (future chore)
 
 Team headshots currently live at the `public/` root with spaces in their
-filenames (e.g. `/Chukwuneku Akpotohwo - Organizer.jpg`) and are referenced
+filenames (e.g. `/Chukwuneku Akpotohwo - Organizer.png`) and are referenced
 from `lib/team-data.ts`. They work as-is — if you ever tidy them into
 `public/team/`, update the `image` paths in `lib/team-data.ts` in the same
 commit.

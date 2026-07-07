@@ -6,4 +6,4 @@ Upload images for the 4 track leads:
 - Infrastructure & Security Track Lead
 - Design & Management Track Lead
 
-Example filename: `reuben-alabi.jpg`
+Example filename: `reuben-alabi.png`

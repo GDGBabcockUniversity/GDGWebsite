@@ -46,7 +46,7 @@ export default function Story() {
           <div className="relative mx-auto w-full max-w-md">
             <div className="-rotate-3 rounded-md bg-gdg-cream p-3 pb-10 shadow-2xl">
               <SmartImage
-                src={undefined} // drop in /images/story/founding-photo.jpg
+                src={undefined} // drop in /images/story/founding-photo.png
                 alt="Early GDG Babcock members"
                 label="Founding-story photo — group shot of early members in GDG merch, ~1200×900"
                 className="aspect-[4/3] w-full"
