@@ -13,11 +13,6 @@ import { getTrack, type GdgColor } from "@/lib/tracks";
 import { GDG_HEX } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 
-/** Leads first, everyone else in their original order. */
-function leadsFirst(members: TeamMember[]): TeamMember[] {
-  return [...members].sort((a, b) => (b.isLead ? 1 : 0) - (a.isLead ? 1 : 0));
-}
-
 /** Track subteams get their brand color; other sections have no accent. */
 function subteamColor(section: string, subteam: string): GdgColor | undefined {
   if (section === "tracks") return getTrack(subteam)?.color;
@@ -74,17 +69,19 @@ function Pill({
  * pair on one row; 3+ → a centered wrapping grid (trailing cards never float
  * left). Leads render first.
  */
-function GroupBlock({
+function MemberRow({
   members,
   accentColor,
+  accentOffset,
 }: {
   members: TeamMember[];
   accentColor?: GdgColor;
+  accentOffset: number;
 }) {
-  const ordered = leadsFirst(members);
+  if (members.length === 0) return null;
   return (
     <div className="flex flex-wrap justify-center gap-8">
-      {ordered.map((member, i) => (
+      {members.map((member, i) => (
         <div key={member.name} className="w-full max-w-[360px] sm:w-[330px]">
           <TeamMemberCard
             name={member.name}
@@ -94,10 +91,37 @@ function GroupBlock({
             music={member.music}
             links={member.links}
             accentColor={accentColor}
-            accentIndex={i}
+            accentIndex={accentOffset + i}
           />
         </div>
       ))}
+    </div>
+  );
+}
+
+/**
+ * Leads get their own row, always — a flex-wrap on the full member list
+ * would only sort leads first, not guarantee they land on a separate visual
+ * row. Splitting into two row containers makes "leads on the first row"
+ * (organizer + co-organizer, track lead, etc.) an actual layout guarantee.
+ */
+function GroupBlock({
+  members,
+  accentColor,
+}: {
+  members: TeamMember[];
+  accentColor?: GdgColor;
+}) {
+  const leads = members.filter((m) => m.isLead);
+  const rest = members.filter((m) => !m.isLead);
+  return (
+    <div className="space-y-8">
+      <MemberRow members={leads} accentColor={accentColor} accentOffset={0} />
+      <MemberRow
+        members={rest}
+        accentColor={accentColor}
+        accentOffset={leads.length}
+      />
     </div>
   );
 }
