@@ -1,25 +1,39 @@
-import Navigation from "@/components/navigation";
 import Hero from "@/components/hero";
-import Stats from "@/components/stats";
-import EventSpotlight from "@/components/event-spotlight";
-import Tracks from "@/components/tracks";
-import WhyJoin from "@/components/why-join";
-import Registration from "@/components/registration";
-import Footer from "@/components/footer";
-import CTA from "@/components/cta";
+import MarqueeTicker from "@/components/sections/marquee-ticker";
+import Story from "@/components/sections/story";
+import WhatWeDo from "@/components/sections/what-we-do";
+import AnnualStructure from "@/components/sections/annual-structure";
+import FeaturedProducts from "@/components/sections/featured-products";
+import Engage from "@/components/sections/engage";
+import GalleryStrips from "@/components/sections/gallery-strips";
+import AcrossCampus from "@/components/sections/across-campus";
+import Partner from "@/components/sections/partner";
+import TeamPreview from "@/components/sections/team-preview";
+import RadarLatest from "@/components/sections/radar-latest";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
-      {/* <Navigation /> */}
+      {/* 1. What GDG Babcock is */}
       <Hero />
-      <WhyJoin />
-      {/* <Stats /> */}
-      {/* <EventSpotlight /> */}
-      <Tracks />
-      <Registration />
-      {/* <CTA /> */}
-      {/* <Footer /> */}
+      <MarqueeTicker />
+      <Story />
+      <WhatWeDo />
+      {/* 2. The annual structure */}
+      <AnnualStructure />
+      {/* 3. Featured products */}
+      <FeaturedProducts />
+      {/* 4. How students engage */}
+      <Engage />
+      <GalleryStrips titles={["ORBIT", "MONTHLY MEETUP"]} />
+      {/* 5. How we work across campus */}
+      <AcrossCampus />
+      {/* 6. Partnership CTA */}
+      <Partner />
+      {/* 7. Team preview */}
+      <TeamPreview />
+      {/* 8. Latest from RADAR */}
+      <RadarLatest />
     </main>
   );
 }

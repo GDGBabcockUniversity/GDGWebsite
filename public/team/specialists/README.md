@@ -15,4 +15,4 @@ Upload images for all specialist roles:
 - 2D Animations Specialist
 - Community Managers
 
-Example filename: `providence-oduok.jpg`
+Example filename: `providence-oduok.png`

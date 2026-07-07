@@ -1,31 +1,61 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { X, Mail, Eye, EyeOff } from "lucide-react";
 import Image from "next/image";
+import { isProfileComplete } from "@/lib/tracks";
 
 interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
+  title?: string;
+  subtitle?: string;
 }
 
-export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
-  const { loginWithGoogle, loginWithEmail, signUpWithEmail, error, clearError, loading } =
-    useAuth();
+export default function LoginModal({
+  isOpen,
+  onClose,
+  title,
+  subtitle,
+}: LoginModalProps) {
+  const {
+    user,
+    loginWithGoogle,
+    loginWithEmail,
+    signUpWithEmail,
+    error,
+    clearError,
+    loading,
+  } = useAuth();
+  const router = useRouter();
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [localLoading, setLocalLoading] = useState(false);
+  const [justAuthed, setJustAuthed] = useState(false);
+
+  // After a successful auth in THIS modal, send incomplete profiles to
+  // onboarding (login fns resolve after the provider has set `user`)
+  useEffect(() => {
+    if (justAuthed && user) {
+      setJustAuthed(false);
+      onClose();
+      if (!isProfileComplete(user)) {
+        router.push("/onboarding");
+      }
+    }
+  }, [justAuthed, user, onClose, router]);
 
   const handleGoogleLogin = async () => {
     setLocalLoading(true);
     try {
       await loginWithGoogle();
-      onClose();
+      setJustAuthed(true);
     } catch {
       // error is set in context
     } finally {
@@ -42,7 +72,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
       } else {
         await signUpWithEmail(email, password);
       }
-      onClose();
+      setJustAuthed(true);
     } catch {
       // error is set in context
     } finally {
@@ -72,7 +102,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
       {/* Centering wrapper */}
       <div className="relative z-[101] min-h-full flex items-center justify-center p-4">
         {/* Modal */}
-        <div className="w-full max-w-md bg-card border border-border rounded-2xl p-8 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+        <div className="w-full max-w-md rounded-3xl border border-white/15 bg-[#171717] p-8 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
         {/* Close */}
         <button
           onClick={onClose}
@@ -90,13 +120,14 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
             height={36}
             className="mx-auto mb-6"
           />
-          <h2 className="text-2xl font-bold text-foreground">
-            {mode === "login" ? "Welcome back" : "Create your account"}
+          <h2 className="text-2xl font-bold text-gdg-cream">
+            {title ?? (mode === "login" ? "Welcome back" : "Create your account")}
           </h2>
           <p className="text-sm text-muted-foreground mt-2">
-            {mode === "login"
-              ? "Sign in to your GDG Babcock account"
-              : "Join the GDG Babcock platform"}
+            {subtitle ??
+              (mode === "login"
+                ? "Sign in to your GDG Babcock account"
+                : "Join the GDG Babcock platform")}
           </p>
         </div>
 

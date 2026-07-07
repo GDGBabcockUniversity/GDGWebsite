@@ -1,9 +1,11 @@
 "use client";
 
-import { Twitter, Linkedin, Globe, Play } from "lucide-react";
+import { Linkedin, Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { GDG_HEX, colorByIndex } from "@/lib/colors";
+import type { GdgColor } from "@/lib/tracks";
 
 interface TeamMemberCardProps {
   name: string;
@@ -20,6 +22,10 @@ interface TeamMemberCardProps {
     linkedin: string;
     portfolio: string;
   };
+  /** Rotates the border through the four Google colors */
+  accentIndex?: number;
+  /** Explicit border color (e.g. a track color) — overrides accentIndex */
+  accentColor?: GdgColor;
 }
 
 export default function TeamMemberCard({
@@ -29,11 +35,17 @@ export default function TeamMemberCard({
   links,
   music,
   image,
+  accentIndex = 0,
+  accentColor,
 }: TeamMemberCardProps) {
   const [showPlayer, setShowPlayer] = useState(false);
+  const accent = accentColor ? GDG_HEX[accentColor] : GDG_HEX[colorByIndex(accentIndex)];
   return (
     <div>
-      <div className="bg-black rounded-3xl overflow-hidden hover:scale-[1.02] transition-all duration-300 shadow-2xl">
+      <div
+        className="bg-[#161616] border rounded-3xl overflow-hidden hover:scale-[1.02] hover:rotate-1 transition-all duration-300 shadow-2xl"
+        style={{ borderColor: accent }}
+      >
         {/* Spotify Header */}
         {music.name && music.artist && (
           <div className="px-4 pt-4 pb-2">
@@ -140,14 +152,14 @@ export default function TeamMemberCard({
         {/* Role and Motto */}
       </div>
 
-      <div className="mt-2">
-        <h3 className="text-black text-lg md:text-xl font-semibold mb-1">
+      <div className="mt-3">
+        <h3 className="text-gdg-cream text-lg md:text-xl font-semibold mb-0.5">
           {name}
         </h3>
-        <h3 className="text-muted-foreground text-lg font-medium mb-1">
+        <p className="text-sm font-medium mb-1" style={{ color: accent }}>
           {role}
-        </h3>
-        <p className="text-muted-foreground text-sm italic">{wordsToLiveBy}</p>
+        </p>
+        <p className="text-white/50 text-sm italic">{wordsToLiveBy}</p>
       </div>
     </div>
   );

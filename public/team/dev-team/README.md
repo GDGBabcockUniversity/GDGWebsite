@@ -6,4 +6,4 @@ Upload images for:
 - Backend Developers
 - Lead Product Designer
 
-Example filename: `oluwatamilore-olugbesan.jpg`
+Example filename: `oluwatamilore-olugbesan.png`

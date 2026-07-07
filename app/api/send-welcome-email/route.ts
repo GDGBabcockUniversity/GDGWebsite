@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { getTrack, COMMUNITY_WHATSAPP_URL } from "@/lib/tracks";
 
 // ─── Config ────────────────────────────────────────────────────────────────
 
@@ -14,20 +15,15 @@ function getResend(): Resend | null {
 const FROM_EMAIL =
   process.env.WELCOME_EMAIL_FROM || "GDG Babcock <onboarding@resend.dev>";
 
-// WhatsApp group links per track — UPDATE THESE with real links
-const TRACK_WHATSAPP_LINKS: Record<string, string> = {
-  "Software Development & Engineering":
-    process.env.WHATSAPP_LINK_SDE || "https://chat.whatsapp.com/PLACEHOLDER_SDE",
-  "Data & AI":
-    process.env.WHATSAPP_LINK_DATA_AI || "https://chat.whatsapp.com/PLACEHOLDER_DATA_AI",
-  "Infrastructure & Security":
-    process.env.WHATSAPP_LINK_INFRA || "https://chat.whatsapp.com/PLACEHOLDER_INFRA",
-  "Design & Management":
-    process.env.WHATSAPP_LINK_DESIGN || "https://chat.whatsapp.com/PLACEHOLDER_DESIGN",
-};
+// WhatsApp links come from lib/tracks.ts — the single source of truth shared
+// with the site's onboarding/profile. Returns undefined for unknown/unset links.
+function trackWhatsappLink(track?: string): string | undefined {
+  const url = getTrack(track)?.whatsappUrl;
+  return url && url !== "#" ? url : undefined;
+}
 
-const GENERAL_WHATSAPP_LINK =
-  process.env.WHATSAPP_LINK_GENERAL || "https://chat.whatsapp.com/PLACEHOLDER_GENERAL";
+const GENERAL_WHATSAPP_LINK: string | undefined =
+  COMMUNITY_WHATSAPP_URL.startsWith("http") ? COMMUNITY_WHATSAPP_URL : undefined;
 
 // ─── Email template ────────────────────────────────────────────────────────
 
@@ -44,18 +40,16 @@ function buildWelcomeEmail({
 
   // Build track-specific WhatsApp links section
   const trackLinks: string[] = [];
-  if (primaryTrack && TRACK_WHATSAPP_LINKS[primaryTrack]) {
+  const primaryLink = trackWhatsappLink(primaryTrack);
+  if (primaryTrack && primaryLink) {
     trackLinks.push(
-      `<a href="${TRACK_WHATSAPP_LINKS[primaryTrack]}" style="display:inline-block;padding:12px 24px;background-color:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:600;margin:4px 0;">📱 Join ${primaryTrack} Group</a>`
+      `<a href="${primaryLink}" style="display:inline-block;padding:12px 24px;background-color:#1a73e8;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:600;margin:4px 0;">📱 Join ${primaryTrack} Group</a>`
     );
   }
-  if (
-    secondaryTrack &&
-    secondaryTrack !== primaryTrack &&
-    TRACK_WHATSAPP_LINKS[secondaryTrack]
-  ) {
+  const secondaryLink = trackWhatsappLink(secondaryTrack);
+  if (secondaryTrack && secondaryTrack !== primaryTrack && secondaryLink) {
     trackLinks.push(
-      `<a href="${TRACK_WHATSAPP_LINKS[secondaryTrack]}" style="display:inline-block;padding:12px 24px;background-color:#34a853;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:600;margin:4px 0;">📱 Join ${secondaryTrack} Group</a>`
+      `<a href="${secondaryLink}" style="display:inline-block;padding:12px 24px;background-color:#34a853;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:600;margin:4px 0;">📱 Join ${secondaryTrack} Group</a>`
     );
   }
 
@@ -115,10 +109,10 @@ function buildWelcomeEmail({
       <div style="background:#f8f9fa;border-radius:12px;padding:24px;text-align:center;margin-bottom:24px;">
         <h3 style="font-size:16px;color:#1a1a1a;margin:0 0 16px;">Join Your WhatsApp Groups</h3>
         
-        <div style="margin-bottom:12px;">
+        ${GENERAL_WHATSAPP_LINK ? `<div style="margin-bottom:12px;">
           <a href="${GENERAL_WHATSAPP_LINK}" style="display:inline-block;padding:12px 24px;background-color:#25D366;color:#ffffff;text-decoration:none;border-radius:8px;font-weight:600;">📱 GDG Babcock Community</a>
-        </div>
-        
+        </div>` : ""}
+
         ${trackLinks.length > 0 ? `<div style="margin-top:8px;">${trackLinks.join("\n        ")}</div>` : ""}
       </div>
 

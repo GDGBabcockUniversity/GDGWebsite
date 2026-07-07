@@ -30,9 +30,27 @@ import {
   ChevronDown,
   Users,
   Search,
+  Award,
+  CalendarClock,
+  Star,
+  BookOpen,
+  Clock,
 } from "lucide-react";
 import Link from "next/link";
 import type { ProfileUpdatePayload } from "@/lib/auth-service";
+import {
+  getTrack,
+  COMMUNITY_WHATSAPP_URL,
+  GDG_COMMUNITY_DEV_URL,
+} from "@/lib/tracks";
+import { GDG_HEX, TEXT_CLASS } from "@/lib/colors";
+import WhatsApp from "@/components/svgs/whatsapp";
+import {
+  getCertificates,
+  getActivity,
+  formatJoinDate,
+  isFoundingMember,
+} from "@/lib/member";
 
 export default function ProfilePage() {
   const { user, logout, updateUserProfile, loading, error } = useAuth();
@@ -156,7 +174,7 @@ export default function ProfilePage() {
     return (
       <main className="min-h-screen pt-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-          <div className="max-w-md mx-auto bg-card border border-border rounded-2xl p-8">
+          <div className="max-w-md mx-auto rounded-3xl border border-white/15 bg-[#171717] p-8">
             <User className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
             <h1 className="text-2xl font-bold text-foreground mb-2">
               Not signed in
@@ -214,7 +232,7 @@ export default function ProfilePage() {
 
         <div className="max-w-3xl mx-auto">
           {/* Profile Header Card */}
-          <div className="bg-card border border-border rounded-2xl overflow-hidden mb-6">
+          <div className="rounded-3xl border border-white/15 bg-[#171717] overflow-hidden mb-6">
             {/* Gradient banner */}
             <div className="h-32 bg-gradient-to-r from-gdg-blue via-gdg-red to-gdg-yellow" />
 
@@ -237,11 +255,25 @@ export default function ProfilePage() {
                     {user.full_name || "GDG Member"}
                   </h1>
                   <p className="text-muted-foreground text-sm">{user.email}</p>
-                  {user.primary_track && (
-                    <span className="inline-block mt-2 px-3 py-1 text-xs font-medium rounded-full bg-gdg-blue/20 text-gdg-blue border border-gdg-blue/30">
-                      {user.primary_track}
-                    </span>
-                  )}
+                  <div className="mt-2 flex flex-wrap items-center gap-2">
+                    {user.primary_track && (
+                      <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-gdg-blue/20 text-gdg-blue border border-gdg-blue/30">
+                        {user.primary_track}
+                      </span>
+                    )}
+                    {formatJoinDate(user.created_at) && (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full bg-white/5 text-white/70 border border-white/15">
+                        <CalendarClock className="h-3.5 w-3.5" />
+                        Here since {formatJoinDate(user.created_at)}
+                      </span>
+                    )}
+                    {isFoundingMember(user.created_at) && (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold rounded-full bg-gdg-yellow/20 text-gdg-yellow border border-gdg-yellow/40">
+                        <Star className="h-3.5 w-3.5 fill-gdg-yellow" />
+                        Founding member
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <div className="flex gap-2 sm:ml-auto">
                   {!isEditing ? (
@@ -294,7 +326,7 @@ export default function ProfilePage() {
           {/* Profile Details */}
           <div className="grid gap-6">
             {/* Personal Information */}
-            <section className="bg-card border border-border rounded-2xl p-6 sm:p-8">
+            <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
               <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                 <User className="h-5 w-5 text-gdg-blue" />
                 Personal Information
@@ -395,7 +427,7 @@ export default function ProfilePage() {
             </section>
 
             {/* Academic Information */}
-            <section className="bg-card border border-border rounded-2xl p-6 sm:p-8">
+            <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
               <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                 <GraduationCap className="h-5 w-5 text-gdg-green" />
                 Academic Information
@@ -517,7 +549,7 @@ export default function ProfilePage() {
             </section>
 
             {/* Teams */}
-            <section className="bg-card border border-border rounded-2xl p-6 sm:p-8">
+            <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
               <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                 <Users className="h-5 w-5 text-gdg-red" />
                 Teams
@@ -569,7 +601,7 @@ export default function ProfilePage() {
             </section>
 
             {/* Track & Skills */}
-            <section className="bg-card border border-border rounded-2xl p-6 sm:p-8">
+            <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
               <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                 <Code2 className="h-5 w-5 text-gdg-yellow" />
                 Tracks & Skills
@@ -629,8 +661,188 @@ export default function ProfilePage() {
               </div>
             </section>
 
+            {/* Track group chats */}
+            <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
+              <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
+                <WhatsApp className="h-5 w-5 text-[#25D366]" />
+                Your track group chats
+              </h2>
+              {(() => {
+                const memberTracks = [
+                  getTrack(user.primary_track),
+                  getTrack(user.secondary_track),
+                ].filter(
+                  (t, i, arr) => !!t && arr.indexOf(t) === i
+                ) as NonNullable<ReturnType<typeof getTrack>>[];
+
+                if (memberTracks.length === 0) {
+                  return (
+                    <div className="text-sm text-muted-foreground">
+                      Pick your track to get your WhatsApp group chat links.{" "}
+                      <Link
+                        href="/onboarding"
+                        className="font-medium text-gdg-blue hover:underline"
+                      >
+                        Complete your profile →
+                      </Link>
+                    </div>
+                  );
+                }
+                return (
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {memberTracks.map((track) => (
+                      <a
+                        key={track.slug}
+                        href={track.whatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between gap-3 rounded-2xl border bg-background p-4 transition-transform hover:scale-[1.01]"
+                        style={{ borderColor: GDG_HEX[track.color] }}
+                      >
+                        <div className="min-w-0">
+                          <p
+                            className={`text-sm font-bold ${TEXT_CLASS[track.color]}`}
+                          >
+                            {track.label}
+                          </p>
+                          <p className="mt-0.5 text-xs text-muted-foreground">
+                            {track.whatsappUrl !== "#"
+                              ? "Join the group chat"
+                              : "Link coming soon"}
+                          </p>
+                        </div>
+                        <WhatsApp className="h-5 w-5 shrink-0 text-[#25D366]" />
+                      </a>
+                    ))}
+                    <a
+                      href={COMMUNITY_WHATSAPP_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between gap-3 rounded-2xl border border-border bg-background p-4 transition-transform hover:scale-[1.01]"
+                    >
+                      <div className="min-w-0">
+                        <p className="text-sm font-bold text-gdg-cream">
+                          GDG Babcock Community
+                        </p>
+                        <p className="mt-0.5 text-xs text-muted-foreground">
+                          The general group for everyone
+                        </p>
+                      </div>
+                      <WhatsApp className="h-5 w-5 shrink-0 text-[#25D366]" />
+                    </a>
+                  </div>
+                );
+              })()}
+            </section>
+
+            {/* Certificates */}
+            <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
+              <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
+                <Award className="h-5 w-5 text-gdg-yellow" />
+                Certificates
+              </h2>
+              {(() => {
+                const certs = getCertificates(user);
+                if (certs.length === 0) {
+                  return (
+                    <div className="rounded-2xl border border-dashed border-white/15 bg-background p-6 text-center">
+                      <p className="text-sm text-muted-foreground">
+                        Your certificates will appear here as you attend events.
+                        Every check-in earns one automatically.
+                      </p>
+                    </div>
+                  );
+                }
+                return (
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {certs.map((cert) => (
+                      <a
+                        key={cert.id}
+                        href={cert.url || "#"}
+                        target={cert.url ? "_blank" : undefined}
+                        rel={cert.url ? "noopener noreferrer" : undefined}
+                        className="rounded-2xl border border-white/15 bg-background p-4 transition-transform hover:scale-[1.01]"
+                      >
+                        <p className="text-sm font-bold text-gdg-cream">
+                          {cert.title}
+                        </p>
+                        {cert.event && (
+                          <p className="mt-0.5 text-xs text-muted-foreground">
+                            {cert.event}
+                          </p>
+                        )}
+                      </a>
+                    ))}
+                  </div>
+                );
+              })()}
+            </section>
+
+            {/* Activity */}
+            <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
+              <h2 className="text-lg font-semibold text-foreground mb-1 flex items-center gap-2">
+                <Star className="h-5 w-5 text-gdg-green" />
+                Activity
+              </h2>
+              <p className="mb-6 text-xs text-muted-foreground">
+                Your journey across the ecosystem — this fills in as events,
+                RADAR, and StudySmart come online. It powers your Wrapped.
+              </p>
+              {(() => {
+                const activity = getActivity(user);
+                const tiles = [
+                  {
+                    icon: <CalendarClock className="h-4 w-4" />,
+                    label: "Events attended",
+                    value: activity.events_attended,
+                    color: "blue" as const,
+                  },
+                  {
+                    icon: <Star className="h-4 w-4" />,
+                    label: "Stars",
+                    value: activity.stars,
+                    color: "yellow" as const,
+                  },
+                  {
+                    icon: <BookOpen className="h-4 w-4" />,
+                    label: "RADAR articles read",
+                    value: activity.radar_articles_read,
+                    color: "red" as const,
+                  },
+                  {
+                    icon: <Clock className="h-4 w-4" />,
+                    label: "Reading minutes",
+                    value: activity.radar_reading_minutes,
+                    color: "green" as const,
+                  },
+                ];
+                return (
+                  <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+                    {tiles.map((tile) => (
+                      <div
+                        key={tile.label}
+                        className="rounded-2xl border border-white/12 bg-background p-4"
+                      >
+                        <div
+                          className={`flex items-center gap-1.5 ${TEXT_CLASS[tile.color]}`}
+                        >
+                          {tile.icon}
+                        </div>
+                        <p className="mt-2 text-2xl font-bold text-gdg-cream">
+                          {tile.value ?? "—"}
+                        </p>
+                        <p className="mt-0.5 text-xs text-muted-foreground">
+                          {tile.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                );
+              })()}
+            </section>
+
             {/* Account Info (read only) */}
-            <section className="bg-card border border-border rounded-2xl p-6 sm:p-8">
+            <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
               <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                 <Briefcase className="h-5 w-5 text-gdg-blue" />
                 Account

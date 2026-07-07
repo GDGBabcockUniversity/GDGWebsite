@@ -1,13 +1,23 @@
-export const IMAGES = {
-  why_join_1: { src: "/assets/why-join-1.png", w: 129, h: 233 },
-  why_join_2: { src: "/assets/why-join-2.png", w: 110, h: 207 },
-  cta_1: { src: "/assets/cta-1.png", w: 243, h: 238 },
-  cta_2: { src: "/assets/cta-2.png", w: 219, h: 235 },
-};
+/**
+ * Babcock-specific option lists for the profile form.
+ *
+ * The shared option lists (tracks, skill levels, genders, statuses, months)
+ * are owned by `lib/tracks.ts` — re-exported here so existing imports keep
+ * working and there is a single source of truth. Only DEPARTMENTS, FACULTIES,
+ * and TEAMS (curated Babcock data) live here.
+ */
 
-// ─── Registration Form Options ─────────────────────────────────────────────
+export {
+  GENDERS,
+  STUDENT_STATUSES,
+  SKILL_LEVELS,
+  MONTHS,
+} from "@/lib/tracks";
 
-export const GENDERS = ["Male", "Female", "Prefer not to say"];
+import { TRACKS as TRACK_CONFIG } from "@/lib/tracks";
+
+/** Track names as plain strings (the profile/registration selects expect this). */
+export const TRACKS = TRACK_CONFIG.map((t) => t.value);
 
 export const TEAMS = [
   "Software Development & Engineering",
@@ -18,24 +28,6 @@ export const TEAMS = [
   "Content",
   "Events",
   "Community",
-];
-
-export const STUDENT_STATUSES = [
-  "100 Level",
-  "200 Level",
-  "300 Level",
-  "400 Level",
-  "500 Level",
-  "Postgraduate",
-  "Alumni",
-  "Non-Student",
-];
-
-export const TRACKS = [
-  "Software Development & Engineering",
-  "Data & AI",
-  "Infrastructure & Security",
-  "Design & Management",
 ];
 
 export const DEPARTMENTS = [
@@ -118,17 +110,4 @@ export const FACULTIES = [
   "School of Science & Technology",
   "School of Social Sciences",
   "Veritas Business School",
-];
-
-export const SKILL_LEVELS = [
-  { value: "1", label: "1 — Beginner" },
-  { value: "2", label: "2 — Elementary" },
-  { value: "3", label: "3 — Intermediate" },
-  { value: "4", label: "4 — Advanced" },
-  { value: "5", label: "5 — Experienced" },
-];
-
-export const MONTHS = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December",
 ];

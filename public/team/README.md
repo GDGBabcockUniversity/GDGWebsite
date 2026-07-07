@@ -6,7 +6,7 @@ This folder is for storing team member profile images.
 
 - **Format**: PNG or JPG
 - **Recommended size**: 400x400px or larger (square aspect ratio preferred)
-- **File naming**: Use lowercase with hyphens, e.g., `chukwuneku-akpotohwo.jpg`
+- **File naming**: Use lowercase with hyphens, e.g., `chukwuneku-akpotohwo.png`
 - **Quality**: High-resolution images work best
 
 ## Folder Structure
@@ -24,7 +24,7 @@ public/team/
 To use an image in the team page, reference it like this:
 
 \`\`\`tsx
-image: "/team/core-team/chukwuneku-akpotohwo.jpg"
+image: "/team/core-team/chukwuneku-akpotohwo.png"
 \`\`\`
 
 ## Placeholder
