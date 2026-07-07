@@ -1,11 +1,12 @@
 "use client";
 
-import { Linkedin, Play } from "lucide-react";
+import { Linkedin, Play, Quote } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { GDG_HEX, colorByIndex } from "@/lib/colors";
 import type { GdgColor } from "@/lib/tracks";
+import { cn } from "@/lib/utils";
 
 interface TeamMemberCardProps {
   name: string;
@@ -39,6 +40,7 @@ export default function TeamMemberCard({
   accentColor,
 }: TeamMemberCardProps) {
   const [showPlayer, setShowPlayer] = useState(false);
+  const [showQuote, setShowQuote] = useState(false);
   const accent = accentColor ? GDG_HEX[accentColor] : GDG_HEX[colorByIndex(accentIndex)];
   return (
     <div>
@@ -138,15 +140,40 @@ export default function TeamMemberCard({
         {/* Role and Motto */}
       </div>
 
-      <div className="mt-3">
-        <h3 className="text-gdg-cream text-lg md:text-xl font-semibold mb-0.5">
-          {name}
-        </h3>
-        <p className="text-sm font-medium mb-1" style={{ color: accent }}>
-          {role}
-        </p>
-        <p className="text-white/50 text-sm italic">{wordsToLiveBy}</p>
-      </div>
+      <button
+        type="button"
+        onClick={() => setShowQuote((s) => !s)}
+        className="mt-3 block w-full cursor-pointer text-left"
+        aria-expanded={showQuote}
+      >
+        <div className="flex items-start justify-between gap-2">
+          <div className="min-w-0">
+            <h3 className="truncate text-lg font-semibold text-gdg-cream md:text-xl">
+              {name}
+            </h3>
+            <p className="text-sm font-medium" style={{ color: accent }}>
+              {role}
+            </p>
+          </div>
+          <Quote
+            className={cn(
+              "mt-0.5 h-4 w-4 shrink-0 transition-colors",
+              showQuote ? "text-white/50" : "text-white/20"
+            )}
+            aria-hidden
+          />
+        </div>
+        <div
+          className={cn(
+            "grid transition-[grid-template-rows] duration-300 ease-out",
+            showQuote ? "mt-2 grid-rows-[1fr]" : "grid-rows-[0fr]"
+          )}
+        >
+          <p className="overflow-hidden text-sm italic leading-relaxed text-white/40">
+            {wordsToLiveBy}
+          </p>
+        </div>
+      </button>
     </div>
   );
 }
