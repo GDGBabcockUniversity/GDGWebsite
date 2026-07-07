@@ -281,8 +281,12 @@ html {
    Pair this class with a color variant below on every element. */
 .text-outline-base {
   color: transparent;
-  line-height: 1.15;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.18;
   font-weight: 700;
+  letter-spacing: 0.045em;
+  font-synthesis: none;
+  paint-order: stroke fill;
 }
 
 .text-outline-cream {

@@ -198,8 +198,10 @@ export default function TeamPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#0f0f0f]">
-      <section className="px-4 pb-12 pt-36 sm:px-6 lg:px-8">
+    <main className="relative min-h-screen overflow-hidden bg-[#0f0f0f]">
+      <div className="grid-pattern pointer-events-none absolute inset-0 opacity-55" aria-hidden />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(66,133,244,0.12),transparent_34rem)]" aria-hidden />
+      <section className="relative px-4 pb-12 pt-36 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-7xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-gdg-blue">
             The Team
