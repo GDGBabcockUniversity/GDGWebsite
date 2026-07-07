@@ -35,10 +35,10 @@ export const BORDER_CLASS: Record<GdgColor, string> = {
 };
 
 export const OUTLINE_TEXT_CLASS: Record<GdgColor, string> = {
-  blue: "text-outline-blue",
-  red: "text-outline-red",
-  yellow: "text-outline-yellow",
-  green: "text-outline-green",
+  blue: "text-outline-base text-outline-blue",
+  red: "text-outline-base text-outline-red",
+  yellow: "text-outline-base text-outline-yellow",
+  green: "text-outline-base text-outline-green",
 };
 
 /** Pill text color: yellow/green read better with dark text */

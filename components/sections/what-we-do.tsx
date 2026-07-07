@@ -19,7 +19,7 @@ export default function WhatWeDo() {
     >
       <div className="editorial-grid absolute inset-0 opacity-45" aria-hidden />
       <p
-        className="text-outline pointer-events-none absolute -left-2 top-10 hidden select-none whitespace-nowrap text-[clamp(8rem,22vw,19rem)] font-extrabold leading-none opacity-10 lg:block"
+        className="text-outline-base text-outline-cream pointer-events-none absolute -left-2 top-10 hidden select-none whitespace-nowrap text-[clamp(8rem,22vw,19rem)] font-extrabold leading-none opacity-10 lg:block"
         aria-hidden
       >
         BUILD

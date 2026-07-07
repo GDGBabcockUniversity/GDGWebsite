@@ -255,44 +255,58 @@ html {
   animation-play-state: paused;
 }
 
-/* Outlined display text — line-height is set here (not left to whatever
-   Tailwind "leading-*" utility a component pairs it with) because the
-   -webkit-text-stroke adds visual bulk beyond normal glyph metrics; with
-   zero line gap (e.g. leading-none), wrapped lines' strokes collide on
-   narrow screens. These rules are unlayered, so in Tailwind v4's cascade
-   (utilities live in @layer utilities) they always win over leading-*. */
-.text-outline {
-  -webkit-text-stroke: 2px var(--color-gdg-cream);
+/* Outlined display text.
+   - line-height is set here (not left to whatever Tailwind "leading-*"
+     utility a component pairs it with) because the -webkit-text-stroke adds
+     visual bulk beyond normal glyph metrics; with zero line gap (e.g.
+     leading-none), wrapped lines' strokes collide on narrow screens.
+   - font-weight: 700 pins these headings to a real point in Google Sans's
+     variable weight axis (loaded capped at 400..700). Components pair this
+     class with Tailwind's font-extrabold (800), which is OUTSIDE the font's
+     range; the browser fakes the missing weight by drawing the glyph
+     outline twice, offset by a pixel, and with a transparent-fill
+     stroke-only glyph that doubled outline is highly visible as
+     ghosted/duplicated strokes. Requesting 700 directly needs no
+     synthesis, so it renders as a single clean outline.
+     (font-synthesis: none was tried instead — it stopped the ghosting but
+     also broke the stroke-only look entirely, rendering solid fill. Pinning
+     the weight avoids the bug without that regression.)
+   These rules are unlayered, so in Tailwind v4's cascade (utilities live in
+   @layer utilities) they always win over Tailwind's leading/font utilities. */
+/* .text-outline-base carries the shared declarations. It must stay a
+   single-selector rule: Lightning CSS's minifier merges near-duplicate
+   declaration blocks across the color variants and was silently dropping
+   one of them (first the "cream" rule, then — once grouped into one
+   multi-selector rule — the whole group) rather than preserving all five.
+   Pair this class with a color variant below on every element. */
+.text-outline-base {
   color: transparent;
   line-height: 1.15;
+  font-weight: 700;
+}
+
+.text-outline-cream {
+  -webkit-text-stroke: 2px var(--color-gdg-cream);
 }
 
 .text-outline-blue {
   -webkit-text-stroke: 2px var(--color-gdg-blue);
-  color: transparent;
-  line-height: 1.15;
 }
 
 .text-outline-red {
   -webkit-text-stroke: 2px var(--color-gdg-red);
-  color: transparent;
-  line-height: 1.15;
 }
 
 .text-outline-yellow {
   -webkit-text-stroke: 2px var(--color-gdg-yellow);
-  color: transparent;
-  line-height: 1.15;
 }
 
 .text-outline-green {
   -webkit-text-stroke: 2px var(--color-gdg-green);
-  color: transparent;
-  line-height: 1.15;
 }
 
 @media (max-width: 48rem) {
-  .text-outline,
+  .text-outline-cream,
   .text-outline-blue,
   .text-outline-red,
   .text-outline-yellow,

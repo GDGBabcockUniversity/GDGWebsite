@@ -55,7 +55,7 @@ export default function GalleryStrips({ titles }: GalleryStripsProps) {
             <p className="text-xs font-medium text-white/80 drop-shadow">
               Gallery
             </p>
-            <p className="text-outline text-4xl font-extrabold uppercase leading-none sm:text-6xl lg:text-7xl">
+            <p className="text-outline-base text-outline-cream text-4xl font-extrabold uppercase leading-none sm:text-6xl lg:text-7xl">
               {strip.title}
             </p>
           </div>

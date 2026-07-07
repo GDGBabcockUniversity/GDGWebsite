@@ -218,7 +218,7 @@ export default function TeamPage() {
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-gdg-blue">
             The Team
           </p>
-          <h1 className="text-outline mt-4 text-5xl font-extrabold uppercase leading-none sm:text-7xl">
+          <h1 className="text-outline-base text-outline-cream mt-4 text-5xl font-extrabold uppercase leading-none sm:text-7xl">
             The people behind it all
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg">
