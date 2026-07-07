@@ -110,12 +110,12 @@ export default function TeamMemberCard({
             />
 
             {/* Social Media Overlay Buttons */}
-            <div className="absolute bottom-4 left-4 flex gap-2">
+            <div className="absolute bottom-3 left-3 flex gap-1.5">
               {links.twitter && (
                 <Link href={links.twitter}>
-                  <button className="w-14 h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center transition-all duration-300 shadow-lg">
+                  <button className="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 shadow-md transition-all duration-300 hover:bg-white">
                     <svg
-                      className="w-5 h-5 text-black"
+                      className="h-3.5 w-3.5 text-black"
                       viewBox="0 0 24 24"
                       fill="currentColor"
                     >
@@ -126,8 +126,8 @@ export default function TeamMemberCard({
               )}
               {links.linkedin && (
                 <Link href={links.linkedin}>
-                  <button className="w-14 h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center transition-all duration-300 shadow-lg">
-                    <Linkedin className="w-5 h-5 text-black" />
+                  <button className="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 shadow-md transition-all duration-300 hover:bg-white">
+                    <Linkedin className="h-3.5 w-3.5 text-black" />
                   </button>
                 </Link>
               )}
