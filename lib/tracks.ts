@@ -96,7 +96,17 @@ export const COMMUNITY_WHATSAPP_URL =
 export const GDG_COMMUNITY_DEV_URL =
   "https://gdg.community.dev/gdg-on-campus-babcock-university-ilishan-remo-nigeria/";
 
-export const SKILL_LEVELS = ["Beginner", "Intermediate", "Advanced", "Expert"];
+/**
+ * Skill levels — stored as "1".."5" to match the member registry (seed +
+ * migration data). Labels are shown; values are saved.
+ */
+export const SKILL_LEVELS = [
+  { value: "1", label: "1 — Beginner" },
+  { value: "2", label: "2 — Elementary" },
+  { value: "3", label: "3 — Intermediate" },
+  { value: "4", label: "4 — Advanced" },
+  { value: "5", label: "5 — Experienced" },
+];
 
 export const STUDENT_STATUSES = [
   "100 Level",
@@ -106,6 +116,7 @@ export const STUDENT_STATUSES = [
   "500 Level",
   "Postgraduate",
   "Alumni",
+  "Non-Student",
 ];
 
 export const GENDERS = ["Male", "Female", "Prefer not to say"];

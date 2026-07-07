@@ -129,17 +129,20 @@ function Field({
 
 function Select({
   options,
+  optionValues,
   placeholder,
   ...props
 }: React.SelectHTMLAttributes<HTMLSelectElement> & {
   options: string[];
+  /** Parallel array of stored values when they differ from the labels */
+  optionValues?: string[];
   placeholder: string;
 }) {
   return (
     <select {...props} className={cn(inputClass, "appearance-none")}>
       <option value="">{placeholder}</option>
-      {options.map((o) => (
-        <option key={o} value={o}>
+      {options.map((o, i) => (
+        <option key={o} value={optionValues ? optionValues[i] : o}>
           {o}
         </option>
       ))}
@@ -383,7 +386,8 @@ function StepTracks({
       <Field label="Your skill level" error={errors.primary_skill_level?.message}>
         <Select
           {...register("primary_skill_level")}
-          options={SKILL_LEVELS}
+          options={SKILL_LEVELS.map((s) => s.label)}
+          optionValues={SKILL_LEVELS.map((s) => s.value)}
           placeholder="Select skill level"
         />
       </Field>
@@ -408,7 +412,8 @@ function StepTracks({
         >
           <Select
             {...register("secondary_skill_level")}
-            options={SKILL_LEVELS}
+            options={SKILL_LEVELS.map((s) => s.label)}
+            optionValues={SKILL_LEVELS.map((s) => s.value)}
             placeholder="Select skill level"
           />
         </Field>
@@ -532,6 +537,18 @@ export default function OnboardingFlow() {
     setSubmitError(null);
     try {
       await updateUserProfile(payloadFrom(all));
+      // Fire the welcome email — best-effort, never blocks the completion screen
+      // (the API no-ops when RESEND_API_KEY isn't set).
+      void fetch("/api/send-welcome-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: all.full_name,
+          email: user?.email,
+          primaryTrack: all.primary_track,
+          secondaryTrack: all.secondary_track || undefined,
+        }),
+      }).catch(() => {});
       setDone(true);
     } catch (err: any) {
       setSubmitError(
