@@ -205,8 +205,9 @@ export default function TeamPage() {
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-gdg-blue">
             The Team
           </p>
-          <h1 className="text-outline-base text-outline-cream mt-4 text-5xl font-extrabold uppercase leading-none sm:text-7xl">
-            The people behind it all
+          <h1 className="text-outline-base text-outline-cream mx-auto mt-4 max-w-[22rem] text-[clamp(2.95rem,12.5vw,4.5rem)] font-extrabold uppercase leading-none sm:max-w-none sm:text-7xl">
+            <span className="block whitespace-nowrap">The people</span>
+            <span className="block whitespace-nowrap">behind it all</span>
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg">
             Every team that has built GDG Babcock — browsable by year. The
