@@ -280,9 +280,15 @@ html {
    multi-selector rule — the whole group) rather than preserving all five.
    Pair this class with a color variant below on every element. */
 .text-outline-base {
-  color: transparent;
-  line-height: 1.15;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  line-height: 1.14;
   font-weight: 700;
+  font-variation-settings: "wght" 700;
+  letter-spacing: 0.045em;
+  font-synthesis: none;
+  paint-order: stroke fill;
+  text-rendering: geometricPrecision;
 }
 
 .text-outline-cream {
@@ -306,33 +312,30 @@ html {
 }
 
 @media (max-width: 48rem) {
+  .text-outline-base {
+    line-height: 1.18;
+    font-weight: 500;
+    font-variation-settings: "wght" 500;
+    letter-spacing: 0.035em;
+  }
+
   .text-outline-cream,
   .text-outline-blue,
   .text-outline-red,
   .text-outline-yellow,
   .text-outline-green {
-    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-width: 0.65px;
   }
 }
 
 .text-outline-fill {
-  transition: color 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
-.text-outline-blue.text-outline-fill:hover {
-  color: var(--color-gdg-blue);
-}
-
-.text-outline-red.text-outline-fill:hover {
-  color: var(--color-gdg-red);
-}
-
-.text-outline-yellow.text-outline-fill:hover {
-  color: var(--color-gdg-yellow);
-}
-
-.text-outline-green.text-outline-fill:hover {
-  color: var(--color-gdg-green);
+.text-outline-fill:hover {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  opacity: 0.82;
 }
 
 /* Gallery strips — grey by default; hovering (or tapping, on touch

@@ -198,14 +198,16 @@ export default function TeamPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#0f0f0f]">
-      <section className="px-4 pb-12 pt-36 sm:px-6 lg:px-8">
+    <main className="relative min-h-screen overflow-hidden bg-[#0f0f0f]">
+      <div className="editorial-grid pointer-events-none absolute inset-0 opacity-75" aria-hidden />
+      <section className="relative px-4 pb-12 pt-36 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-7xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-gdg-blue">
             The Team
           </p>
-          <h1 className="text-outline-base text-outline-cream mt-4 text-5xl font-extrabold uppercase leading-none sm:text-7xl">
-            The people behind it all
+          <h1 className="text-outline-base text-outline-cream mx-auto mt-4 w-full max-w-[calc(100vw-2rem)] text-[clamp(2.35rem,10vw,3.8rem)] font-extrabold uppercase leading-none sm:max-w-none sm:text-7xl">
+            <span className="block whitespace-nowrap">The people</span>
+            <span className="block whitespace-nowrap">behind it all</span>
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg">
             Every team that has built GDG Babcock — browsable by year. The
