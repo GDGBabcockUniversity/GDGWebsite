@@ -118,11 +118,11 @@ export const HERO_SLIDES: SlideImage[] = [
     label: "Hero slide 12 — landscape GDG Babcock event photo, 1920×1080",
     alt: "GDG Babcock event attendees",
   },
-  {
-    src: undefined, // drop in /images/hero/hero-13.png
-    label: "Hero slide 13 — landscape GDG Babcock event photo, 1920×1080",
-    alt: "GDG Babcock event moment",
-  },
+  // {
+  //   src: undefined, // drop in /images/hero/hero-13.png
+  //   label: "Hero slide 13 — landscape GDG Babcock event photo, 1920×1080",
+  //   alt: "GDG Babcock event moment",
+  // },
 ];
 
 export interface FooterColumn {
