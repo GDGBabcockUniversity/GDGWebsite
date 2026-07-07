@@ -39,7 +39,7 @@ export const MARQUEE_ITEMS = [
   "4 YEARS ACTIVE",
   "ORBIT",
   "RADAR",
-  "THE 100",
+  "BABCOCK 100",
   "BUILD WITH AI",
   "MONTHLY MEETUP",
   "GDG WEEK",

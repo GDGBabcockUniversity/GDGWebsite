@@ -25,7 +25,7 @@ export default function Home() {
       <FeaturedProducts />
       {/* 4. How students engage */}
       <Engage />
-      <GalleryStrips titles={["ORBIT", "MONTHLY MEETUP"]} />
+      <GalleryStrips titles={["ORBIT"]} />
       {/* 5. How we work across campus */}
       <AcrossCampus />
       {/* 6. Partnership CTA */}

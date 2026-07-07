@@ -255,30 +255,40 @@ html {
   animation-play-state: paused;
 }
 
-/* Outlined display text */
+/* Outlined display text — line-height is set here (not left to whatever
+   Tailwind "leading-*" utility a component pairs it with) because the
+   -webkit-text-stroke adds visual bulk beyond normal glyph metrics; with
+   zero line gap (e.g. leading-none), wrapped lines' strokes collide on
+   narrow screens. These rules are unlayered, so in Tailwind v4's cascade
+   (utilities live in @layer utilities) they always win over leading-*. */
 .text-outline {
   -webkit-text-stroke: 2px var(--color-gdg-cream);
   color: transparent;
+  line-height: 1.15;
 }
 
 .text-outline-blue {
   -webkit-text-stroke: 2px var(--color-gdg-blue);
   color: transparent;
+  line-height: 1.15;
 }
 
 .text-outline-red {
   -webkit-text-stroke: 2px var(--color-gdg-red);
   color: transparent;
+  line-height: 1.15;
 }
 
 .text-outline-yellow {
   -webkit-text-stroke: 2px var(--color-gdg-yellow);
   color: transparent;
+  line-height: 1.15;
 }
 
 .text-outline-green {
   -webkit-text-stroke: 2px var(--color-gdg-green);
   color: transparent;
+  line-height: 1.15;
 }
 
 @media (max-width: 48rem) {
@@ -311,15 +321,15 @@ html {
   color: var(--color-gdg-green);
 }
 
-/* Gallery strips — all images colored until one is hovered, then every image
-   EXCEPT the hovered one goes black & white (designer spec, :not() approach) */
+/* Gallery strips — grey by default; hovering (or tapping, on touch
+   browsers that trigger :hover on first tap) an image reveals its color. */
 .gallery-strip .gallery-item img {
-  filter: grayscale(0);
+  filter: grayscale(1);
   transition: filter 0.35s ease;
 }
 
-.gallery-strip:hover .gallery-item:not(:hover) img {
-  filter: grayscale(1);
+.gallery-strip .gallery-item:hover img {
+  filter: grayscale(0);
 }
 
 /* Glass card — fallback surface under the liquid-glass refraction effect */

@@ -40,7 +40,7 @@ export const PROGRAMS: Program[] = [
       "Our second-semester concentrated program — a week of daily hands-on AI workshops.",
   },
   {
-    name: "THE 100",
+    name: "BABCOCK 100",
     color: "red",
     description:
       "Our annual recognition platform — celebrating our 100 most active builders.",

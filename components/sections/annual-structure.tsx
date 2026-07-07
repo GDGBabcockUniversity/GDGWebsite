@@ -33,7 +33,7 @@ const PHASES: Phase[] = [
   },
   {
     when: "Year end",
-    name: "THE 100",
+    name: "BABCOCK 100",
     description:
       "We recognize the 100 most active builders of the year on babcock100.com.",
     color: "green",
