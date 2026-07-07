@@ -15,6 +15,7 @@ export interface PlatformUser {
   email: string;
   whatsapp_number?: string;
   gender?: string;
+  birthday?: string | null;
   birthday_day?: number;
   birthday_month?: number;
   teams?: string[];
@@ -49,6 +50,7 @@ export interface ProfileUpdatePayload {
   full_name?: string;
   whatsapp_number?: string;
   gender?: string;
+  birthday?: string;
   birthday_day?: number;
   birthday_month?: number;
   teams?: string[];
@@ -67,6 +69,31 @@ export interface ProfileUpdatePayload {
 
 const TOKEN_KEY = "gdg_access_token";
 const REFRESH_KEY = "gdg_refresh_token";
+const PROFILE_CACHE_KEY = "gdg_user_profile";
+
+/** Cache the full profile locally so /auth/me partial responses can be merged */
+export function cacheProfile(user: PlatformUser) {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(PROFILE_CACHE_KEY, JSON.stringify(user));
+  } catch {}
+}
+
+export function getCachedProfile(): PlatformUser | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem(PROFILE_CACHE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function clearCachedProfile() {
+  if (typeof window !== "undefined") {
+    localStorage.removeItem(PROFILE_CACHE_KEY);
+  }
+}
 
 export function getStoredTokens(): AuthTokens | null {
   if (typeof window === "undefined") return null;
@@ -84,6 +111,7 @@ export function storeTokens(tokens: AuthTokens) {
 export function clearTokens() {
   localStorage.removeItem(TOKEN_KEY);
   localStorage.removeItem(REFRESH_KEY);
+  clearCachedProfile();
 }
 
 function authHeaders(token?: string): HeadersInit {
@@ -109,8 +137,11 @@ export async function loginWithFirebaseToken(
     const err = await res.json().catch(() => ({}));
     throw new Error(err.message || "Login failed");
   }
-  const data: LoginResponse = await res.json();
+  const raw = await res.json();
+  // Handle both { tokens, user } and { data: { tokens, user } } envelopes
+  const data: LoginResponse = raw.tokens ? raw : raw.data;
   storeTokens(data.tokens);
+  cacheProfile(data.user);
   return data;
 }
 
@@ -146,23 +177,34 @@ export async function logout(): Promise<void> {
   clearTokens();
 }
 
-/** Fetch current user profile */
+/** Fetch current user profile — merges with cached data since /auth/me may return partial fields */
 export async function fetchProfile(): Promise<PlatformUser> {
   const res = await fetch(`${AUTH_API_URL}/auth/me`, {
     headers: authHeaders(),
   });
   if (res.status === 401) {
-    // Try refreshing
     const newTokens = await refreshAccessToken();
     if (!newTokens) throw new Error("Session expired");
     const retry = await fetch(`${AUTH_API_URL}/auth/me`, {
       headers: authHeaders(newTokens.access_token),
     });
     if (!retry.ok) throw new Error("Failed to fetch profile");
-    return retry.json();
+    const retryData = await retry.json();
+    const retryProfile = retryData.user || retryData.data?.user || retryData.data || retryData;
+    // Merge: API response wins, but fill gaps from cache
+    const cached = getCachedProfile();
+    const merged = cached ? { ...cached, ...retryProfile } : retryProfile;
+    cacheProfile(merged);
+    return merged;
   }
   if (!res.ok) throw new Error("Failed to fetch profile");
-  return res.json();
+  const data = await res.json();
+  const profile = data.user || data.data?.user || data.data || data;
+  // Merge: API response wins for fields it returns, cache fills the rest
+  const cached = getCachedProfile();
+  const merged = cached ? { ...cached, ...profile } : profile;
+  cacheProfile(merged);
+  return merged;
 }
 
 /** Update current user profile */
@@ -182,11 +224,23 @@ export async function updateProfile(
       headers: authHeaders(newTokens.access_token),
       body: JSON.stringify(payload),
     });
-    if (!retry.ok) throw new Error("Failed to update profile");
-    return retry.json();
+    if (!retry.ok) {
+      const err = await retry.json().catch(() => ({}));
+      throw new Error(err.message || "Failed to update profile");
+    }
+    const data = await retry.json();
+    const updated = data.user || data.data?.user || data.data || data;
+    cacheProfile(updated);
+    return updated;
   }
-  if (!res.ok) throw new Error("Failed to update profile");
-  return res.json();
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.message || "Failed to update profile");
+  }
+  const data = await res.json();
+  const updated = data.user || data.data?.user || data.data || data;
+  cacheProfile(updated);
+  return updated;
 }
 
 /** Verify token validity */
