@@ -52,7 +52,8 @@ export default function Story() {
               src="/images/story/founding-photo.png"
               alt="Early GDG Babcock members"
               label="Founding-story photo — group shot of early members in GDG merch, ~1200×900"
-              className="-rotate-3 aspect-[4/3] w-full rounded-[16px] border-[6px] border-gdg-cream shadow-[0_34px_80px_rgba(0,0,0,0.38),0_0_0_1px_rgba(0,0,0,0.16)]"
+              className="aspect-[658/610] w-full overflow-visible drop-shadow-[0_34px_58px_rgba(0,0,0,0.38)]"
+              imgClassName="object-contain"
               sizes="(max-width: 1024px) 90vw, 40vw"
             />
             <span className="absolute -top-4 left-10 rounded-full bg-gdg-red px-4 py-1.5 text-xs font-bold text-white shadow-lg -rotate-6 sm:left-16 sm:text-sm">

@@ -56,7 +56,8 @@ export default function WhatWeDo() {
                   src={item.image.src}
                   alt={item.image.alt}
                   label={item.image.label}
-                  className="aspect-[4/5] w-full rounded-[8px] border-[5px] border-white shadow-[0_22px_50px_rgba(0,0,0,0.42),0_0_0_1px_rgba(0,0,0,0.16)] sm:border-[6px]"
+                  className="aspect-[4/5] w-full overflow-visible drop-shadow-[0_22px_38px_rgba(0,0,0,0.35)]"
+                  imgClassName="object-contain"
                   sizes="(max-width: 1024px) 45vw, 25vw"
                 />
                 <span
