@@ -9,6 +9,7 @@ import LoginModal from "@/components/login-modal";
 import { NAV_LINKS } from "@/lib/content/site";
 import { getInitials } from "@/components/initials-avatar";
 import { useMemberCta } from "@/components/use-member-cta";
+import { LiquidGlass } from "@/components/liquid-glass";
 import { cn } from "@/lib/utils";
 
 export default function Navigation() {
@@ -34,7 +35,14 @@ export default function Navigation() {
           )}
         >
           {/* Left: pill with nav links (desktop) */}
-          <div className="hidden items-center gap-1 rounded-full border border-white/15 bg-[#0f0f0f]/70 px-2 py-1.5 backdrop-blur-md lg:flex">
+          <LiquidGlass
+            radius={28}
+            bevel={18}
+            thickness={34}
+            blur={8}
+            className="hidden lg:block"
+            contentClassName="flex items-center gap-1 px-2 py-1.5"
+          >
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
@@ -49,50 +57,75 @@ export default function Navigation() {
                 )}
               </Link>
             ))}
-          </div>
+          </LiquidGlass>
 
           {/* Center: logo */}
           <Link
             href="/"
-            className="flex h-12 w-16 items-center justify-center rounded-full border border-white/15 bg-[#0f0f0f]/65 p-2 shadow-[0_12px_36px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.16)] backdrop-blur-md transition-transform hover:scale-[1.04] lg:absolute lg:left-1/2 lg:-translate-x-1/2"
+            className="rounded-full transition-transform hover:scale-[1.04] lg:absolute lg:left-1/2 lg:-translate-x-1/2"
             aria-label="GDG Babcock — home"
           >
-            <Image
-              src="/Sticker Logomark.png"
-              alt="GDG Babcock"
-              width={50}
-              height={34}
-              className="h-8 w-auto drop-shadow-[0_2px_10px_rgba(255,255,255,0.22)]"
-              priority
-            />
+            <LiquidGlass
+              radius={999}
+              bevel={14}
+              thickness={30}
+              blur={7}
+              className="h-12 w-16"
+              contentClassName="flex h-full w-full items-center justify-center p-2"
+            >
+              <Image
+                src="/Sticker Logomark.png"
+                alt="GDG Babcock"
+                width={50}
+                height={34}
+                className="h-8 w-auto drop-shadow-[0_2px_10px_rgba(255,255,255,0.22)]"
+                priority
+              />
+            </LiquidGlass>
           </Link>
 
           {/* Right: auth + member CTA */}
           <div className="hidden items-center gap-2 lg:flex">
             {loading ? (
-              <div className="flex h-11 w-24 items-center justify-center rounded-full border border-white/15 bg-[#0f0f0f]/70 backdrop-blur-md">
+              <LiquidGlass
+                radius={999}
+                bevel={14}
+                thickness={30}
+                blur={7}
+                className="h-11 w-24"
+                contentClassName="flex h-full w-full items-center justify-center"
+              >
                 <Loader2 className="h-4 w-4 animate-spin text-white/60" />
-              </div>
+              </LiquidGlass>
             ) : isAuthenticated && user ? (
               <div className="relative">
-                <button
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="flex cursor-pointer items-center rounded-full border border-white/15 bg-[#0f0f0f]/70 p-1.5 backdrop-blur-md"
-                  aria-label="Account menu"
+                <LiquidGlass
+                  radius={999}
+                  bevel={14}
+                  thickness={30}
+                  blur={7}
+                  className="cursor-pointer"
+                  contentClassName="p-1.5"
                 >
-                  {user.avatar_url ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={user.avatar_url}
-                      alt={user.full_name}
-                      className="h-8 w-8 rounded-full border-2 border-gdg-blue object-cover"
-                    />
-                  ) : (
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gdg-blue text-xs font-bold text-white">
-                      {user.full_name ? getInitials(user.full_name) : "?"}
-                    </div>
-                  )}
-                </button>
+                  <button
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    className="flex cursor-pointer items-center rounded-full"
+                    aria-label="Account menu"
+                  >
+                    {user.avatar_url ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={user.avatar_url}
+                        alt={user.full_name}
+                        className="h-8 w-8 rounded-full border-2 border-gdg-blue object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gdg-blue text-xs font-bold text-white">
+                        {user.full_name ? getInitials(user.full_name) : "?"}
+                      </div>
+                    )}
+                  </button>
+                </LiquidGlass>
                 {isDropdownOpen && (
                   <>
                     <div
@@ -131,12 +164,20 @@ export default function Navigation() {
                 )}
               </div>
             ) : (
-              <button
-                onClick={() => setIsLoginOpen(true)}
-                className="cursor-pointer rounded-full border border-white/15 bg-[#0f0f0f]/70 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-md transition-colors hover:bg-white/10"
+              <LiquidGlass
+                radius={999}
+                bevel={14}
+                thickness={30}
+                blur={7}
+                className="cursor-pointer transition-transform hover:scale-[1.03]"
               >
-                Sign In
-              </button>
+                <button
+                  onClick={() => setIsLoginOpen(true)}
+                  className="cursor-pointer rounded-full px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                >
+                  Sign In
+                </button>
+              </LiquidGlass>
             )}
             <button
               onClick={becomeMember}
@@ -148,7 +189,7 @@ export default function Navigation() {
 
           {/* Mobile: menu button */}
           <button
-            className="rounded-full border border-white/15 bg-[#0f0f0f]/70 p-2.5 text-white backdrop-blur-md lg:hidden"
+            className="rounded-full border border-white/15 bg-[#0f0f0f]/70 p-2.5 text-white shadow-[0_12px_36px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.16)] backdrop-blur-md lg:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >

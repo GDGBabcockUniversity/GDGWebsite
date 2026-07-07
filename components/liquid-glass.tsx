@@ -30,6 +30,7 @@ import { cn } from "@/lib/utils";
 interface LiquidGlassProps {
   children: ReactNode;
   className?: string;
+  contentClassName?: string;
   /** Border radius in px — must match the map's rounded corners */
   radius?: number;
   /** Refractive index of the "glass" (~1.5 for crown glass) */
@@ -146,6 +147,7 @@ function buildDisplacementMap(
 export function LiquidGlass({
   children,
   className,
+  contentClassName,
   radius = 18,
   refractiveIndex = 1.5,
   bevel = 16,
@@ -265,7 +267,7 @@ export function LiquidGlass({
         className="pointer-events-none absolute -left-1/4 -top-1/2 h-full w-2/3 rotate-12 rounded-full bg-white/[0.12] blur-2xl"
         aria-hidden
       />
-      <div className="relative z-10">{children}</div>
+      <div className={cn("relative z-10", contentClassName)}>{children}</div>
     </div>
   );
 }

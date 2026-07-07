@@ -48,19 +48,17 @@ export default function Story() {
         <div className="grid w-full items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
           {/* Tilted polaroid */}
           <div className="relative mx-auto w-full max-w-xl lg:mx-0">
-            <div className="-rotate-3 rounded-[10px] bg-gdg-cream p-4 pb-14 shadow-[0_34px_80px_rgba(0,0,0,0.38)] sm:p-5 sm:pb-16">
-              <SmartImage
-                src="/images/story/founding-photo.png"
-                alt="Early GDG Babcock members"
-                label="Founding-story photo — group shot of early members in GDG merch, ~1200×900"
-                className="aspect-[4/3] w-full rounded-[8px]"
-                sizes="(max-width: 1024px) 90vw, 40vw"
-              />
-            </div>
+            <SmartImage
+              src="/images/story/founding-photo.png"
+              alt="Early GDG Babcock members"
+              label="Founding-story photo — group shot of early members in GDG merch, ~1200×900"
+              className="-rotate-3 aspect-[4/3] w-full rounded-[16px] border-[6px] border-gdg-cream shadow-[0_34px_80px_rgba(0,0,0,0.38),0_0_0_1px_rgba(0,0,0,0.16)]"
+              sizes="(max-width: 1024px) 90vw, 40vw"
+            />
             <span className="absolute -top-4 left-10 rounded-full bg-gdg-red px-4 py-1.5 text-xs font-bold text-white shadow-lg -rotate-6 sm:left-16 sm:text-sm">
               Generic caption
             </span>
-            <span className="absolute bottom-8 right-0 rounded-full bg-gdg-yellow px-4 py-1.5 text-xs font-bold text-[#0f0f0f] shadow-lg rotate-3 sm:right-6">
+            <span className="absolute bottom-4 right-0 rounded-full bg-gdg-yellow px-4 py-1.5 text-xs font-bold text-[#0f0f0f] shadow-lg rotate-3 sm:right-6">
               Generic caption
             </span>
             <Starburst className="absolute -bottom-8 -left-7 h-28 w-28 rotate-12 sm:-bottom-10 sm:-left-10 sm:h-36 sm:w-36" />
@@ -68,7 +66,7 @@ export default function Story() {
 
           {/* Copy */}
           <div className="relative text-center lg:text-right">
-            <h2 className="ml-auto max-w-2xl text-5xl font-bold leading-[1.12] text-gdg-cream sm:text-6xl lg:text-7xl xl:text-8xl">
+            <h2 className="ml-auto max-w-2xl text-5xl font-bold leading-[1.12] text-gdg-cream sm:text-6xl lg:text-6xl xl:text-7xl">
               Founded to close
               <br />
               the gap.

@@ -52,18 +52,16 @@ export default function WhatWeDo() {
                   POLAROID_LAYOUT[i]
                 )}
               >
-                <div className="rounded-[5px] bg-white p-2.5 pb-10 shadow-[0_22px_50px_rgba(0,0,0,0.42)] ring-1 ring-black/10 sm:p-3 sm:pb-12">
-                  <SmartImage
-                    src={item.image.src}
-                    alt={item.image.alt}
-                    label={item.image.label}
-                    className="aspect-[4/5] w-full rounded-[4px]"
-                    sizes="(max-width: 1024px) 45vw, 25vw"
-                  />
-                </div>
+                <SmartImage
+                  src={item.image.src}
+                  alt={item.image.alt}
+                  label={item.image.label}
+                  className="aspect-[4/5] w-full rounded-[8px] border-[5px] border-white shadow-[0_22px_50px_rgba(0,0,0,0.42),0_0_0_1px_rgba(0,0,0,0.16)] sm:border-[6px]"
+                  sizes="(max-width: 1024px) 45vw, 25vw"
+                />
                 <span
                   className={cn(
-                    "absolute bottom-4 left-1/2 max-w-[calc(100%-1rem)] -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1 text-center text-[10px] font-bold leading-none shadow-lg sm:text-[11px] lg:bottom-5",
+                    "absolute bottom-2 left-1/2 max-w-[calc(100%-1rem)] -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1 text-center text-[10px] font-bold leading-none shadow-lg sm:text-[11px] lg:bottom-3",
                     PILL_CLASS[item.color]
                   )}
                 >
