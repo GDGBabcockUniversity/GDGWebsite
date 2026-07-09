@@ -42,6 +42,54 @@ export interface TeamMember {
 
 const roster2526Raw: TeamMember[] = [
   {
+    name: "Chukwuneku Akpotohwo",
+    role: "Organizer",
+    image: "/team/core-team/chukwuneku-akpotohwo-organizer.jpg",
+    wordsToLiveBy: "",
+    links: {
+      twitter: "",
+      linkedin: "",
+      portfolio: "",
+    },
+    music: {
+      name: "Generic",
+      artist: "Unknown",
+      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+    },
+  },
+  {
+    name: "Sophia Osariemen Odiase",
+    role: "Co-Organizer",
+    image: "/team/core-team/sophia-osariemen-odiase- corganizer.jpg",
+    wordsToLiveBy: "Where there\u2019s life, there\u2019s Hope!",
+    links: {
+      twitter: "https://x.com/sophia__odiase",
+      linkedin: "https://ng.linkedin.com/in/sophia-odiase-649653231",
+      portfolio: "",
+    },
+    music: {
+      name: "Rest II",
+      artist: "Limoblaze and Reggie Dartey",
+      url: "https://open.spotify.com/embed/track/68wMgpA5SOUrxgPxYDLmdm?utm_source=generator",
+    },
+  },
+  {
+    name: "Habeeb Abayomi",
+    role: "Member",
+    image: "/team/core-team/habeeb-abayomi.jpg",
+    wordsToLiveBy: "",
+    links: {
+      twitter: "",
+      linkedin: "",
+      portfolio: "",
+    },
+    music: {
+      name: "Generic",
+      artist: "Unknown",
+      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+    },
+  },
+  {
     name: "Oluwatomilola Arogundade",
     role: "Cybersecurity Specialist",
     image: "/team/tracks/infrastructure-and-security/oluwatomilola-arogundade-lead.jpeg",
@@ -75,7 +123,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Itamah Osedebame Ehigie",
-    role: "Technical Writing Team Lead (Radar)",
+    role: "Lead",
     image: "/team/media-and-marketing/radar/itamah-osedebame-ehigie-lead.jpg",
     wordsToLiveBy: "To Infinity and Beyond",
     links: {
@@ -91,7 +139,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Atolagbe Precious Olawole",
-    role: "Event Planning and Mangemant Team",
+    role: "Member",
     image: "/team/events-logistics/atolagbe-precious-olawole.jpg",
     wordsToLiveBy: "Rather die trying than live wondering what if",
     links: {
@@ -139,7 +187,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Agunbiade Ayomide Obanijesu",
-    role: "Media Lead",
+    role: "Member",
     image: "/team/media-and-marketing/radar/agunbiade-ayomide-obanijesu.jpeg",
     wordsToLiveBy: "The goal is to build something greater than self.",
     links: {
@@ -155,7 +203,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Umaru Victor Oshioke",
-    role: "Graphics Design Lead",
+    role: "Lead",
     image: "/team/media-and-marketing/graphics-design/umaru-victor-oshioke-lead.jpeg",
     wordsToLiveBy: "\u201cIf you can believe, all things are possible to him who believes.\u201d\n- Jesus Christ",
     links: {
@@ -171,7 +219,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Bisong Best Ebu-Obasi",
-    role: "Marketing team member",
+    role: "Member",
     image: "/team/media-and-marketing/video-editing/bisong-best-ebu-obasi.jpeg",
     wordsToLiveBy: "The best way to predict the future is to build it execution is everything",
     links: {
@@ -187,7 +235,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Ademola Ademeso",
-    role: "Lead Frontend Developer",
+    role: "Lead",
     image: "/team/development/frontend/ademola-ademeso-lead.jpeg",
     wordsToLiveBy: "Some days you just show up, and that's enough.",
     links: {
@@ -203,7 +251,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Ojekemi Ayotomiwa",
-    role: "Videographer",
+    role: "Member",
     image: "/team/media-and-marketing/video-editing/ojekemi-ayotomiwa.jpeg",
     wordsToLiveBy: "there\u2019s really nothing that can impress people. just make sure YOU are impressed.",
     links: {
@@ -219,7 +267,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Oseni David",
-    role: "Events and Planning Team",
+    role: "Member",
     image: "/team/events-logistics/oseni-david.jpeg",
     wordsToLiveBy: "It\u2019s not about who finishes first, it\u2019s about who finishes best",
     links: {
@@ -235,7 +283,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Oghojafor Oghenemaro Esther.O",
-    role: "Media co-lead",
+    role: "Member",
     image: "/team/media-and-marketing/radar/adefila-olutayo-esther.jpeg",
     wordsToLiveBy: "\"What would Jesus do in this situation \"",
     links: {
@@ -267,7 +315,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Adeniran Oluwatamilore Janella",
-    role: "Technical Writer",
+    role: "Member",
     image: "/team/media-and-marketing/radar/adeniran-oluwatamilore-janella.jpeg",
     wordsToLiveBy: "The pain you\u2019re feeling now does not compare to the joy that is coming",
     links: {
@@ -283,7 +331,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "NELSON-NWANONEZE DAVID",
-    role: "Event Coordinator",
+    role: "Member",
     image: "/team/events-logistics/nelson-nwanoneze-david.png",
     wordsToLiveBy: "Build things that outlast your involvement in them.",
     links: {
@@ -299,7 +347,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "NELSON-NWANONEZE SAMUEL",
-    role: "Event Volunteer",
+    role: "Member",
     image: "/team/events-logistics/nelson-nwanoneze-samuel.jpeg",
     wordsToLiveBy: "If I'm going to die one day then let's me do it doing what I love",
     links: {
@@ -315,7 +363,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Harrison Tifeoluwanimi Dorcas",
-    role: "Technical Writer",
+    role: "Member",
     image: "/team/media-and-marketing/radar/harrison-tifeoluwanimi-dorcas.jpg",
     wordsToLiveBy: "Knowing what you want to do in life is amazing but not knowing is an adventure, at the end of the day we live one life so satisfy yourself not others",
     links: {
@@ -347,7 +395,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Oyebajo Olaimide",
-    role: "Videographer/editor",
+    role: "Member",
     image: "/team/media-and-marketing/video-editing/oyebajo-olaimide.jpg",
     wordsToLiveBy: "Don\u2019t spend your life worrying about what a good man should be. Be one.",
     links: {
@@ -395,7 +443,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Alabo Treasure Sowari",
-    role: "team member",
+    role: "Member",
     image: "/team/events-logistics/alabo-treasure-sowari.jpg",
     wordsToLiveBy: "Those who cannot remember the past are condemned to repeat it - George Santayana",
     links: {
@@ -443,7 +491,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Balogun Eniola",
-    role: "Mobile development and front end pretty much the same in a way",
+    role: "Core Team Member",
     image: "/team/tracks/software-development/balogun-eniola.jpg",
     wordsToLiveBy: "I don\u2019t get",
     links: {
@@ -459,7 +507,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Akande Kehinde Gladys",
-    role: "Event Manager",
+    role: "Member",
     image: "/team/events-logistics/akande-kehinde-gladys.jpg",
     wordsToLiveBy: "A negative mind will never give you a positive life.",
     links: {
@@ -475,7 +523,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Olubowale Oluwatunmininu Temitope",
-    role: "Dev Team member , Orbit Organizer",
+    role: "Member",
     image: "/team/development/project-managers/olubowale-oluwatunmininu-temitope.jpeg",
     wordsToLiveBy: "Just do it",
     links: {
@@ -491,7 +539,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Divine Athora",
-    role: "Lead Product Design (Dev team)",
+    role: "Member",
     image: "/team/development/product-designers/divine-athora.jpeg",
     wordsToLiveBy: "Psalm 23:4, For even though I walk through the valley of the shadow of death. I will fear no evil.",
     links: {
@@ -523,7 +571,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Ebosetaleh Andrea Andrew",
-    role: "Technical Writer",
+    role: "Member",
     image: "/team/media-and-marketing/radar/ebosetaleh-andrea-andrew.jpeg",
     wordsToLiveBy: "GIGO TITO (Garbage in Garbage Out, Treasure in Treasure Out) \nYou are a product of what you consume.",
     links: {
@@ -539,7 +587,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Okon Onono Ene",
-    role: "Data & AI Core Team Member & Data Scientist",
+    role: "Core Team Member",
     image: "/team/tracks/data-and-ai/okon-onono-ene.jpeg",
     wordsToLiveBy: "Consistency beats motivation",
     links: {
@@ -555,7 +603,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Akanni Temitope",
-    role: "Data & AI Manager",
+    role: "Member",
     image: "/team/events-logistics/akanni-temitope.jpg",
     wordsToLiveBy: "When you think of giving up remember why you held on for so long",
     links: {
@@ -587,7 +635,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Eromoigbe Agbonikpeya",
-    role: "Technical Lead (Development)",
+    role: "Core Team Member",
     image: "/team/tracks/software-development/eromoigbe-agbonikpeya.jpg",
     wordsToLiveBy: "Stay curious, stay sharp",
     links: {
@@ -603,7 +651,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Praise Akenroye",
-    role: "GDG Infrastructure and Security Core Team",
+    role: "Core Team Member",
     image: "/team/tracks/infrastructure-and-security/praise-akenroye.jpg",
     wordsToLiveBy: "Learn Continuously",
     links: {
@@ -619,7 +667,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Iretomiwa Akande",
-    role: "Coordinator",
+    role: "Member",
     image: "/team/events-logistics/iretomiwa-akande.jpeg",
     wordsToLiveBy: "At the end the of the day We will be fine",
     links: {
@@ -635,7 +683,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Daniel Alexander Odulate",
-    role: "Technical Co-lead (Tracks)",
+    role: "Core Team Member",
     image: "/team/tracks/software-development/daniel-alexander-odulate.jpg",
     wordsToLiveBy: "Humans were designed to create - that's why you get depressed when all you do is consume; so create and build that thing, you can make it better later.",
     links: {
@@ -652,7 +700,7 @@ const roster2526Raw: TeamMember[] = [
   {
     name: "Adefila Olutayo Esther",
     role: "Technical Writer",
-    image: "/team/media-and-marketing/radar/adefila-olutayo-esther.jpeg",
+    image: "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=AdefilaOlutayoEsther",
     wordsToLiveBy: "Seek first the Kingdom \u2728",
     links: {
       twitter: "",
@@ -667,7 +715,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Nafarnda Marilyn",
-    role: "Content creator",
+    role: "Member",
     image: "/team/media-and-marketing/content-creation/nafarnda-marilyn.jpeg",
     wordsToLiveBy: "Enjoy your life!",
     links: {
@@ -683,7 +731,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Mokwunye Ogochukwu Asha",
-    role: "Video editor",
+    role: "Member",
     image: "/team/media-and-marketing/video-editing/mokwunye-ogochukwu-asha.jpeg",
     wordsToLiveBy: "\u201cDon\u2019t let your past convince you that change isn\u2019t possible\u201d",
     links: {
@@ -695,22 +743,6 @@ const roster2526Raw: TeamMember[] = [
       name: "\u201cA Couple Minutes \u201d",
       artist: "Olivia Dean",
       url: "https://open.spotify.com/embed/track/312z6PZ8wwREck8613PkJk?utm_source=generator",
-    },
-  },
-  {
-    name: "Sophia Osariemen Odiase",
-    role: "Co-Organizer",
-    image: "/team/core-team/sophia-osariemen-odiase- corganizer.jpg",
-    wordsToLiveBy: "Where there\u2019s life, there\u2019s Hope!",
-    links: {
-      twitter: "https://x.com/sophia__odiase",
-      linkedin: "https://ng.linkedin.com/in/sophia-odiase-649653231",
-      portfolio: "",
-    },
-    music: {
-      name: "Rest II",
-      artist: "Limoblaze and Reggie Dartey",
-      url: "https://open.spotify.com/embed/track/68wMgpA5SOUrxgPxYDLmdm?utm_source=generator",
     },
   },
   {
@@ -731,7 +763,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Olugbesan Ayooluwakiitan Oluwatamilore",
-    role: "Lead Backend Developer",
+    role: "Lead",
     image: "/team/development/backend/olugbesan-ayooluwakiitan-oluwatamilore-lead.jpg",
     wordsToLiveBy: "Remember to live",
     links: {
@@ -747,7 +779,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Olamide Fatunase",
-    role: "Member",
+    role: "Lead",
     image: "/team/media-and-marketing/video-editing/olamide-fatunase-lead.jpeg",
     wordsToLiveBy: "Youre always made for more, do no let anyone underestimate you.",
     links: {
@@ -761,10 +793,25 @@ const roster2526Raw: TeamMember[] = [
       url: "https://open.spotify.com/embed/track/2dmBAIjIfisvCG7G9YEh0g?utm_source=generator",
     },
   },
-  
+  {
+    name: "Daniel Fagbohunlu",
+    role: "GDG Developer",
+    image: "/team/tracks/software-development/bolujo-daniel.jpg",
+    wordsToLiveBy: "\"We are pliable. Love need not be a command nor faith a dictum. I am my own god. We are here to unlearn the teachings of the church, state, and our educational system. We are here to drink beer. We are here to kill war. We are here to laugh at the odds and live our lives so well that Death will tremble to take us.\" - Charles Bukowski",
+    links: {
+      twitter: "",
+      linkedin: "",
+      portfolio: "",
+    },
+    music: {
+      name: "N.Y. State of Mind",
+      artist: "Nas",
+      url: "https://open.spotify.com/embed/track/0trHOzAhNpGCsGBEu7dOJo?utm_source=generator",
+    },
+  },
   {
     name: "Onyelukachukwu M. O. Obata",
-    role: "Kachi",
+    role: "Member",
     image: "/team/development/project-managers/onyelukachukwu-m-o-obata.jpeg",
     wordsToLiveBy: "If it sounds insane, good. Sanity rarely changes history. Go until physics, not people, stop you.",
     links: {
@@ -829,7 +876,7 @@ const roster2526Raw: TeamMember[] = [
   {
     name: "Bolujo Daniel",
     role: "Quality Assurance Specialist",
-    image: "/team/tracks/software-development/bolujo-daniel.jpg",
+    image: "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=BolujoDaniel",
     wordsToLiveBy: "The person who knows how will always have a job. The person who knows why will always be their boss.",
     links: {
       twitter: "",
@@ -844,7 +891,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Wosu-Ezi Kamdirichukwu Blossom",
-    role: "Technical Writer",
+    role: "Member",
     image: "/team/media-and-marketing/radar/wosu-ezi-kamdirichukwu-blossom.jpg",
     wordsToLiveBy: "Deo Floret Consilium",
     links: {
@@ -860,7 +907,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Xavier Okpalannajiaku",
-    role: "Member (Graphic Designers)",
+    role: "Member",
     image: "/team/media-and-marketing/graphics-design/xavier-okpalannajiaku.png",
     wordsToLiveBy: "",
     links: {
@@ -876,7 +923,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Uchenna Akubuiro",
-    role: "Lead (Photographers)",
+    role: "Lead",
     image: "/team/media-and-marketing/photography/uchenna-akubuiro-lead.jpg",
     wordsToLiveBy: "",
     links: {
@@ -891,40 +938,8 @@ const roster2526Raw: TeamMember[] = [
     },
   },
   {
-    name: "Habeeb Abayomi",
-    role: "Community Manager",
-    image: "/team/core-team/habeeb-abayomi.jpg",
-    wordsToLiveBy: "",
-    links: {
-      twitter: "",
-      linkedin: "",
-      portfolio: "",
-    },
-    music: {
-      name: "Generic",
-      artist: "Unknown",
-      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
-    },
-  },
-  {
-    name: "Chukwuneku Akpotohwo",
-    role: "Organizer",
-    image: "/team/core-team/chukwuneku-akpotohwo-organizer.jpg",
-    wordsToLiveBy: "",
-    links: {
-      twitter: "",
-      linkedin: "",
-      portfolio: "",
-    },
-    music: {
-      name: "Generic",
-      artist: "Unknown",
-      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
-    },
-  },
-  {
     name: "Victor Ibironke",
-    role: "Technical Lead (Development)",
+    role: "Member",
     image: "/team/core-team/victor-ibironke.jpg",
     wordsToLiveBy: "",
     links: {
@@ -956,7 +971,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "David Obalabi",
-    role: "Member (Data & AI)",
+    role: "Data Science Specialist",
     image: "/team/tracks/data-and-ai/david-obalabi.jpeg",
     wordsToLiveBy: "",
     links: {
@@ -1004,7 +1019,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Chidoziem Offor",
-    role: "Member (Software Development & Engineering)",
+    role: "Data Science and Algorithms Specialist",
     image: "/team/tracks/software-development/chidoziem-offor.jpg",
     wordsToLiveBy: "",
     links: {
@@ -1020,7 +1035,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Providence Oduok",
-    role: "Member (Software Development & Engineering)",
+    role: "Front End Web Specialist",
     image: "/team/tracks/software-development/providence-oduok.jpg",
     wordsToLiveBy: "",
     links: {
@@ -1110,18 +1125,19 @@ const ASSIGNMENTS: Record<string, Assignment> = {
   "Praise Akenroye": { section: "tracks", subteam: "Infrastructure & Security" },
   "Iretomiwa Akande": { section: "events" },
   "Daniel Alexander Odulate": { section: "tracks", subteam: "Software Development & Engineering" },
-  "Adefila Olutayo Esther": { section: "media", subteam: "RADAR" },
+  "Adefila Olutayo Esther": { section: "core" },
   "Nafarnda Marilyn": { section: "media", subteam: "Content Creators" },
   "Mokwunye Ogochukwu Asha": { section: "media", subteam: "Video Editors" },
   "Sophia Osariemen Odiase": { section: "core", isLead: true },
   "Lawal Sharon": { section: "core" },
   "Olugbesan Ayooluwakiitan Oluwatamilore": { section: "dev", subteam: "Backend", isLead: true },
   "Olamide Fatunase": { section: "media", subteam: "Video Editors", isLead: true },
+  "Daniel Fagbohunlu": { section: "tracks", subteam: "Software Development & Engineering" },
   "Onyelukachukwu M. O. Obata": { section: "dev", subteam: "Project Management" },
   "Efegherimoni Oghenetejiri": { section: "core" },
   "SHAIBU, Omobolanle Oluwademiladeogo": { section: "core" },
   "Timilehin Adedayo": { section: "tracks", subteam: "Data & AI", isLead: true },
-  "Bolujo Daniel": { section: "tracks", subteam: "Software Development & Engineering" },
+  "Bolujo Daniel": { section: "core" },
   "Wosu-Ezi Kamdirichukwu Blossom": { section: "media", subteam: "RADAR" },
   "Xavier Okpalannajiaku": { section: "media", subteam: "Graphic Designers" },
   "Uchenna Akubuiro": { section: "media", subteam: "Photographers", isLead: true },
