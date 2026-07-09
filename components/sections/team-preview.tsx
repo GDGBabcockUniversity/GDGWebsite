@@ -61,8 +61,13 @@ export default function TeamPreview() {
                     </p>
                   </div>
                 </div>
-                <p className={cn("mt-3 text-xs font-medium", TEXT_CLASS[color])}>
-                  Core team
+                <p
+                  className={cn(
+                    "mt-3 text-xs font-medium italic leading-relaxed",
+                    TEXT_CLASS[color]
+                  )}
+                >
+                  “{member.wordsToLiveBy}”
                 </p>
               </div>
             );
