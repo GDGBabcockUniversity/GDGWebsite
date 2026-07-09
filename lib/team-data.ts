@@ -45,16 +45,16 @@ const roster2526Raw: TeamMember[] = [
     name: "Chukwuneku Akpotohwo",
     role: "Organizer",
     image: "/team/core-team/chukwuneku-akpotohwo-organizer.jpg",
-    wordsToLiveBy: "",
+    wordsToLiveBy: "To define is to Limit, nuff said",
     links: {
-      twitter: "",
-      linkedin: "",
+      twitter: "https://x.com/nekumartins",
+      linkedin: "https://linkedin.com/in/nekumartins",
       portfolio: "",
     },
     music: {
-      name: "Generic",
-      artist: "Unknown",
-      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+      name: "Incredible Sauce(feat. Dave)",
+      artist: "Giggs,Dave",
+      url: "https://open.spotify.com/embed/track/7jxnHknJtjE1MM8IfUidMF?utm_source=generator",
     },
   },
   {
@@ -75,7 +75,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Habeeb Abayomi",
-    role: "Member",
+    role: "Community Manager",
     image: "/team/core-team/habeeb-abayomi.jpg",
     wordsToLiveBy: "",
     links: {
@@ -363,7 +363,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Favour Oluwatunmibi",
-    role: "Technical Lead",
+    role: "Technical Lead (Tracks)",
     image: "/team/core-team/favour-oluwatunmibi.jpg",
     wordsToLiveBy: "Whatever is worth doing at all, is worth doing well.",
     links: {
@@ -763,7 +763,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Olamide Fatunase",
-    role: "Lead",
+    role: "Member",
     image: "/team/media-and-marketing/video-editing/olamide-fatunase-lead.jpeg",
     wordsToLiveBy: "Youre always made for more, do no let anyone underestimate you.",
     links: {
@@ -924,7 +924,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Offiong Ryan",
-    role: "Lead",
+    role: "Member",
     image: "/team/events-logistics/offiog-ryan-lead.jpg",
     wordsToLiveBy: "",
     links: {
@@ -956,23 +956,23 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Boluwatife Dada",
-    role: "Member (Design & Management)",
+    role: "Games & Interactive Media Specialist",
     image: "/team/tracks/design-and-management/boluwatife-dada.png",
     wordsToLiveBy: "",
     links: {
       twitter: "",
-      linkedin: "",
+      linkedin: "https://www.linkedin.com/in/boluwatife-dada-a45132334",
       portfolio: "",
     },
     music: {
-      name: "Generic",
-      artist: "Unknown",
-      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+      name: "Heroes",
+      artist: "David Bowie",
+      url: "https://open.spotify.com/embed/track/7Jh1bpe76CNTCgdgAdBw4Z?utm_source=generator",
     },
   },
   {
     name: "Oluwadayomisi Osisanya",
-    role: "Lead (Design & Management)",
+    role: "Design & Management Lead || Product Design Specialist",
     image: "/team/tracks/design-and-management/oluwadayomisi-osisanya-lead.jpg",
     wordsToLiveBy: "",
     links: {
@@ -1064,9 +1064,9 @@ const ASSIGNMENTS: Record<string, Assignment> = {
   "Adedoja Daniel Ademola": { section: "tracks", subteam: "Design & Management" },
   "Agunbiade Ayomide Obanijesu": { section: "media", subteam: "RADAR" },
   "Umaru Victor Oshioke": { section: "media", subteam: "Graphic Designers", isLead: true },
-  "Bisong Best Ebu-Obasi": { section: "media", subteam: "Video Editors" },
+  "Bisong Best Ebu-Obasi": { section: "media", subteam: "Content Creators" },
   "Ademola Ademeso": { section: "dev", subteam: "Frontend", isLead: true },
-  "Ojekemi Ayotomiwa": { section: "media", subteam: "Video Editors" },
+  "Ojekemi Ayotomiwa": { section: "media", subteam: "Photographers" },
   "Oseni David": { section: "events" },
   "Azubuike Chimamanda Favour": { section: "core" },
   "Adeniran Oluwatamilore Janella": { section: "media", subteam: "RADAR" },
@@ -1074,7 +1074,7 @@ const ASSIGNMENTS: Record<string, Assignment> = {
   "NELSON-NWANONEZE SAMUEL": { section: "events" },
   "Harrison Tifeoluwanimi Dorcas": { section: "media", subteam: "RADAR" },
   "Favour Oluwatunmibi": { section: "core" },
-  "Oyebajo Olaimide": { section: "media", subteam: "Video Editors" },
+  "Oyebajo Olaimide": { section: "media", subteam: "Video Editors", isLead: true},
   "Otelaja Oluwajuwonlo Okikiola": { section: "tracks", subteam: "Infrastructure & Security" },
   "Ajagbe Olaoluwa": { section: "tracks", subteam: "Data & AI" },
   "Alabo Treasure Sowari": { section: "events" },
@@ -1082,7 +1082,7 @@ const ASSIGNMENTS: Record<string, Assignment> = {
   "Oba odumeru": { section: "events" },
   "Balogun Eniola": { section: "tracks", subteam: "Software Development & Engineering" },
   "Akande Kehinde Gladys": { section: "events" },
-  "Olubowale Oluwatunmininu Temitope": { section: "dev", subteam: "Project Management" },
+  "Olubowale Oluwatunmininu Temitope": { section: "dev", subteam: "Product Management" },
   "Divine Athora": { section: "dev", subteam: "Product Design" },
   "Alabi Reuben": { section: "tracks", subteam: "Software Development & Engineering", isLead: true },
   "Ebosetaleh Andrea Andrew": { section: "media", subteam: "RADAR" },
@@ -1099,7 +1099,7 @@ const ASSIGNMENTS: Record<string, Assignment> = {
   "Sophia Osariemen Odiase": { section: "core", isLead: true },
   "Lawal Sharon": { section: "core" },
   "Olugbesan Ayooluwakiitan Oluwatamilore": { section: "dev", subteam: "Backend", isLead: true },
-  "Olamide Fatunase": { section: "media", subteam: "Video Editors", isLead: true },
+  "Olamide Fatunase": { section: "media", subteam: "Graphic Designers" },
   "Daniel Bolujo": { section: "tracks", subteam: "Software Development & Engineering" },
   "Onyelukachukwu M. O. Obata": { section: "dev", subteam: "Project Management" },
   "Efegherimoni Oghenetejiri": { section: "core" },
@@ -1111,7 +1111,7 @@ const ASSIGNMENTS: Record<string, Assignment> = {
   "Habeeb Abayomi": { section: "core" },
   "Chukwuneku Akpotohwo": { section: "core", isLead: true },
   "Victor Ibironke": { section: "core" },
-  "Offiong Ryan": { section: "events", isLead: true },
+  "Offiong Ryan": { section: "events" },
   "David Obalabi": { section: "tracks", subteam: "Data & AI" },
   "Boluwatife Dada": { section: "tracks", subteam: "Design & Management" },
   "Oluwadayomisi Osisanya": { section: "tracks", subteam: "Design & Management", isLead: true },
