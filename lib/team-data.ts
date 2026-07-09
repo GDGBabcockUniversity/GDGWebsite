@@ -761,22 +761,7 @@ const roster2526Raw: TeamMember[] = [
       url: "https://open.spotify.com/embed/track/2dmBAIjIfisvCG7G9YEh0g?utm_source=generator",
     },
   },
-  {
-    name: "Daniel Fagbohunlu",
-    role: "GDG Developer",
-    image: "/team/tracks/design-and-management/adedoja-daniel-ademola.jpg",
-    wordsToLiveBy: "\"We are pliable. Love need not be a command nor faith a dictum. I am my own god. We are here to unlearn the teachings of the church, state, and our educational system. We are here to drink beer. We are here to kill war. We are here to laugh at the odds and live our lives so well that Death will tremble to take us.\" - Charles Bukowski",
-    links: {
-      twitter: "",
-      linkedin: "",
-      portfolio: "",
-    },
-    music: {
-      name: "N.Y. State of Mind",
-      artist: "Nas",
-      url: "https://open.spotify.com/embed/track/0trHOzAhNpGCsGBEu7dOJo?utm_source=generator",
-    },
-  },
+  
   {
     name: "Onyelukachukwu M. O. Obata",
     role: "Kachi",
@@ -873,6 +858,182 @@ const roster2526Raw: TeamMember[] = [
       url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
     },
   },
+  {
+    name: "Xavier Okpalannajiaku",
+    role: "Member (Graphic Designers)",
+    image: "/team/media-and-marketing/graphics-design/xavier-okpalannajiaku.png",
+    wordsToLiveBy: "",
+    links: {
+      twitter: "",
+      linkedin: "",
+      portfolio: "",
+    },
+    music: {
+      name: "Generic",
+      artist: "Unknown",
+      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+    },
+  },
+  {
+    name: "Uchenna Akubuiro",
+    role: "Lead (Photographers)",
+    image: "/team/media-and-marketing/photography/uchenna-akubuiro-lead.jpg",
+    wordsToLiveBy: "",
+    links: {
+      twitter: "",
+      linkedin: "",
+      portfolio: "",
+    },
+    music: {
+      name: "Generic",
+      artist: "Unknown",
+      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+    },
+  },
+  {
+    name: "Habeeb Abayomi",
+    role: "Community Manager",
+    image: "/team/core-team/habeeb-abayomi.jpg",
+    wordsToLiveBy: "",
+    links: {
+      twitter: "",
+      linkedin: "",
+      portfolio: "",
+    },
+    music: {
+      name: "Generic",
+      artist: "Unknown",
+      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+    },
+  },
+  {
+    name: "Chukwuneku Akpotohwo",
+    role: "Organizer",
+    image: "/team/core-team/chukwuneku-akpotohwo-organizer.jpg",
+    wordsToLiveBy: "",
+    links: {
+      twitter: "",
+      linkedin: "",
+      portfolio: "",
+    },
+    music: {
+      name: "Generic",
+      artist: "Unknown",
+      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+    },
+  },
+  {
+    name: "Victor Ibironke",
+    role: "Technical Lead (Development)",
+    image: "/team/core-team/victor-ibironke.jpg",
+    wordsToLiveBy: "",
+    links: {
+      twitter: "",
+      linkedin: "",
+      portfolio: "",
+    },
+    music: {
+      name: "Generic",
+      artist: "Unknown",
+      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+    },
+  },
+  {
+    name: "Offiog Ryan",
+    role: "Lead",
+    image: "/team/events-logistics/offiog-ryan-lead.jpg",
+    wordsToLiveBy: "",
+    links: {
+      twitter: "",
+      linkedin: "",
+      portfolio: "",
+    },
+    music: {
+      name: "Generic",
+      artist: "Unknown",
+      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+    },
+  },
+  {
+    name: "David Obalabi",
+    role: "Member (Data & AI)",
+    image: "/team/tracks/data-and-ai/david-obalabi.jpeg",
+    wordsToLiveBy: "",
+    links: {
+      twitter: "",
+      linkedin: "",
+      portfolio: "",
+    },
+    music: {
+      name: "Generic",
+      artist: "Unknown",
+      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+    },
+  },
+  {
+    name: "Boluwatife Dada",
+    role: "Member (Design & Management)",
+    image: "/team/tracks/design-and-management/boluwatife-dada.png",
+    wordsToLiveBy: "",
+    links: {
+      twitter: "",
+      linkedin: "",
+      portfolio: "",
+    },
+    music: {
+      name: "Generic",
+      artist: "Unknown",
+      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+    },
+  },
+  {
+    name: "Oluwadayomisi Osisanya",
+    role: "Lead (Design & Management)",
+    image: "/team/tracks/design-and-management/oluwadayomisi-osisanya-lead.jpg",
+    wordsToLiveBy: "",
+    links: {
+      twitter: "",
+      linkedin: "",
+      portfolio: "",
+    },
+    music: {
+      name: "Generic",
+      artist: "Unknown",
+      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+    },
+  },
+  {
+    name: "Chidoziem Offor",
+    role: "Member (Software Development & Engineering)",
+    image: "/team/tracks/software-development/chidoziem-offor.jpg",
+    wordsToLiveBy: "",
+    links: {
+      twitter: "",
+      linkedin: "",
+      portfolio: "",
+    },
+    music: {
+      name: "Generic",
+      artist: "Unknown",
+      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+    },
+  },
+  {
+    name: "Providence Oduok",
+    role: "Member (Software Development & Engineering)",
+    image: "/team/tracks/software-development/providence-oduok.jpg",
+    wordsToLiveBy: "",
+    links: {
+      twitter: "",
+      linkedin: "",
+      portfolio: "",
+    },
+    music: {
+      name: "Generic",
+      artist: "Unknown",
+      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+    },
+  },
 ];
 
 // ─── Section / subteam structure ─────────────────────────────────────────────
@@ -956,13 +1117,23 @@ const ASSIGNMENTS: Record<string, Assignment> = {
   "Lawal Sharon": { section: "core" },
   "Olugbesan Ayooluwakiitan Oluwatamilore": { section: "dev", subteam: "Backend", isLead: true },
   "Olamide Fatunase": { section: "media", subteam: "Video Editors", isLead: true },
-  "Daniel Fagbohunlu": { section: "tracks", subteam: "Design & Management" },
   "Onyelukachukwu M. O. Obata": { section: "dev", subteam: "Project Management" },
   "Efegherimoni Oghenetejiri": { section: "core" },
   "SHAIBU, Omobolanle Oluwademiladeogo": { section: "core" },
   "Timilehin Adedayo": { section: "tracks", subteam: "Data & AI", isLead: true },
   "Bolujo Daniel": { section: "tracks", subteam: "Software Development & Engineering" },
   "Wosu-Ezi Kamdirichukwu Blossom": { section: "media", subteam: "RADAR" },
+  "Xavier Okpalannajiaku": { section: "media", subteam: "Graphic Designers" },
+  "Uchenna Akubuiro": { section: "media", subteam: "Photographers", isLead: true },
+  "Habeeb Abayomi": { section: "core" },
+  "Chukwuneku Akpotohwo": { section: "core", isLead: true },
+  "Victor Ibironke": { section: "core" },
+  "Offiog Ryan": { section: "events", isLead: true },
+  "David Obalabi": { section: "tracks", subteam: "Data & AI" },
+  "Boluwatife Dada": { section: "tracks", subteam: "Design & Management" },
+  "Oluwadayomisi Osisanya": { section: "tracks", subteam: "Design & Management", isLead: true },
+  "Chidoziem Offor": { section: "tracks", subteam: "Software Development & Engineering" },
+  "Providence Oduok": { section: "tracks", subteam: "Software Development & Engineering" },
 };
 
 /** Default placement for any member missing from ASSIGNMENTS. */
