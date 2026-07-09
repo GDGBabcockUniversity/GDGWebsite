@@ -74,7 +74,7 @@ const roster2526Raw: TeamMember[] = [
     },
   },
   {
-    name: "Habeeb Abayomi",
+    name: "Habeeb Muhammed",
     role: "Community Manager",
     image: "/team/core-team/habeeb-abayomi.jpg",
     wordsToLiveBy: "",
@@ -90,6 +90,22 @@ const roster2526Raw: TeamMember[] = [
     },
   },
   {
+    name: "SHAIBU, Omobolanle Oluwademiladeogo",
+    role: "Community Manager",
+    image: "/team/core-team/omobolanle-shaibu.jpeg",
+    wordsToLiveBy: "The purpose of life is to experience",
+    links: {
+      twitter: "https://x.com/x.com/lanle_xoxoxo",
+      linkedin: "https://www.linkedin.com/in/omobolanleshaibu",
+      portfolio: "",
+    },
+    music: {
+      name: "Wa",
+      artist: "Asake",
+      url: "https://open.spotify.com/embed/track/5KX0YeCNKaOc3XhhDHi3mI?utm_source=generator",
+    },
+  },
+{
     name: "Oluwatomilola Arogundade",
     role: "Cybersecurity Specialist",
     image: "/team/tracks/infrastructure-and-security/oluwatomilola-arogundade-lead.jpeg",
@@ -151,22 +167,6 @@ const roster2526Raw: TeamMember[] = [
       name: "Generic",
       artist: "Unknown",
       url: "https://open.spotify.com/embed/track/4rnyUV17cSZGsz18xJNdjL?utm_source=generator",
-    },
-  },
-  {
-    name: "Braimah Olatilewa Eyituoyo Brymar",
-    role: "Operations Lead",
-    image: "/team/core-team/braimah-olatilewa-eyituoyo-brymar.jpg",
-    wordsToLiveBy: "It's not who I am underneath but what I do defines me",
-    links: {
-      twitter: "",
-      linkedin: "https://www.linkedin.com/in/brymarjr",
-      portfolio: "https://portfolio-six-khaki-z2kpdfut8a.vercel.app/",
-    },
-    music: {
-      name: "Generic",
-      artist: "Unknown",
-      url: "https://open.spotify.com/embed/track/1ZTHWXvZPL0oNZGVFrG8z3?utm_source=generator",
     },
   },
   {
@@ -281,22 +281,6 @@ const roster2526Raw: TeamMember[] = [
       url: "https://open.spotify.com/embed/track/46eu3SBuFCXWsPT39Yg3tJ?utm_source=generator",
     },
   },
-   {
-    name: "Azubuike Chimamanda Favour",
-    role: "Media and Marketing Co-Lead",
-    image: "/team/core-team/azubuike-chimamanda-favour.jpg",
-    wordsToLiveBy: "Delay is not denial",
-    links: {
-      twitter: "",
-      linkedin: "",
-      portfolio: "",
-    },
-    music: {
-      name: "Barch Hashem Adonia",
-      artist: "Dusin Oyekan.",
-      url: "https://open.spotify.com/embed/track/1VEagF1oSqLgm5Y6lH32mS?utm_source=generator",
-    },
-  },
   {
     name: "Adeniran Oluwatamilore Janella",
     role: "Member",
@@ -362,6 +346,22 @@ const roster2526Raw: TeamMember[] = [
     },
   },
   {
+    name: "Victor Ibironke",
+    role: "Technical Lead (Development)",
+    image: "/team/core-team/victor-ibironke.jpg",
+    wordsToLiveBy: "",
+    links: {
+      twitter: "",
+      linkedin: "",
+      portfolio: "",
+    },
+    music: {
+      name: "Generic",
+      artist: "Unknown",
+      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+    },
+  },
+  {
     name: "Favour Oluwatunmibi",
     role: "Technical Lead (Tracks)",
     image: "/team/core-team/favour-oluwatunmibi.jpg",
@@ -379,7 +379,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Oyebajo Olaimide",
-    role: "Member",
+    role: "Lead",
     image: "/team/media-and-marketing/video-editing/oyebajo-olaimide.jpg",
     wordsToLiveBy: "Don\u2019t spend your life worrying about what a good man should be. Be one.",
     links: {
@@ -746,6 +746,22 @@ const roster2526Raw: TeamMember[] = [
     },
   },
   {
+    name: "Braimah Olatilewa Eyituoyo Brymar",
+    role: "Operations Lead",
+    image: "/team/core-team/braimah-olatilewa-eyituoyo-brymar.jpg",
+    wordsToLiveBy: "It's not who I am underneath but what I do defines me",
+    links: {
+      twitter: "",
+      linkedin: "https://www.linkedin.com/in/brymarjr",
+      portfolio: "https://portfolio-six-khaki-z2kpdfut8a.vercel.app/",
+    },
+    music: {
+      name: "Generic",
+      artist: "Unknown",
+      url: "https://open.spotify.com/embed/track/1ZTHWXvZPL0oNZGVFrG8z3?utm_source=generator",
+    },
+  },
+{
     name: "Olugbesan Ayooluwakiitan Oluwatamilore",
     role: "Lead",
     image: "/team/development/backend/olugbesan-ayooluwakiitan-oluwatamilore-lead.jpg",
@@ -810,23 +826,23 @@ const roster2526Raw: TeamMember[] = [
       url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
     },
   },
-  {
-    name: "SHAIBU, Omobolanle Oluwademiladeogo",
-    role: "Community Manager",
-    image: "/team/core-team/omobolanle-shaibu.jpeg",
-    wordsToLiveBy: "The purpose of life is to experience",
+{
+    name: "Azubuike Chimamanda Favour",
+    role: "Media and Marketing Co-Lead",
+    image: "/team/core-team/azubuike-chimamanda-favour.jpg",
+    wordsToLiveBy: "Delay is not denial",
     links: {
-      twitter: "https://x.com/x.com/lanle_xoxoxo",
-      linkedin: "https://www.linkedin.com/in/omobolanleshaibu",
+      twitter: "",
+      linkedin: "",
       portfolio: "",
     },
     music: {
-      name: "Wa",
-      artist: "Asake",
-      url: "https://open.spotify.com/embed/track/5KX0YeCNKaOc3XhhDHi3mI?utm_source=generator",
+      name: "Barch Hashem Adonia",
+      artist: "Dusin Oyekan.",
+      url: "https://open.spotify.com/embed/track/1VEagF1oSqLgm5Y6lH32mS?utm_source=generator",
     },
   },
-  {
+{
     name: "Timilehin Adedayo",
     role: "Data and AI Track lead || Machine Learnimg Specialist",
     image: "/team/tracks/data-and-ai/timilehin-adedayo-lead.jpg",
@@ -894,22 +910,6 @@ const roster2526Raw: TeamMember[] = [
     name: "Uchenna Akubuiro",
     role: "Lead",
     image: "/team/media-and-marketing/photography/uchenna-akubuiro-lead.jpg",
-    wordsToLiveBy: "",
-    links: {
-      twitter: "",
-      linkedin: "",
-      portfolio: "",
-    },
-    music: {
-      name: "Generic",
-      artist: "Unknown",
-      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
-    },
-  },
-  {
-    name: "Victor Ibironke",
-    role: "Technical Lead (Development)",
-    image: "/team/core-team/victor-ibironke.jpg",
     wordsToLiveBy: "",
     links: {
       twitter: "",
