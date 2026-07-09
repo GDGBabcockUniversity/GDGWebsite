@@ -1,8 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { TEAM_PREVIEW } from "@/lib/team-data";
 import { GDG_HEX, TEXT_CLASS, colorByIndex } from "@/lib/colors";
-import { InitialsAvatar } from "@/components/initials-avatar";
 import { cn } from "@/lib/utils";
 
 const ROTATIONS = [
@@ -44,19 +44,30 @@ export default function TeamPreview() {
                 )}
                 style={{ borderColor: GDG_HEX[color] }}
               >
-                <div className="flex items-center gap-3">
-                  <InitialsAvatar name={member.name} color={color} />
-                  <div className="min-w-0">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-white/5">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    sizes="(min-width: 1024px) 220px, 220px"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent p-3 pt-12">
                     <p className="truncate text-sm font-bold text-white">
                       {member.name}
                     </p>
-                    <p className="truncate text-xs text-white/50">
+                    <p className="truncate text-xs text-white/70">
                       {member.role}
                     </p>
                   </div>
                 </div>
-                <p className={cn("mt-3 text-xs font-medium", TEXT_CLASS[color])}>
-                  @gdgbabcock
+                <p
+                  className={cn(
+                    "mt-3 text-xs font-medium italic leading-relaxed",
+                    TEXT_CLASS[color]
+                  )}
+                >
+                  “{member.wordsToLiveBy}”
                 </p>
               </div>
             );
