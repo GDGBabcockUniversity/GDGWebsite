@@ -10,6 +10,7 @@ import { QuoteCard } from "@/components/quote-card";
 import { useMemberCta } from "@/components/use-member-cta";
 import LoginModal from "@/components/login-modal";
 import { cn } from "@/lib/utils";
+import { useGlassScene } from "@/components/glass-provider";
 
 const AUTOPLAY_MS = 6000;
 
@@ -18,6 +19,8 @@ export default function Hero() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const { becomeMember, isLoginOpen, setIsLoginOpen } = useMemberCta();
   const autoplayRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const { setBackdrop, setBackdropRef } = useGlassScene();
+  const carouselContainerRef = useRef<HTMLDivElement>(null);
 
   const startAutoplay = useCallback(() => {
     if (autoplayRef.current) clearInterval(autoplayRef.current);
@@ -25,6 +28,30 @@ export default function Hero() {
       emblaApi?.scrollNext();
     }, AUTOPLAY_MS);
   }, [emblaApi]);
+
+  useEffect(() => {
+    // Provide the backdrop node to the global GlassProvider
+    setBackdrop(
+      <div className="flex h-full w-full">
+        {HERO_SLIDES.map((slide, i) => (
+          <div key={i} className="relative h-full min-w-0 flex-[0_0_100%]">
+            <SmartImage
+              src={slide.src}
+              alt={slide.alt}
+              label={slide.label}
+              className="h-full w-full"
+              sizes="100vw"
+              priority={i === 0}
+            />
+          </div>
+        ))}
+      </div>
+    );
+    // Provide the container node so we can track its transform
+    if (carouselContainerRef.current) {
+      setBackdropRef(carouselContainerRef.current);
+    }
+  }, [setBackdrop, setBackdropRef]);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -49,7 +76,7 @@ export default function Hero() {
     <section className="relative h-svh min-h-[600px] w-full overflow-hidden">
       {/* Carousel background */}
       <div ref={emblaRef} className="absolute inset-0 overflow-hidden">
-        <div className="flex h-full">
+        <div ref={carouselContainerRef} className="flex h-full w-full">
           {HERO_SLIDES.map((slide, i) => (
             <div key={i} className="relative h-full min-w-0 flex-[0_0_100%]">
               <SmartImage
