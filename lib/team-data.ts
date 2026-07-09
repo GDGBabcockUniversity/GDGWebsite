@@ -473,22 +473,7 @@ const roster2526Raw: TeamMember[] = [
       url: "https://open.spotify.com/embed/track/59zlaPDhvE414BZ82AFjH5?utm_source=generator",
     },
   },
-  {
-    name: "Balogun Eniola",
-    role: "Core Team Member",
-    image: "/team/tracks/software-development/balogun-eniola.jpg",
-    wordsToLiveBy: "I don\u2019t get",
-    links: {
-      twitter: "https://x.com/Ennysticks",
-      linkedin: "https://Balogun Eniola",
-      portfolio: "https://ennyportfolio-phi.vercel.app/",
-    },
-    music: {
-      name: "Generic",
-      artist: "Unknown",
-      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
-    },
-  },
+
   {
     name: "Akande Kehinde Gladys",
     role: "Member",
@@ -570,22 +555,6 @@ const roster2526Raw: TeamMember[] = [
     },
   },
   {
-    name: "Okon Onono Ene",
-    role: "Core Team Member",
-    image: "/team/tracks/data-and-ai/okon-onono-ene.jpeg",
-    wordsToLiveBy: "Consistency beats motivation",
-    links: {
-      twitter: "https://x.com/_nonnyy_",
-      linkedin: "https://Onono Okon",
-      portfolio: "",
-    },
-    music: {
-      name: "Generic",
-      artist: "Unknown",
-      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
-    },
-  },
-  {
     name: "Akanni Temitope",
     role: "Member",
     image: "/team/events-logistics/akanni-temitope.jpg",
@@ -618,38 +587,6 @@ const roster2526Raw: TeamMember[] = [
     },
   },
   {
-    name: "Eromoigbe Agbonikpeya",
-    role: "Core Team Member",
-    image: "/team/tracks/software-development/eromoigbe-agbonikpeya.jpg",
-    wordsToLiveBy: "Stay curious, stay sharp",
-    links: {
-      twitter: "https://x.com/winnerx0",
-      linkedin: "https://www.linkedin.com/in/eromoigbe-agbonikpeya/",
-      portfolio: "https://winnerx0.dev",
-    },
-    music: {
-      name: "Rendezvous",
-      artist: "Don Toliver & Yeat",
-      url: "https://open.spotify.com/embed/track/2Ejyg4CavumEr7lFUkk9aF?utm_source=generator",
-    },
-  },
-  {
-    name: "Praise Akenroye",
-    role: "Core Team Member",
-    image: "/team/tracks/infrastructure-and-security/praise-akenroye.jpg",
-    wordsToLiveBy: "Learn Continuously",
-    links: {
-      twitter: "",
-      linkedin: "https://www.linkedin.com/in/praise-akenroye",
-      portfolio: "",
-    },
-    music: {
-      name: "Alone",
-      artist: "Anendlessocean",
-      url: "https://open.spotify.com/embed/track/2Im4gW7xrTDqQFOIjxkb7j?utm_source=generator",
-    },
-  },
-  {
     name: "Iretomiwa Akande",
     role: "Member",
     image: "/team/events-logistics/iretomiwa-akande.jpeg",
@@ -663,22 +600,6 @@ const roster2526Raw: TeamMember[] = [
       name: "Light By Rotimikeys",
       artist: "Unknown",
       url: "https://open.spotify.com/embed/track/4rN4PprdOYJQKaPp4HXVgz?utm_source=generator",
-    },
-  },
-  {
-    name: "Daniel Alexander Odulate",
-    role: "Core Team Member",
-    image: "/team/tracks/software-development/daniel-alexander-odulate.jpg",
-    wordsToLiveBy: "Humans were designed to create - that's why you get depressed when all you do is consume; so create and build that thing, you can make it better later.",
-    links: {
-      twitter: "https://x.com/Xander_danny229",
-      linkedin: "https://www.linkedin.com/in/danielodulate",
-      portfolio: "https://danielodulate.vercel.app",
-    },
-    music: {
-      name: "World's smallest violin",
-      artist: "AJR",
-      url: "https://open.spotify.com/embed/track/68EkhVWIeULhHxcbi1QhzK?utm_source=generator",
     },
   },
   {
@@ -1018,6 +939,86 @@ const roster2526Raw: TeamMember[] = [
       url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
     },
   },
+{
+    name: "Balogun Eniola",
+    role: "Core Team Member",
+    image: "/team/tracks/software-development/balogun-eniola.jpg",
+    wordsToLiveBy: "I don\u2019t get",
+    links: {
+      twitter: "https://x.com/Ennysticks",
+      linkedin: "https://Balogun Eniola",
+      portfolio: "https://ennyportfolio-phi.vercel.app/",
+    },
+    music: {
+      name: "Generic",
+      artist: "Unknown",
+      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+    },
+  },
+{
+    name: "Okon Onono Ene",
+    role: "Core Team Member",
+    image: "/team/tracks/data-and-ai/okon-onono-ene.jpeg",
+    wordsToLiveBy: "Consistency beats motivation",
+    links: {
+      twitter: "https://x.com/_nonnyy_",
+      linkedin: "https://Onono Okon",
+      portfolio: "",
+    },
+    music: {
+      name: "Generic",
+      artist: "Unknown",
+      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+    },
+  },
+{
+    name: "Daniel Alexander Odulate",
+    role: "Core Team Member",
+    image: "/team/tracks/software-development/daniel-alexander-odulate.jpg",
+    wordsToLiveBy: "Humans were designed to create - that's why you get depressed when all you do is consume; so create and build that thing, you can make it better later.",
+    links: {
+      twitter: "https://x.com/Xander_danny229",
+      linkedin: "https://www.linkedin.com/in/danielodulate",
+      portfolio: "https://danielodulate.vercel.app",
+    },
+    music: {
+      name: "World's smallest violin",
+      artist: "AJR",
+      url: "https://open.spotify.com/embed/track/68EkhVWIeULhHxcbi1QhzK?utm_source=generator",
+    },
+  },
+{
+    name: "Praise Akenroye",
+    role: "Core Team Member",
+    image: "/team/tracks/infrastructure-and-security/praise-akenroye.jpg",
+    wordsToLiveBy: "Learn Continuously",
+    links: {
+      twitter: "",
+      linkedin: "https://www.linkedin.com/in/praise-akenroye",
+      portfolio: "",
+    },
+    music: {
+      name: "Alone",
+      artist: "Anendlessocean",
+      url: "https://open.spotify.com/embed/track/2Im4gW7xrTDqQFOIjxkb7j?utm_source=generator",
+    },
+  },
+{
+    name: "Eromoigbe Agbonikpeya",
+    role: "Core Team Member",
+    image: "/team/tracks/software-development/eromoigbe-agbonikpeya.jpg",
+    wordsToLiveBy: "Stay curious, stay sharp",
+    links: {
+      twitter: "https://x.com/winnerx0",
+      linkedin: "https://www.linkedin.com/in/eromoigbe-agbonikpeya/",
+      portfolio: "https://winnerx0.dev",
+    },
+    music: {
+      name: "Rendezvous",
+      artist: "Don Toliver & Yeat",
+      url: "https://open.spotify.com/embed/track/2Ejyg4CavumEr7lFUkk9aF?utm_source=generator",
+    },
+  },
 ];
 
 // ─── Section / subteam structure ─────────────────────────────────────────────
@@ -1040,7 +1041,7 @@ export interface SectionDef {
 export const TEAM_SECTIONS: SectionDef[] = [
   { id: "core", label: "Core Team", subteams: [] },
   { id: "tracks", label: "Tracks", subteams: [...TRACK_SUBTEAMS] },
-  { id: "dev", label: "Dev Team", subteams: ["Frontend", "Backend", "Product Design", "Project Management"] },
+  { id: "dev", label: "Dev Team", subteams: ["Frontend", "Backend", "Product Design", "Product Management"] },
   {
     id: "media",
     label: "Media Team",
@@ -1101,7 +1102,7 @@ const ASSIGNMENTS: Record<string, Assignment> = {
   "Olugbesan Ayooluwakiitan Oluwatamilore": { section: "dev", subteam: "Backend", isLead: true },
   "Olamide Fatunase": { section: "media", subteam: "Graphic Designers" },
   "Daniel Bolujo": { section: "tracks", subteam: "Software Development & Engineering" },
-  "Onyelukachukwu M. O. Obata": { section: "dev", subteam: "Project Management" },
+  "Onyelukachukwu M. O. Obata": { section: "dev", subteam: "Product Management" },
   "Efegherimoni Oghenetejiri": { section: "core" },
   "SHAIBU, Omobolanle Oluwademiladeogo": { section: "core" },
   "Timilehin Adedayo": { section: "tracks", subteam: "Data & AI", isLead: true },
