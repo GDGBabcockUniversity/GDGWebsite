@@ -4,10 +4,10 @@ import { SmartImage } from "@/components/placeholder-image";
 import { cn } from "@/lib/utils";
 
 const POLAROID_LAYOUT = [
-  "lg:absolute lg:left-[29%] lg:top-[9%] lg:z-20 lg:w-[260px] lg:-rotate-4 xl:w-[300px]",
-  "lg:absolute lg:right-[12%] lg:top-[17%] lg:z-10 lg:w-[245px] lg:rotate-3 xl:w-[285px]",
-  "lg:absolute lg:right-[2%] lg:bottom-[6%] lg:z-30 lg:w-[255px] lg:rotate-5 xl:w-[295px]",
-  "lg:absolute lg:left-[42%] lg:bottom-[5%] lg:z-20 lg:w-[255px] lg:-rotate-5 xl:w-[295px]",
+  "lg:absolute lg:left-[10%] lg:top-[2%] lg:z-20 lg:w-[260px] lg:-rotate-6 xl:w-[300px]",
+  "lg:absolute lg:right-[0%] lg:top-[10%] lg:z-10 lg:w-[245px] lg:rotate-6 xl:w-[285px]",
+  "lg:absolute lg:right-[8%] lg:bottom-[2%] lg:z-30 lg:w-[255px] lg:rotate-4 xl:w-[295px]",
+  "lg:absolute lg:left-[20%] lg:bottom-[5%] lg:z-20 lg:w-[255px] lg:-rotate-8 xl:w-[295px]",
 ];
 
 /** "Where curiosity meets code." — four program polaroids */

@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 import { Analytics } from "@vercel/analytics/next";
 import { AuthProvider } from "@/components/auth-provider";
 import { GlassProvider } from "@/components/glass-provider";
+import { SvgFilters } from "@/components/svg-filters";
 
 export const metadata: Metadata = {
   title: "GDG Babcock — Google Developer Group at Babcock University",
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="antialiased" suppressHydrationWarning>
       <body>
+        <SvgFilters />
         <GlassProvider>
           <AuthProvider>
             <Navigation />
