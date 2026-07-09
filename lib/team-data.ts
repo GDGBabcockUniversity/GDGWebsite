@@ -699,7 +699,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Adefila Olutayo Esther",
-    role: "Technical Writer",
+    role: "Member",
     image: "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=AdefilaOlutayoEsther",
     wordsToLiveBy: "Seek first the Kingdom \u2728",
     links: {
@@ -793,22 +793,7 @@ const roster2526Raw: TeamMember[] = [
       url: "https://open.spotify.com/embed/track/2dmBAIjIfisvCG7G9YEh0g?utm_source=generator",
     },
   },
-  {
-    name: "Daniel Fagbohunlu",
-    role: "GDG Developer",
-    image: "/team/tracks/software-development/bolujo-daniel.jpg",
-    wordsToLiveBy: "\"We are pliable. Love need not be a command nor faith a dictum. I am my own god. We are here to unlearn the teachings of the church, state, and our educational system. We are here to drink beer. We are here to kill war. We are here to laugh at the odds and live our lives so well that Death will tremble to take us.\" - Charles Bukowski",
-    links: {
-      twitter: "",
-      linkedin: "",
-      portfolio: "",
-    },
-    music: {
-      name: "N.Y. State of Mind",
-      artist: "Nas",
-      url: "https://open.spotify.com/embed/track/0trHOzAhNpGCsGBEu7dOJo?utm_source=generator",
-    },
-  },
+  
   {
     name: "Onyelukachukwu M. O. Obata",
     role: "Member",
@@ -874,9 +859,9 @@ const roster2526Raw: TeamMember[] = [
     },
   },
   {
-    name: "Bolujo Daniel",
+    name: "Daniel Bolujo",
     role: "Quality Assurance Specialist",
-    image: "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=BolujoDaniel",
+    image: "/team/tracks/software-development/bolujo-daniel.jpg",
     wordsToLiveBy: "The person who knows how will always have a job. The person who knows why will always be their boss.",
     links: {
       twitter: "",
@@ -939,7 +924,7 @@ const roster2526Raw: TeamMember[] = [
   },
   {
     name: "Victor Ibironke",
-    role: "Member",
+    role: "Technical Lead (Development)",
     image: "/team/core-team/victor-ibironke.jpg",
     wordsToLiveBy: "",
     links: {
@@ -1071,7 +1056,7 @@ export interface SectionDef {
 export const TEAM_SECTIONS: SectionDef[] = [
   { id: "core", label: "Core Team", subteams: [] },
   { id: "tracks", label: "Tracks", subteams: [...TRACK_SUBTEAMS] },
-  { id: "dev", label: "Dev Team", subteams: ["Frontend", "Backend", "Product Design"] },
+  { id: "dev", label: "Dev Team", subteams: ["Frontend", "Backend", "Product Design", "Project Management"] },
   {
     id: "media",
     label: "Media Team",
@@ -1099,7 +1084,6 @@ const ASSIGNMENTS: Record<string, Assignment> = {
   "Ademola Ademeso": { section: "dev", subteam: "Frontend", isLead: true },
   "Ojekemi Ayotomiwa": { section: "media", subteam: "Video Editors" },
   "Oseni David": { section: "events" },
-  "Oghojafor Oghenemaro Esther.O": { section: "media", subteam: "RADAR" },
   "Azubuike Chimamanda Favour": { section: "core" },
   "Adeniran Oluwatamilore Janella": { section: "media", subteam: "RADAR" },
   "NELSON-NWANONEZE DAVID": { section: "events" },
@@ -1125,26 +1109,25 @@ const ASSIGNMENTS: Record<string, Assignment> = {
   "Praise Akenroye": { section: "tracks", subteam: "Infrastructure & Security" },
   "Iretomiwa Akande": { section: "events" },
   "Daniel Alexander Odulate": { section: "tracks", subteam: "Software Development & Engineering" },
-  "Adefila Olutayo Esther": { section: "core" },
+  "Adefila Olutayo Esther": { section: "media", subteam: "RADAR" },
   "Nafarnda Marilyn": { section: "media", subteam: "Content Creators" },
   "Mokwunye Ogochukwu Asha": { section: "media", subteam: "Video Editors" },
   "Sophia Osariemen Odiase": { section: "core", isLead: true },
   "Lawal Sharon": { section: "core" },
   "Olugbesan Ayooluwakiitan Oluwatamilore": { section: "dev", subteam: "Backend", isLead: true },
   "Olamide Fatunase": { section: "media", subteam: "Video Editors", isLead: true },
-  "Daniel Fagbohunlu": { section: "tracks", subteam: "Software Development & Engineering" },
+  "Daniel Bolujo": { section: "tracks", subteam: "Software Development & Engineering" },
   "Onyelukachukwu M. O. Obata": { section: "dev", subteam: "Project Management" },
   "Efegherimoni Oghenetejiri": { section: "core" },
   "SHAIBU, Omobolanle Oluwademiladeogo": { section: "core" },
   "Timilehin Adedayo": { section: "tracks", subteam: "Data & AI", isLead: true },
-  "Bolujo Daniel": { section: "core" },
   "Wosu-Ezi Kamdirichukwu Blossom": { section: "media", subteam: "RADAR" },
   "Xavier Okpalannajiaku": { section: "media", subteam: "Graphic Designers" },
   "Uchenna Akubuiro": { section: "media", subteam: "Photographers", isLead: true },
   "Habeeb Abayomi": { section: "core" },
   "Chukwuneku Akpotohwo": { section: "core", isLead: true },
   "Victor Ibironke": { section: "core" },
-  "Offiog Ryan": { section: "events", isLead: true },
+  "Offiong Ryan": { section: "events", isLead: true },
   "David Obalabi": { section: "tracks", subteam: "Data & AI" },
   "Boluwatife Dada": { section: "tracks", subteam: "Design & Management" },
   "Oluwadayomisi Osisanya": { section: "tracks", subteam: "Design & Management", isLead: true },
