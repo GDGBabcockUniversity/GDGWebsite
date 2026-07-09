@@ -164,8 +164,8 @@ const roster2526Raw: TeamMember[] = [
       portfolio: "https://ola-portfolio-jet.vercel.app/",
     },
     music: {
-      name: "Generic",
-      artist: "Unknown",
+      name: "100 Bad Days",
+      artist: "AJR",
       url: "https://open.spotify.com/embed/track/4rnyUV17cSZGsz18xJNdjL?utm_source=generator",
     },
   },
@@ -308,8 +308,8 @@ const roster2526Raw: TeamMember[] = [
       portfolio: "",
     },
     music: {
-      name: "There is prophecy over me Theophilus Sunday",
-      artist: "Unknown",
+      name: "There is prophecy over me",
+      artist: "Theophilus Sunday",
       url: "https://open.spotify.com/embed/track/2AgdXw0t0pEh3FS5gALxRJ?utm_source=generator",
     },
   },
@@ -388,8 +388,8 @@ const roster2526Raw: TeamMember[] = [
       portfolio: "",
     },
     music: {
-      name: "Generic",
-      artist: "Unknown",
+      name: "Shoki(feat.Zaylevelten)",
+      artist: "Txmmyily,Zaylevelten",
       url: "https://open.spotify.com/embed/track/48RKc1nauDnXRBMOuvjxFy?utm_source=generator",
     },
   },
@@ -404,9 +404,9 @@ const roster2526Raw: TeamMember[] = [
       portfolio: "",
     },
     music: {
-      name: "Generic",
-      artist: "Unknown",
-      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+      name: "Voice of the Street(V.O.T.S)",
+      artist: "Olamide",
+      url: "https://open.spotify.com/embed/track/10H8ikFH0o9xwj0XYsVTVp?utm_source=generator",
     },
   },
   {
@@ -502,7 +502,7 @@ const roster2526Raw: TeamMember[] = [
     },
     music: {
       name: "Odudu",
-      artist: "Theophulus Sunday",
+      artist: "Theophilus Sunday",
       url: "https://open.spotify.com/embed/track/1eAaujnEdoKSpTDFs9ifwV?utm_source=generator",
     },
   },
@@ -597,8 +597,8 @@ const roster2526Raw: TeamMember[] = [
       portfolio: "",
     },
     music: {
-      name: "Light By Rotimikeys",
-      artist: "Unknown",
+      name: "Light",
+      artist: "RotimiKeys",
       url: "https://open.spotify.com/embed/track/4rN4PprdOYJQKaPp4HXVgz?utm_source=generator",
     },
   },
@@ -629,8 +629,8 @@ const roster2526Raw: TeamMember[] = [
       portfolio: "",
     },
     music: {
-      name: "Generic",
-      artist: "Unknown",
+      name: "Too Many to Chose From",
+      artist: "Uncertainty",
       url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
     },
   },
@@ -677,8 +677,8 @@ const roster2526Raw: TeamMember[] = [
       portfolio: "https://portfolio-six-khaki-z2kpdfut8a.vercel.app/",
     },
     music: {
-      name: "Generic",
-      artist: "Unknown",
+      name: "No Signal",
+      artist: "Chris Brown",
       url: "https://open.spotify.com/embed/track/1ZTHWXvZPL0oNZGVFrG8z3?utm_source=generator",
     },
   },
@@ -710,7 +710,7 @@ const roster2526Raw: TeamMember[] = [
     },
     music: {
       name: "Too many to choose from.",
-      artist: "Unknown",
+      artist: "Uncertainty",
       url: "https://open.spotify.com/embed/track/2dmBAIjIfisvCG7G9YEh0g?utm_source=generator",
     },
   },
@@ -726,9 +726,9 @@ const roster2526Raw: TeamMember[] = [
       portfolio: "",
     },
     music: {
-      name: "Generic",
-      artist: "Unknown",
-      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+      name: "Shuffering and Shmiling",
+      artist: "Fela",
+      url: "https://open.spotify.com/embed/track/1VMDd3MIBEYUy8i59LfCea?utm_source=generator",
     },
   },
   {
@@ -742,9 +742,9 @@ const roster2526Raw: TeamMember[] = [
       portfolio: "https://Nil",
     },
     music: {
-      name: "Generic",
-      artist: "Unknown",
-      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+      name: "Almost(Sweet Music)",
+      artist: "Hozier",
+      url: "https://open.spotify.com/embed/track/5Apvsk0suoivI1H8CmBglv?utm_source=generator",
     },
   },
 {
@@ -806,9 +806,9 @@ const roster2526Raw: TeamMember[] = [
       portfolio: "https://kamdyb.github.io/blossom-s-portfolio/",
     },
     music: {
-      name: "Generic",
-      artist: "Unknown",
-      url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
+      name: "3 Nights",
+      artist: "Dominic Fike",
+      url: "https://open.spotify.com/embed/track/0uI7yAKUf52Cn7y3sYyjiX?utm_source=generator",
     },
   },
   {
@@ -950,8 +950,8 @@ const roster2526Raw: TeamMember[] = [
       portfolio: "https://ennyportfolio-phi.vercel.app/",
     },
     music: {
-      name: "Generic",
-      artist: "Unknown",
+      name: "Awake",
+      artist: "Unspecified",
       url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
     },
   },
@@ -966,8 +966,8 @@ const roster2526Raw: TeamMember[] = [
       portfolio: "",
     },
     music: {
-      name: "Generic",
-      artist: "Unknown",
+      name: "None",
+      artist: "Not Specified",
       url: "https://open.spotify.com/embed/track/3n3Ppam7vgaBgKOUw2bJj?utm_source=generator",
     },
   },
