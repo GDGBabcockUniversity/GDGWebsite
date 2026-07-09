@@ -1,21 +1,30 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { TEAM_PREVIEW } from "@/lib/team-data";
 import { GDG_HEX, TEXT_CLASS, colorByIndex } from "@/lib/colors";
-import { InitialsAvatar } from "@/components/initials-avatar";
 import { cn } from "@/lib/utils";
 
 const ROTATIONS = [
-  "lg:-rotate-2",
-  "lg:rotate-1",
-  "lg:rotate-3",
-  "lg:-rotate-1",
-  "lg:rotate-2",
-  "lg:-rotate-3",
-  "lg:rotate-1",
-  "lg:-rotate-2",
-  "lg:rotate-2",
-  "lg:-rotate-1",
+  "-rotate-3",
+  "rotate-2",
+  "rotate-3",
+  "-rotate-2",
+  "rotate-1",
+  "-rotate-1",
+  "rotate-2",
+  "-rotate-3",
+  "rotate-3",
+  "-rotate-2",
+];
+
+const TAPE_ROTATIONS = [
+  "before:-rotate-6",
+  "before:rotate-3",
+  "before:-rotate-2",
+  "before:rotate-6",
+  "before:-rotate-3",
+  "before:rotate-2",
 ];
 
 /** "The people behind the pixels." — scattered team cards on the home page */
@@ -38,25 +47,39 @@ export default function TeamPreview() {
               <div
                 key={member.name}
                 className={cn(
-                  "min-w-[220px] snap-start rounded-2xl border bg-[#161616] p-4 lg:min-w-0",
+                  "group relative min-w-[220px] snap-start rounded-[1.75rem] border bg-[#161616] p-3 shadow-2xl shadow-black/40 transition-transform duration-300 hover:z-10 hover:scale-[1.03] hover:rotate-0 lg:min-w-0",
+                  "before:absolute before:left-1/2 before:top-0 before:z-10 before:h-7 before:w-24 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-sm before:border before:border-white/15 before:bg-white/20 before:backdrop-blur-sm before:content-['']",
                   ROTATIONS[i % ROTATIONS.length],
-                  i % 2 === 1 && "lg:translate-y-6"
+                  TAPE_ROTATIONS[i % TAPE_ROTATIONS.length],
+                  i % 2 === 1 && "lg:translate-y-8"
                 )}
                 style={{ borderColor: GDG_HEX[color] }}
               >
-                <div className="flex items-center gap-3">
-                  <InitialsAvatar name={member.name} color={color} />
-                  <div className="min-w-0">
+                <div className="pointer-events-none absolute inset-2 rounded-[1.35rem] border border-white/10" />
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[1.25rem] bg-white/5">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    sizes="(min-width: 1024px) 220px, 220px"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent p-3 pt-12">
                     <p className="truncate text-sm font-bold text-white">
                       {member.name}
                     </p>
-                    <p className="truncate text-xs text-white/50">
+                    <p className="truncate text-xs text-white/70">
                       {member.role}
                     </p>
                   </div>
                 </div>
-                <p className={cn("mt-3 text-xs font-medium", TEXT_CLASS[color])}>
-                  @gdgbabcock
+                <p
+                  className={cn(
+                    "relative mt-3 text-xs font-medium italic leading-relaxed",
+                    TEXT_CLASS[color]
+                  )}
+                >
+                  “{member.wordsToLiveBy}”
                 </p>
               </div>
             );

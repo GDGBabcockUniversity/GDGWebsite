@@ -1147,5 +1147,7 @@ export const TEAM_YEARS: TeamYear[] = [
   { id: "2022", label: "2022/23", members: [] },
 ];
 
-/** Slice shown in the home page "The people behind the pixels." section */
-export const TEAM_PREVIEW: TeamMember[] = teamMembers.slice(0, 10);
+/** Core-team members shown in the home page "The people behind the pixels." section. */
+export const TEAM_PREVIEW: TeamMember[] = teamMembers
+  .filter((member) => (member.section ?? "core") === "core")
+  .sort((a, b) => Number(Boolean(b.isLead)) - Number(Boolean(a.isLead)));
