@@ -40,6 +40,7 @@ export default function Navigation() {
             bevel={18}
             thickness={34}
             blur={8}
+            disableRefraction={isScrolled}
             className="hidden lg:block"
             contentClassName="flex items-center gap-1 px-2 py-1.5"
           >
@@ -70,6 +71,7 @@ export default function Navigation() {
               bevel={14}
               thickness={30}
               blur={7}
+              disableRefraction={isScrolled}
               className="h-12 w-16"
               contentClassName="flex h-full w-full items-center justify-center p-2"
             >
@@ -92,6 +94,7 @@ export default function Navigation() {
                 bevel={14}
                 thickness={30}
                 blur={7}
+                disableRefraction={isScrolled}
                 className="h-11 w-24"
                 contentClassName="flex h-full w-full items-center justify-center"
               >
@@ -104,6 +107,7 @@ export default function Navigation() {
                   bevel={14}
                   thickness={30}
                   blur={7}
+                  disableRefraction={isScrolled}
                   className="cursor-pointer"
                   contentClassName="p-1.5"
                 >
@@ -169,6 +173,7 @@ export default function Navigation() {
                 bevel={14}
                 thickness={30}
                 blur={7}
+                disableRefraction={isScrolled}
                 className="cursor-pointer transition-transform hover:scale-[1.03]"
               >
                 <button
