@@ -281,23 +281,7 @@ const roster2526Raw: TeamMember[] = [
       url: "https://open.spotify.com/embed/track/46eu3SBuFCXWsPT39Yg3tJ?utm_source=generator",
     },
   },
-  {
-    name: "Oghojafor Oghenemaro Esther.O",
-    role: "Member",
-    image: "/team/media-and-marketing/radar/adefila-olutayo-esther.jpeg",
-    wordsToLiveBy: "\"What would Jesus do in this situation \"",
-    links: {
-      twitter: "https://x.com/Alphamaro",
-      linkedin: "https://www.linkedin.com/in/oghenemaro-oghojafor-12bb25402?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-      portfolio: "",
-    },
-    music: {
-      name: "Doors",
-      artist: "Noah kahan (",
-      url: "https://open.spotify.com/embed/track/3iU2qsthCTo5EeTE03l3Si?utm_source=generator",
-    },
-  },
-  {
+   {
     name: "Azubuike Chimamanda Favour",
     role: "Media and Marketing Co-Lead",
     image: "/team/core-team/azubuike-chimamanda-favour.jpg",
@@ -700,7 +684,7 @@ const roster2526Raw: TeamMember[] = [
   {
     name: "Adefila Olutayo Esther",
     role: "Member",
-    image: "https://api.dicebear.com/9.x/lorelei-neutral/svg?seed=AdefilaOlutayoEsther",
+    image: "/team/media-and-marketing/radar/adefila-olutayo-esther.jpeg",
     wordsToLiveBy: "Seek first the Kingdom \u2728",
     links: {
       twitter: "",
@@ -939,7 +923,7 @@ const roster2526Raw: TeamMember[] = [
     },
   },
   {
-    name: "Offiog Ryan",
+    name: "Offiong Ryan",
     role: "Lead",
     image: "/team/events-logistics/offiog-ryan-lead.jpg",
     wordsToLiveBy: "",
