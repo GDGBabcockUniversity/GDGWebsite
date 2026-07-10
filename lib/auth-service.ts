@@ -3,6 +3,8 @@
  * Handles login (Firebase token → platform JWT), refresh, logout, and profile.
  */
 
+import type { MemberActivity, MemberCertificate } from "@/lib/member";
+
 const AUTH_API_URL =
   process.env.NEXT_PUBLIC_AUTH_API_URL || "https://auth.gdgbabcock.com";
 
@@ -34,6 +36,8 @@ export interface PlatformUser {
   created_at: string;
   updated_at: string;
   roles?: string[];
+  activity?: MemberActivity;
+  certificates?: MemberCertificate[];
 }
 
 export interface AuthTokens {
