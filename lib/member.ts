@@ -24,6 +24,12 @@ export interface MemberActivity {
   radar_reading_minutes?: number;
 }
 
+export interface MemberTeamMembership {
+  role: string;
+  section: string;
+  subteam?: string | null;
+}
+
 /** Optional reads off the user record — safe before the services exist. */
 export function getCertificates(user: PlatformUser | null): MemberCertificate[] {
   return ((user as unknown as { certificates?: MemberCertificate[] })
@@ -33,6 +39,16 @@ export function getCertificates(user: PlatformUser | null): MemberCertificate[] 
 export function getActivity(user: PlatformUser | null): MemberActivity {
   return (
     (user as unknown as { activity?: MemberActivity })?.activity ?? {}
+  );
+}
+
+/** The linked team_members row (role/section/subteam), or null if unlinked. */
+export function getTeamMembership(
+  user: PlatformUser | null
+): MemberTeamMembership | null {
+  return (
+    (user as unknown as { team_membership?: MemberTeamMembership | null })
+      ?.team_membership ?? null
   );
 }
 
