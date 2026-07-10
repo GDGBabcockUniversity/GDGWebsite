@@ -48,6 +48,7 @@ import WhatsApp from "@/components/svgs/whatsapp";
 import {
   getCertificates,
   getActivity,
+  getTeamMembership,
   formatJoinDate,
   isFoundingMember,
 } from "@/lib/member";
@@ -271,6 +272,12 @@ export default function ProfilePage() {
                       <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold rounded-full bg-gdg-yellow/20 text-gdg-yellow border border-gdg-yellow/40">
                         <Star className="h-3.5 w-3.5 fill-gdg-yellow" />
                         Founding member
+                      </span>
+                    )}
+                    {getTeamMembership(user) && (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full bg-gdg-green/15 text-gdg-green border border-gdg-green/30">
+                        <Users className="h-3.5 w-3.5" />
+                        GDG Babcock Volunteer — {getTeamMembership(user)!.role}
                       </span>
                     )}
                   </div>

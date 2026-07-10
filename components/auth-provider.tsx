@@ -29,7 +29,6 @@ import {
   type ProfileUpdatePayload,
 } from "@/lib/auth-service";
 import { onAuthStateChanged } from "firebase/auth";
-import { getMemberSeedData } from "@/lib/member-seed-data";
 
 // ─── Context shape ──────────────────────────────────────────────────────────
 
@@ -76,43 +75,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
     } catch {
       // Fallback to partial data if touch fails
-    }
-
-    // Auto-populate from spreadsheet seed data on first login
-    // If profile is mostly empty (no department, no whatsapp), check the lookup
-    const isNewProfile =
-      !currentUser.department && !currentUser.whatsapp_number;
-    if (isNewProfile && currentUser.email) {
-      const seed = getMemberSeedData(currentUser.email);
-      if (seed) {
-        try {
-          // Only send fields the user doesn't already have
-          const payload: ProfileUpdatePayload = {};
-          if (seed.full_name && !currentUser.full_name)
-            payload.full_name = seed.full_name;
-          if (seed.gender) payload.gender = seed.gender;
-          if (seed.whatsapp_number)
-            payload.whatsapp_number = seed.whatsapp_number;
-          if (seed.birthday) payload.birthday = seed.birthday;
-          if (seed.primary_track)
-            payload.primary_track = seed.primary_track;
-          if (seed.secondary_track)
-            payload.secondary_track = seed.secondary_track;
-          if (seed.student_status)
-            payload.student_status = seed.student_status;
-          if (seed.matric_no) payload.matric_no = seed.matric_no;
-          if (seed.department) payload.department = seed.department;
-          if (seed.faculty) payload.faculty = seed.faculty;
-          if (seed.primary_skill_level)
-            payload.primary_skill_level = seed.primary_skill_level;
-
-          if (Object.keys(payload).length > 0) {
-            currentUser = await updateProfile(payload);
-          }
-        } catch {
-          // Seed populate failed — not critical, user can fill manually
-        }
-      }
     }
 
     setUser(currentUser);

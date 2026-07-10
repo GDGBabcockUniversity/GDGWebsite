@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { TEAM_PREVIEW } from "@/lib/team-data";
+import { fetchTeamRoster } from "@/lib/team-service";
 import { GDG_HEX, TEXT_CLASS, colorByIndex } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 
@@ -18,8 +18,17 @@ const ROTATIONS = [
   "lg:-rotate-1",
 ];
 
+/** Core-team members shown on the home page, leads first. */
+async function getPreviewMembers() {
+  const roster = await fetchTeamRoster();
+  return roster
+    .filter((m) => m.team_year === "current" && m.section === "core" && m.image_url)
+    .sort((a, b) => Number(b.is_lead) - Number(a.is_lead));
+}
+
 /** "The people behind the pixels." — scattered team cards on the home page */
-export default function TeamPreview() {
+export default async function TeamPreview() {
+  const members = await getPreviewMembers();
   return (
     <section id="team" className="scroll-mt-24 bg-[#0f0f0f]">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:py-32">
@@ -32,7 +41,7 @@ export default function TeamPreview() {
 
         {/* Snap-scroll row below lg, scattered grid on lg+ */}
         <div className="mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 lg:grid lg:grid-cols-5 lg:gap-8 lg:gap-y-12 lg:overflow-visible lg:pb-0">
-          {TEAM_PREVIEW.map((member, i) => {
+          {members.map((member, i) => {
             const color = colorByIndex(i);
             return (
               <div
@@ -46,7 +55,7 @@ export default function TeamPreview() {
               >
                 <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-white/5">
                   <Image
-                    src={member.image}
+                    src={member.image_url!}
                     alt={member.name}
                     fill
                     sizes="(min-width: 1024px) 220px, 220px"
@@ -67,7 +76,7 @@ export default function TeamPreview() {
                     TEXT_CLASS[color]
                   )}
                 >
-                  “{member.wordsToLiveBy}”
+                  “{member.words_to_live_by}”
                 </p>
               </div>
             );
