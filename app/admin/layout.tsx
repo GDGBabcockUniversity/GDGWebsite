@@ -46,6 +46,20 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         <p className="text-xs font-bold uppercase tracking-[0.25em] text-gdg-red">
           Admin
         </p>
+        <nav className="mt-4 flex flex-wrap gap-5 text-sm font-medium text-white/50">
+          <Link href="/admin" className="hover:text-white">
+            Events
+          </Link>
+          <Link href="/admin/users" className="hover:text-white">
+            Users
+          </Link>
+          <Link href="/admin/team" className="hover:text-white">
+            Team
+          </Link>
+          <Link href="/admin/analytics" className="hover:text-white">
+            Analytics
+          </Link>
+        </nav>
         {children}
       </div>
     </main>
