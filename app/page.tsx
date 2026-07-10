@@ -3,6 +3,7 @@ import MarqueeTicker from "@/components/sections/marquee-ticker";
 import Story from "@/components/sections/story";
 import WhatWeDo from "@/components/sections/what-we-do";
 import AnnualStructure from "@/components/sections/annual-structure";
+import UpcomingEvents from "@/components/sections/upcoming-events";
 import FeaturedProducts from "@/components/sections/featured-products";
 import Engage from "@/components/sections/engage";
 import GalleryStrips from "@/components/sections/gallery-strips";
@@ -19,7 +20,8 @@ export default function Home() {
       <MarqueeTicker />
       <Story />
       <WhatWeDo />
-      {/* 2. The annual structure */}
+      {/* 2. Upcoming events, then the annual structure backdrop */}
+      <UpcomingEvents />
       <AnnualStructure />
       {/* 3. Featured products */}
       <FeaturedProducts />
