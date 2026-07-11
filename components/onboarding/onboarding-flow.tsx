@@ -6,7 +6,7 @@
  * service, then shows the member's WhatsApp group links.
  */
 
-import { useMemo, useState } from "react";
+import { forwardRef, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -127,19 +127,27 @@ function Field({
   );
 }
 
-function Select({
-  options,
-  optionValues,
-  placeholder,
-  ...props
-}: React.SelectHTMLAttributes<HTMLSelectElement> & {
-  options: string[];
-  /** Parallel array of stored values when they differ from the labels */
-  optionValues?: string[];
-  placeholder: string;
-}) {
+// forwardRef matters here: react-hook-form's register() returns a `ref`
+// that must reach the native <select> for it to track the field's value at
+// all — a plain function component silently drops it (React won't forward
+// refs to non-forwardRef function components), leaving every field routed
+// through this component permanently `undefined` from RHF's perspective
+// regardless of what the user visibly picks.
+const Select = forwardRef<
+  HTMLSelectElement,
+  React.SelectHTMLAttributes<HTMLSelectElement> & {
+    options: string[];
+    /** Parallel array of stored values when they differ from the labels */
+    optionValues?: string[];
+    placeholder: string;
+  }
+>(function Select({ options, optionValues, placeholder, ...props }, ref) {
   return (
-    <select {...props} className={cn(inputClass, "appearance-none")}>
+    <select
+      ref={ref}
+      {...props}
+      className={cn(inputClass, "appearance-none")}
+    >
       <option value="">{placeholder}</option>
       {options.map((o, i) => (
         <option key={o} value={optionValues ? optionValues[i] : o}>
@@ -148,7 +156,7 @@ function Select({
       ))}
     </select>
   );
-}
+});
 
 // ─── Steps ──────────────────────────────────────────────────────────────────
 
