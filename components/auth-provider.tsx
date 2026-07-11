@@ -16,6 +16,7 @@ import {
   createUserWithEmailAndPassword,
   firebaseSignOut,
   getIdToken,
+  fetchSignInMethodsForEmail,
   type FirebaseUser,
 } from "@/lib/firebase";
 import {
@@ -49,6 +50,24 @@ interface AuthContextType {
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+// Firebase treats email/password and Google as separate, unlinked
+// identities for the same email address. When a sign-in attempt collides
+// with an account under a different provider, Firebase's own error message
+// is technically accurate but easy to misread ("doesn't exist" instead of
+// "not with this method") — this looks up which provider the email is
+// actually linked to and names it directly.
+async function suggestExistingProvider(email: string | undefined): Promise<string | null> {
+  if (!email || !auth) return null;
+  try {
+    const methods = await fetchSignInMethodsForEmail(auth, email);
+    if (methods.includes("google.com")) return "Google";
+    if (methods.includes("password")) return "email & password";
+    return null;
+  } catch {
+    return null;
+  }
+}
 
 // ─── Provider ───────────────────────────────────────────────────────────────
 
@@ -133,10 +152,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const result = await signInWithPopup(auth, googleProvider);
       await exchangeToken(result.user);
     } catch (err: any) {
-      const msg =
-        err?.code === "auth/popup-closed-by-user"
-          ? "Sign-in cancelled"
-          : err?.message || "Google sign-in failed";
+      let msg: string;
+      if (err?.code === "auth/popup-closed-by-user") {
+        msg = "Sign-in cancelled";
+      } else if (err?.code === "auth/account-exists-with-different-credential") {
+        const provider = await suggestExistingProvider(err?.customData?.email);
+        msg = provider
+          ? `You already have an account with this email — sign in with ${provider} instead.`
+          : "You already have an account with this email under a different sign-in method.";
+      } else {
+        msg = err?.message || "Google sign-in failed";
+      }
       setError(msg);
       throw err;
     } finally {
@@ -154,10 +180,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         const result = await signInWithEmailAndPassword(auth, email, password);
         await exchangeToken(result.user);
       } catch (err: any) {
-        const msg =
-          err?.code === "auth/invalid-credential"
-            ? "Invalid email or password"
-            : err?.message || "Login failed";
+        let msg: string;
+        if (err?.code === "auth/invalid-credential" || err?.code === "auth/user-not-found") {
+          // Could genuinely be a wrong password, or could be an email that
+          // only ever signed in with Google — tell them which, if we can.
+          const provider = await suggestExistingProvider(email);
+          msg =
+            provider && provider !== "email & password"
+              ? `You signed up with ${provider} — sign in with that instead.`
+              : "Invalid email or password";
+        } else {
+          msg = err?.message || "Login failed";
+        }
         setError(msg);
         throw err;
       } finally {
@@ -181,12 +215,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         );
         await exchangeToken(result.user);
       } catch (err: any) {
-        const msg =
-          err?.code === "auth/email-already-in-use"
-            ? "An account with this email already exists"
-            : err?.code === "auth/weak-password"
-              ? "Password must be at least 6 characters"
-              : err?.message || "Sign up failed";
+        let msg: string;
+        if (err?.code === "auth/email-already-in-use") {
+          const provider = await suggestExistingProvider(email);
+          msg = provider
+            ? `You already have an account with this email — sign in with ${provider} instead.`
+            : "An account with this email already exists";
+        } else if (err?.code === "auth/weak-password") {
+          msg = "Password must be at least 6 characters";
+        } else {
+          msg = err?.message || "Sign up failed";
+        }
         setError(msg);
         throw err;
       } finally {
