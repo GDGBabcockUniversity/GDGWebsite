@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   signOut as firebaseSignOut,
   getIdToken,
+  fetchSignInMethodsForEmail,
   type User as FirebaseUser,
   type Auth,
 } from "firebase/auth";
@@ -40,5 +41,6 @@ export {
   createUserWithEmailAndPassword,
   firebaseSignOut,
   getIdToken,
+  fetchSignInMethodsForEmail,
 };
 export type { FirebaseUser };
