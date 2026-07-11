@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   GENDERS,
-  TEAMS,
   STUDENT_STATUSES,
   TRACKS,
   DEPARTMENTS,
@@ -134,7 +133,6 @@ export default function ProfilePage() {
         const d = String(form.birthday_day).padStart(2, "0");
         payload.birthday = `2000-${m}-${d}`;
       }
-      if (form.teams && form.teams.length > 0) payload.teams = form.teams;
       if (form.student_status) payload.student_status = form.student_status;
       if (form.matric_no) payload.matric_no = form.matric_no;
       if (form.department) payload.department = form.department;
@@ -220,7 +218,7 @@ export default function ProfilePage() {
     : "?";
 
   return (
-    <main className="min-h-screen pt-24 pb-16">
+    <main className={`min-h-screen pt-24 ${isEditing ? "pb-24" : "pb-16"}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back nav */}
         <Link
@@ -283,40 +281,47 @@ export default function ProfilePage() {
                   </div>
                 </div>
                 <div className="flex gap-2 sm:ml-auto">
-                  {!isEditing ? (
+                  {!isEditing && (
                     <Button
                       onClick={handleStartEditing}
                       className="bg-white hover:bg-gray-100 text-black rounded-full font-medium h-10 px-5"
                     >
                       Edit Profile
                     </Button>
-                  ) : (
-                    <>
-                      <Button
-                        onClick={() => setIsEditing(false)}
-                        variant="outline"
-                        className="rounded-full h-10 px-5"
-                      >
-                        Cancel
-                      </Button>
-                      <Button
-                        onClick={handleSave}
-                        disabled={saving}
-                        className="bg-gdg-blue hover:bg-gdg-blue/90 text-white rounded-full font-medium h-10 px-5 glow-blue"
-                      >
-                        {saving ? (
-                          <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                        ) : (
-                          <Save className="h-4 w-4 mr-2" />
-                        )}
-                        Save
-                      </Button>
-                    </>
                   )}
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Floating save bar — the only Save/Cancel while editing, so
+              editing a field far down the page (Department, Teams) never
+              requires scrolling back up to the header to save. */}
+          {isEditing && (
+            <div className="fixed inset-x-0 bottom-0 z-50 border-t border-white/15 bg-[#171717]/95 px-4 py-3 backdrop-blur">
+              <div className="mx-auto flex max-w-3xl justify-end gap-2">
+                <Button
+                  onClick={() => setIsEditing(false)}
+                  variant="outline"
+                  className="rounded-full h-10 px-5"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleSave}
+                  disabled={saving}
+                  className="bg-gdg-blue hover:bg-gdg-blue/90 text-white rounded-full font-medium h-10 px-5 glow-blue"
+                >
+                  {saving ? (
+                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                  ) : (
+                    <Save className="h-4 w-4 mr-2" />
+                  )}
+                  Save
+                </Button>
+              </div>
+            </div>
+          )}
 
           {/* Success / Error messages */}
           {successMsg && (
@@ -488,7 +493,10 @@ export default function ProfilePage() {
                             type="button"
                             onClick={() => {
                               updateField("department", d);
-                              setDeptSearch("");
+                              // Show the pick back in the box — clearing it
+                              // gave no visual confirmation once the list
+                              // scrolled out of view.
+                              setDeptSearch(d);
                             }}
                             className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
                               form.department === d
@@ -532,7 +540,10 @@ export default function ProfilePage() {
                             type="button"
                             onClick={() => {
                               updateField("faculty", f);
-                              setFacultySearch("");
+                              // Show the pick back in the box — clearing it
+                              // gave no visual confirmation once the list
+                              // scrolled out of view.
+                              setFacultySearch(f);
                             }}
                             className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
                               form.faculty === f
@@ -561,50 +572,24 @@ export default function ProfilePage() {
                 <Users className="h-5 w-5 text-gdg-red" />
                 Teams
               </h2>
-              {isEditing ? (
-                <div className="grid grid-cols-2 gap-2">
-                  {TEAMS.map((team) => {
-                    const selected = (form.teams || []).includes(team);
-                    const maxed = (form.teams || []).length >= 2 && !selected;
-                    return (
-                      <button
-                        key={team}
-                        type="button"
-                        disabled={maxed}
-                        onClick={() => {
-                          const current = form.teams || [];
-                          const next = selected
-                            ? current.filter((t) => t !== team)
-                            : [...current, team];
-                          updateField("teams", next);
-                        }}
-                        className={`px-3 py-2.5 rounded-xl text-sm font-medium border transition-all text-left ${
-                          selected
-                            ? "bg-gdg-blue text-white border-gdg-blue"
-                            : "bg-background border-border text-foreground hover:border-gdg-blue/50"
-                        } ${maxed ? "opacity-40 cursor-not-allowed" : ""}`}
-                      >
-                        {team}
-                      </button>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div className="flex flex-wrap gap-2">
-                  {user.teams && user.teams.length > 0 ? (
-                    user.teams.map((t) => (
-                      <span
-                        key={t}
-                        className="px-3 py-1 text-sm font-medium rounded-full bg-gdg-red/20 text-gdg-red border border-gdg-red/30"
-                      >
-                        {t}
-                      </span>
-                    ))
-                  ) : (
-                    <p className="text-sm text-muted-foreground">—</p>
-                  )}
-                </div>
-              )}
+              {/* Read-only: team membership is admin-managed (see the
+                  volunteer badge on this page's header, backed by the
+                  team_members roster) — this self-serve picker used to
+                  write to a field the backend never actually persisted. */}
+              <div className="flex flex-wrap gap-2">
+                {user.teams && user.teams.length > 0 ? (
+                  user.teams.map((t) => (
+                    <span
+                      key={t}
+                      className="px-3 py-1 text-sm font-medium rounded-full bg-gdg-red/20 text-gdg-red border border-gdg-red/30"
+                    >
+                      {t}
+                    </span>
+                  ))
+                ) : (
+                  <p className="text-sm text-muted-foreground">—</p>
+                )}
+              </div>
             </section>
 
             {/* Track & Skills */}
