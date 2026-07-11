@@ -43,6 +43,7 @@ import {
   GDG_COMMUNITY_DEV_URL,
 } from "@/lib/tracks";
 import { GDG_HEX, TEXT_CLASS } from "@/lib/colors";
+import { TEAM_SECTIONS } from "@/lib/team-data";
 import WhatsApp from "@/components/svgs/whatsapp";
 import {
   getCertificates,
@@ -78,7 +79,6 @@ export default function ProfilePage() {
       gender: user?.gender || "",
       birthday_day: bDay ?? undefined,
       birthday_month: bMonth ?? undefined,
-      teams: user?.teams || [],
       student_status: user?.student_status || "",
       matric_no: user?.matric_no || "",
       department: user?.department || "",
@@ -566,29 +566,35 @@ export default function ProfilePage() {
               </div>
             </section>
 
-            {/* Teams — admin-assigned volunteer teams (distinct from the
-                self-picked Tracks below). Read-only: only an admin route
-                can write this field, by design. Hidden entirely when unset
-                rather than showing an empty placeholder — most members
-                aren't on a volunteer team at all. */}
-            {user.teams && user.teams.length > 0 && (
-              <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
-                <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
-                  <Users className="h-5 w-5 text-gdg-red" />
-                  Teams
-                </h2>
-                <div className="flex flex-wrap gap-2">
-                  {user.teams.map((t) => (
-                    <span
-                      key={t}
-                      className="px-3 py-1 text-sm font-medium rounded-full bg-gdg-red/20 text-gdg-red border border-gdg-red/30"
-                    >
-                      {t}
+            {/* Team — admin-assigned via the /admin/team roster
+                (team_members.section/subteam), not the unused `user.teams`
+                array. Read-only, and hidden entirely when unlinked —
+                most members aren't on a volunteer team at all. */}
+            {(() => {
+              const membership = getTeamMembership(user);
+              if (!membership) return null;
+              const sectionLabel =
+                TEAM_SECTIONS.find((s) => s.id === membership.section)?.label ??
+                membership.section;
+              return (
+                <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
+                  <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
+                    <Users className="h-5 w-5 text-gdg-red" />
+                    Team
+                  </h2>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 text-sm font-medium rounded-full bg-gdg-red/20 text-gdg-red border border-gdg-red/30">
+                      {sectionLabel}
                     </span>
-                  ))}
-                </div>
-              </section>
-            )}
+                    {membership.subteam && (
+                      <span className="px-3 py-1 text-sm font-medium rounded-full bg-white/5 text-white/70 border border-white/15">
+                        {membership.subteam}
+                      </span>
+                    )}
+                  </div>
+                </section>
+              );
+            })()}
 
             {/* Track & Skills */}
             <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
