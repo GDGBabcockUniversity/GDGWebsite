@@ -566,31 +566,29 @@ export default function ProfilePage() {
               </div>
             </section>
 
-            {/* Teams */}
-            <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
-              <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
-                <Users className="h-5 w-5 text-gdg-red" />
-                Teams
-              </h2>
-              {/* Read-only: team membership is admin-managed (see the
-                  volunteer badge on this page's header, backed by the
-                  team_members roster) — this self-serve picker used to
-                  write to a field the backend never actually persisted. */}
-              <div className="flex flex-wrap gap-2">
-                {user.teams && user.teams.length > 0 ? (
-                  user.teams.map((t) => (
+            {/* Teams — admin-assigned volunteer teams (distinct from the
+                self-picked Tracks below). Read-only: only an admin route
+                can write this field, by design. Hidden entirely when unset
+                rather than showing an empty placeholder — most members
+                aren't on a volunteer team at all. */}
+            {user.teams && user.teams.length > 0 && (
+              <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
+                <h2 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
+                  <Users className="h-5 w-5 text-gdg-red" />
+                  Teams
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {user.teams.map((t) => (
                     <span
                       key={t}
                       className="px-3 py-1 text-sm font-medium rounded-full bg-gdg-red/20 text-gdg-red border border-gdg-red/30"
                     >
                       {t}
                     </span>
-                  ))
-                ) : (
-                  <p className="text-sm text-muted-foreground">—</p>
-                )}
-              </div>
-            </section>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* Track & Skills */}
             <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
