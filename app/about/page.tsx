@@ -7,7 +7,7 @@ import { APPLY_URL, PARTNER_EMAIL } from "@/lib/content/site";
 export const metadata: Metadata = {
   title: "About — GDG Babcock",
   description:
-    "GDG Babcock — the Google Developer Group at Babcock University. We teach students to build, and we ship products the whole campus uses.",
+    "GDG Babcock — the Google Developer Group at Babcock University. We run events, teach students to build, and ship products like BabcockVotes and RADAR.",
 };
 
 const PILLARS = [
@@ -18,12 +18,12 @@ const PILLARS = [
   },
   {
     title: "Innovation",
-    body: "We build products the whole campus uses — from BabcockVotes to RADAR — not demos that get shelved.",
+    body: "We build products people use — BabcockVotes, RADAR, Babcock 100 — and keep them running.",
     color: "red",
   },
   {
     title: "Visibility",
-    body: "Recognition platforms like The 100 and a publication in RADAR that put student builders on the map.",
+    body: "The 100 names the year's most active builders, and RADAR publishes their work.",
     color: "yellow",
   },
   {
@@ -57,9 +57,9 @@ export default function AboutPage() {
             University — officially affiliated with Google Developer Groups
             worldwide. That affiliation gives our community direct access to
             Google technologies, developer resources, and the global GDG
-            network. But we&apos;re more than a badge: we teach students to
-            build, ship products the whole campus uses, put student work on the
-            map, and hand it all down to each new cohort.
+            network. Beyond that, we run events, teach students to build, and
+            ship products like BabcockVotes and RADAR &mdash; with leadership
+            that changes hands every year.
           </p>
         </div>
       </section>

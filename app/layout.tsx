@@ -11,7 +11,7 @@ import { SvgFilters } from "@/components/svg-filters";
 export const metadata: Metadata = {
   title: "GDG Babcock — Google Developer Group at Babcock University",
   description:
-    "The Google Developer Group at Babcock University. Workshops, tech talks, hackathons, and 500+ students who build things the campus uses.",
+    "The Google Developer Group at Babcock University. Workshops, tech talks, hackathons, and 500+ student members.",
 };
 
 export default function RootLayout({

@@ -82,7 +82,7 @@ export default function Story() {
             <div className="relative mt-14 inline-block lg:mr-32">
               <CurvedArrow className="absolute -left-12 -top-16 h-20 w-28 -rotate-[28deg] sm:-left-20 sm:-top-20 sm:h-24 sm:w-36" />
               <span className="inline-block -rotate-3 rounded-full bg-gdg-blue px-5 py-2 text-xs font-bold text-white shadow-[0_12px_32px_rgba(66,133,244,0.28)]">
-                Actually Google-affiliated.
+                Officially GDG.
               </span>
             </div>
           </div>
