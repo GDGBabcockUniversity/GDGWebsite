@@ -56,10 +56,9 @@ export default function Story() {
               imgClassName="object-contain"
               sizes="(max-width: 1024px) 90vw, 40vw"
             />
-            {/* Sticker captions on the founding photo. Swap in the real
-                founding year here if you want it on the sticker. */}
+            {/* Sticker captions on the founding photo. */}
             <span className="absolute -top-4 left-10 rounded-full bg-gdg-red px-4 py-1.5 text-xs font-bold text-white shadow-lg -rotate-6 sm:left-16 sm:text-sm">
-              Early days.
+              Since 2022.
             </span>
             <span className="absolute bottom-4 right-0 rounded-full bg-gdg-yellow px-4 py-1.5 text-xs font-bold text-[#0f0f0f] shadow-lg rotate-3 sm:right-6">
               Still building.

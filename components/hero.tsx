@@ -120,7 +120,7 @@ export default function Hero() {
               Babcock University
             </p>
             <h1 className="mt-4 text-4xl font-bold leading-[1.05] text-gdg-cream sm:text-6xl lg:text-7xl">
-              The developer community at Babcock University.
+              The premier developer community at Babcock University.
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
               Workshops, a monthly meetup, ORBIT, and products like BabcockVotes
