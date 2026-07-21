@@ -56,11 +56,13 @@ export default function Story() {
               imgClassName="object-contain"
               sizes="(max-width: 1024px) 90vw, 40vw"
             />
+            {/* Sticker captions on the founding photo. Swap in the real
+                founding year here if you want it on the sticker. */}
             <span className="absolute -top-4 left-10 rounded-full bg-gdg-red px-4 py-1.5 text-xs font-bold text-white shadow-lg -rotate-6 sm:left-16 sm:text-sm">
-              Generic caption
+              Early days.
             </span>
             <span className="absolute bottom-4 right-0 rounded-full bg-gdg-yellow px-4 py-1.5 text-xs font-bold text-[#0f0f0f] shadow-lg rotate-3 sm:right-6">
-              Generic caption
+              Still building.
             </span>
             <Starburst className="absolute -bottom-8 -left-7 h-28 w-28 rotate-12 sm:-bottom-10 sm:-left-10 sm:h-36 sm:w-36" />
           </div>
@@ -80,7 +82,7 @@ export default function Story() {
             <div className="relative mt-14 inline-block lg:mr-32">
               <CurvedArrow className="absolute -left-12 -top-16 h-20 w-28 -rotate-[28deg] sm:-left-20 sm:-top-20 sm:h-24 sm:w-36" />
               <span className="inline-block -rotate-3 rounded-full bg-gdg-blue px-5 py-2 text-xs font-bold text-white shadow-[0_12px_32px_rgba(66,133,244,0.28)]">
-                Definitely not AI Generated.
+                Actually Google-affiliated.
               </span>
             </div>
           </div>

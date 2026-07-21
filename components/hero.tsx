@@ -120,11 +120,11 @@ export default function Hero() {
               Babcock University
             </p>
             <h1 className="mt-4 text-4xl font-bold leading-[1.05] text-gdg-cream sm:text-6xl lg:text-7xl">
-              Building Babcock&apos;s next generation of tech leaders.
+              We build what Babcock uses.
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
-              A student institution for learning, innovation, visibility, and
-              recognition across the Babcock tech ecosystem.
+              Workshops, a monthly meetup, and student-built products the whole
+              campus runs on &mdash; BabcockVotes, RADAR, ORBIT.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <button

@@ -7,7 +7,7 @@ import { APPLY_URL, PARTNER_EMAIL } from "@/lib/content/site";
 export const metadata: Metadata = {
   title: "About — GDG Babcock",
   description:
-    "GDG Babcock is a student institution for learning, innovation, visibility, and recognition — officially affiliated with Google Developer Groups.",
+    "GDG Babcock — the Google Developer Group at Babcock University. We teach students to build, and we ship products the whole campus uses.",
 };
 
 const PILLARS = [
@@ -57,9 +57,9 @@ export default function AboutPage() {
             University — officially affiliated with Google Developer Groups
             worldwide. That affiliation gives our community direct access to
             Google technologies, developer resources, and the global GDG
-            network. But what we are is bigger than an affiliation: a structured
-            home for learning, innovation, visibility, recognition, and
-            continuity across the Babcock tech ecosystem.
+            network. But we&apos;re more than a badge: we teach students to
+            build, ship products the whole campus uses, put student work on the
+            map, and hand it all down to each new cohort.
           </p>
         </div>
       </section>

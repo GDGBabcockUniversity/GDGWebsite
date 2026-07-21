@@ -90,8 +90,8 @@ export default function Completion({ user }: { user: PlatformUser }) {
               Register on GDG Community
             </p>
             <p className="mt-1 text-xs text-white/60">
-              One more step — be officially part of GDG worldwide and unlock
-              events from every chapter.
+              One more step — register with GDG worldwide so you can join
+              events from any chapter.
             </p>
           </div>
           <ArrowRight className="h-5 w-5 shrink-0 text-gdg-blue" />

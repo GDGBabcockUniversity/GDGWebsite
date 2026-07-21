@@ -32,7 +32,7 @@ export const HERO_QUOTES: HeroQuote[] = [
     name: "Destiny N.",
     initials: "DN",
     quote: "Best in the league, Next is the win.",
-    tag: "Generic caption",
+    tag: "Build with AI",
     tagColor: "yellow",
     borderColor: "green",
     position: "top-[34%] right-[30%] w-64",
