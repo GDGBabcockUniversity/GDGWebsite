@@ -39,7 +39,7 @@ export const PRODUCTS: Product[] = [
     status: "live",
     color: "blue",
     href: "https://radar.gdgbabcock.com",
-    preview: "/images/products/radar.png",
+    preview: "/images/products/radar.jpg",
   },
   {
     name: "ORBIT",
@@ -49,7 +49,7 @@ export const PRODUCTS: Product[] = [
     status: "live",
     color: "red",
     href: "https://orbit.gdgbabcock.com",
-    preview: "/images/products/orbit.png",
+    preview: "/images/products/orbit.jpg",
   },
   {
     name: "Babcock 100",
@@ -59,7 +59,7 @@ export const PRODUCTS: Product[] = [
     status: "live",
     color: "yellow",
     href: "https://babcock100.com",
-    preview: "/images/products/babcock-100.png",
+    preview: "/images/products/babcock-100.jpg",
   },
   {
     name: "BabcockVotes",
@@ -69,7 +69,7 @@ export const PRODUCTS: Product[] = [
     status: "live",
     color: "green",
     href: "https://babcockvotes.com",
-    preview: "/images/products/babcockvotes.png",
+    preview: "/images/products/babcockvotes.jpg",
   },
   {
     name: "GDG Website",
@@ -79,7 +79,7 @@ export const PRODUCTS: Product[] = [
     status: "live",
     color: "blue",
     href: "https://gdgbabcock.com",
-    preview: "/images/products/gdg-website.png",
+    preview: "/images/products/gdg-website.jpg",
   },
   {
     name: "Wrapped",
