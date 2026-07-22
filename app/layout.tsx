@@ -39,6 +39,9 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     url: SITE_URL,
     locale: "en_US",
+    // Placeholder share image — the sticker logomark for now; swap for a
+    // purpose-built 1200×630 card later.
+    images: [{ url: "/og-image.png", width: 503, height: 340, alt: SITE_NAME }],
   },
   twitter: {
     card: "summary_large_image",
@@ -46,6 +49,7 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     site: "@gdgbabcock",
     creator: "@gdgbabcock",
+    images: ["/og-image.png"],
   },
 };
 
