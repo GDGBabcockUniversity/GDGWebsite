@@ -7,9 +7,10 @@ import { OUTLINE_TEXT_CLASS, PILL_CLASS, GDG_HEX } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Products — GDG Babcock",
+  title: "Products",
   description:
     "The things GDG Babcock has shipped: RADAR, ORBIT, Babcock 100, BabcockVotes, and what's next.",
+  alternates: { canonical: "/products" },
 };
 
 function formatDate(iso?: string) {

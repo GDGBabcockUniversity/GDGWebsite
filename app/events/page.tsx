@@ -5,9 +5,10 @@ import { fetchPublishedEvents } from "@/lib/events-service";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Events — GDG Babcock",
+  title: "Events",
   description:
     "Browse upcoming and past GDG Babcock events — register, check in, and earn a certificate.",
+  alternates: { canonical: "/events" },
 };
 
 function formatDate(iso: string) {

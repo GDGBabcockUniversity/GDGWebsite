@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Hero from "@/components/hero";
 import MarqueeTicker from "@/components/sections/marquee-ticker";
 import Story from "@/components/sections/story";
@@ -11,6 +12,10 @@ import AcrossCampus from "@/components/sections/across-campus";
 import Partner from "@/components/sections/partner";
 import TeamPreview from "@/components/sections/team-preview";
 import RadarLatest from "@/components/sections/radar-latest";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (

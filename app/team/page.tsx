@@ -4,8 +4,9 @@ import { fetchTeamRoster, type RosterMember } from "@/lib/team-service";
 import type { TeamMember, TeamSection, TeamYear } from "@/lib/team-data";
 
 export const metadata: Metadata = {
-  title: "The Team | GDG Babcock",
+  title: "The Team",
   description: "Every team that has built GDG Babcock — browsable by year.",
+  alternates: { canonical: "/team" },
 };
 
 export const revalidate = 60;

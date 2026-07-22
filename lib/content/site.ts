@@ -5,6 +5,11 @@
 
 import type { GdgColor } from "@/lib/tracks";
 
+/** Canonical production origin, no trailing slash. Used for metadata,
+ * sitemap, robots, and structured data. */
+export const SITE_URL = "https://gdgbabcock.com";
+export const SITE_NAME = "GDG Babcock";
+
 /** Where leadership applications live. */
 export const APPLY_URL = "https://apply.gdgbabcock.com";
 

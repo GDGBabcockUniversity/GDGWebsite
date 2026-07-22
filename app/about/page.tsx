@@ -5,9 +5,10 @@ import AnnualStructure from "@/components/sections/annual-structure";
 import { APPLY_URL, PARTNER_EMAIL } from "@/lib/content/site";
 
 export const metadata: Metadata = {
-  title: "About — GDG Babcock",
+  title: "About",
   description:
     "GDG Babcock — the Google Developer Group at Babcock University. We run events, teach students to build, and ship products like BabcockVotes and RADAR.",
+  alternates: { canonical: "/about" },
 };
 
 const PILLARS = [
