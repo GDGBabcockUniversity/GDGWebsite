@@ -14,6 +14,13 @@ export interface Product {
   status: ProductStatus;
   color: GdgColor;
   href?: string;
+  /**
+   * Screenshot of the product's live site, shown behind the card as a
+   * preview. Recommended: ~1200×750 (16:10), top/hero of the page.
+   * The card renders fine with the file missing — it just shows no preview
+   * until the screenshot is dropped in at this path.
+   */
+  preview?: string;
 }
 
 export const STATUS_LABEL: Record<ProductStatus, string> = {
@@ -32,6 +39,7 @@ export const PRODUCTS: Product[] = [
     status: "live",
     color: "blue",
     href: "https://radar.gdgbabcock.com",
+    preview: "/images/products/radar.png",
   },
   {
     name: "ORBIT",
@@ -41,6 +49,7 @@ export const PRODUCTS: Product[] = [
     status: "live",
     color: "red",
     href: "https://orbit.gdgbabcock.com",
+    preview: "/images/products/orbit.png",
   },
   {
     name: "Babcock 100",
@@ -50,6 +59,7 @@ export const PRODUCTS: Product[] = [
     status: "live",
     color: "yellow",
     href: "https://babcock100.com",
+    preview: "/images/products/babcock-100.png",
   },
   {
     name: "BabcockVotes",
@@ -59,6 +69,7 @@ export const PRODUCTS: Product[] = [
     status: "live",
     color: "green",
     href: "https://babcockvotes.com",
+    preview: "/images/products/babcockvotes.png",
   },
   {
     name: "GDG Website",
@@ -68,6 +79,7 @@ export const PRODUCTS: Product[] = [
     status: "live",
     color: "blue",
     href: "https://gdgbabcock.com",
+    preview: "/images/products/gdg-website.png",
   },
   {
     name: "Wrapped",

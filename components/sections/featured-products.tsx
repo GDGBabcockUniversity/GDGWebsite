@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { FEATURED_PRODUCTS, STATUS_LABEL } from "@/lib/content/products";
 import { OUTLINE_TEXT_CLASS, PILL_CLASS } from "@/lib/colors";
+import { SitePreview } from "@/components/site-preview";
 import { cn } from "@/lib/utils";
 
 /** "Built here." — the flagship live products, linking out to each. */
@@ -34,9 +35,19 @@ export default function FeaturedProducts() {
               href={product.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-3xl border border-white/12 bg-[#161616] p-6 transition-colors hover:border-white/30"
+              className="group relative flex min-h-[260px] flex-col justify-between overflow-hidden rounded-3xl border border-white/12 bg-[#161616] p-6 transition-colors hover:border-white/30"
             >
-              <div className="flex items-start justify-between">
+              {/* Live-site preview behind the card (renders nothing until the
+                  screenshot exists), with a gradient so the text stays legible. */}
+              <SitePreview
+                src={product.preview}
+                className="opacity-70 transition-opacity duration-300 group-hover:opacity-90"
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#161616] from-30% via-[#161616]/85 to-[#161616]/20"
+              />
+              <div className="relative z-10 flex items-start justify-between">
                 <span
                   className={cn(
                     "rounded-full px-3 py-1 text-[11px] font-bold",
@@ -45,9 +56,9 @@ export default function FeaturedProducts() {
                 >
                   {STATUS_LABEL[product.status]}
                 </span>
-                <ArrowUpRight className="h-5 w-5 text-white/40 transition-colors group-hover:text-white" />
+                <ArrowUpRight className="h-5 w-5 text-white/70 transition-colors group-hover:text-white" />
               </div>
-              <div>
+              <div className="relative z-10">
                 <p
                   className={cn(
                     "text-3xl font-extrabold uppercase leading-none sm:text-4xl",
@@ -56,7 +67,7 @@ export default function FeaturedProducts() {
                 >
                   {product.name}
                 </p>
-                <p className="mt-3 text-sm text-white/60">{product.tagline}</p>
+                <p className="mt-3 text-sm text-white/70">{product.tagline}</p>
               </div>
             </a>
           ))}
