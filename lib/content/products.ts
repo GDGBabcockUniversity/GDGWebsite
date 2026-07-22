@@ -72,16 +72,6 @@ export const PRODUCTS: Product[] = [
     preview: "/images/products/babcockvotes.jpg",
   },
   {
-    name: "GDG Website",
-    tagline: "The chapter's home on the web",
-    description:
-      "This site — who we are, what we run, and the front door to the whole ecosystem and its shared member profile.",
-    status: "live",
-    color: "blue",
-    href: "https://gdgbabcock.com",
-    preview: "/images/products/gdg-website.jpg",
-  },
-  {
     name: "Wrapped",
     tagline: "Your year in review",
     description:

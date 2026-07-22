@@ -12,7 +12,6 @@ Filenames are mapped in `lib/content/products.ts` (`preview` field):
 | ORBIT        | `orbit.jpg`         | orbit.gdgbabcock.com       |
 | Babcock 100  | `babcock-100.jpg`   | babcock100.com             |
 | BabcockVotes | `babcockvotes.jpg`  | babcockvotes.com           |
-| GDG Website  | `gdg-website.jpg`   | gdgbabcock.com             |
 
 **Recommended:** ~1200×750 (16:10), the top / hero of each page, PNG or JPG.
 The card crops from the top, so frame the shot with the site's header in view.
