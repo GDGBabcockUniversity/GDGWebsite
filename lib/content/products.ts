@@ -47,7 +47,7 @@ export const PRODUCTS: Product[] = [
     description:
       "Our marquee program — a full arc of talks, demos, workshops, and community that opens the academic year.",
     status: "live",
-    color: "red",
+    color: "purple", // ORBIT's own brand accent (#a040ff)
     href: "https://orbit.gdgbabcock.com",
     preview: "/images/products/orbit.jpg",
   },

@@ -5,7 +5,10 @@
  * To update a WhatsApp link: edit `whatsappUrl` below and commit.
  */
 
-export type GdgColor = "blue" | "red" | "yellow" | "green";
+// "purple" is off-brand for the Google four but on-brand for ORBIT
+// (#a040ff) — used only where a product carries its own accent. It's kept
+// out of colorByIndex's cycle so nothing picks it up by accident.
+export type GdgColor = "blue" | "red" | "yellow" | "green" | "purple";
 
 export interface Track {
   /** EXACT string stored in the auth service DB for primary/secondary_track */

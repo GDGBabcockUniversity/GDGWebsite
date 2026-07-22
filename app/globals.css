@@ -80,6 +80,7 @@
   --color-gdg-red: #ea4335;
   --color-gdg-yellow: #faab00;
   --color-gdg-green: #34a853;
+  --color-gdg-purple: #a040ff;
   --color-gdg-cream: #fff6e0;
 }
 
@@ -309,6 +310,10 @@ html {
   filter: url(#stroke-green);
 }
 
+.text-outline-purple {
+  filter: url(#stroke-purple);
+}
+
 @media (max-width: 48rem) {
   .text-outline-base {
     line-height: 1.18;
@@ -321,6 +326,7 @@ html {
   .text-outline-red { filter: url(#stroke-red-mobile); }
   .text-outline-yellow { filter: url(#stroke-yellow-mobile); }
   .text-outline-green { filter: url(#stroke-green-mobile); }
+  .text-outline-purple { filter: url(#stroke-purple-mobile); }
 }
 
 .text-outline-fill {

@@ -7,6 +7,7 @@ export function SvgFilters() {
     { name: "red", hex: "#ea4335" },
     { name: "yellow", hex: "#faab00" },
     { name: "green", hex: "#34a853" },
+    { name: "purple", hex: "#a040ff" }, // ORBIT's accent
   ];
 
   return (
