@@ -1,30 +1,34 @@
 "use client";
 
 import { useState } from "react";
-import { cn } from "@/lib/utils";
 
 /**
- * A product-site screenshot rendered behind a product card. If the image is
- * missing or fails to load, it renders nothing — so a product without a
- * screenshot yet just shows the plain card (non-destructive). Drop a
- * screenshot at the mapped path in /public/images/products and the card
- * upgrades to a live-looking preview automatically.
+ * A product-site screenshot rendered as a card banner (a contained header
+ * strip, not a background), so the card's own title/text sit cleanly below
+ * it instead of fighting the screenshot. Renders nothing when there's no
+ * screenshot yet — or if it fails to load — so the card falls back to a
+ * clean text-only layout. Non-destructive: drop a file in at the mapped
+ * path and the banner appears.
  */
-export function SitePreview({ src, className }: { src?: string; className?: string }) {
+export function PreviewBanner({ src }: { src?: string }) {
   const [failed, setFailed] = useState(false);
   if (!src || failed) return null;
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={src}
-      alt=""
-      aria-hidden
-      loading="lazy"
-      onError={() => setFailed(true)}
-      className={cn(
-        "pointer-events-none absolute inset-0 h-full w-full object-cover object-top",
-        className
-      )}
-    />
+    <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-white/10 bg-[#0f0f0f]">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        onError={() => setFailed(true)}
+        className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+      />
+      {/* Soft fade so the banner melts into the card body below it. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[#161616] to-transparent"
+      />
+    </div>
   );
 }

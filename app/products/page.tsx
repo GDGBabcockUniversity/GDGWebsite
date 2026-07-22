@@ -4,7 +4,7 @@ import { PRODUCTS, STATUS_LABEL } from "@/lib/content/products";
 import { getLatestRadarPosts, RADAR_BASE_URL } from "@/lib/radar";
 import { APPLY_URL, PARTNER_EMAIL } from "@/lib/content/site";
 import { OUTLINE_TEXT_CLASS, PILL_CLASS, GDG_HEX } from "@/lib/colors";
-import { SitePreview } from "@/components/site-preview";
+import { PreviewBanner } from "@/components/site-preview";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -60,23 +60,16 @@ export default async function ProductsPage() {
                     }
                   : {})}
                 className={cn(
-                  "group relative flex min-h-[240px] flex-col overflow-hidden rounded-3xl border border-white/12 bg-[#161616] p-6 transition-colors",
+                  "group relative flex flex-col overflow-hidden rounded-3xl border border-white/12 bg-[#161616] transition-colors",
                   product.href && "hover:border-white/30",
                   isRadar && radarPosts && "md:col-span-2"
                 )}
                 style={{ borderTopColor: GDG_HEX[product.color], borderTopWidth: 3 }}
               >
-                {/* Live-site preview behind the card (renders nothing until the
-                    screenshot exists), gradient keeps the text legible. */}
-                <SitePreview
-                  src={product.preview}
-                  className="opacity-60 transition-opacity duration-300 group-hover:opacity-80"
-                />
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#161616] from-40% via-[#161616]/90 to-[#161616]/40"
-                />
-                <div className="relative z-10 flex flex-1 flex-col">
+                {/* Live-site preview as a banner (renders nothing until the
+                    screenshot exists — the card just goes text-only). */}
+                <PreviewBanner src={product.preview} />
+                <div className="flex flex-1 flex-col p-6">
                 <div className="flex items-start justify-between">
                   <span
                     className={cn(
