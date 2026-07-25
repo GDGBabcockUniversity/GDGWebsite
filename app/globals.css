@@ -256,6 +256,93 @@ html {
   animation-play-state: paused;
 }
 
+/* Coming-soon card — two lights chasing each other around the border.
+   A conic-gradient can't be animated directly (gradients don't interpolate),
+   so the sweep angle is a registered custom property: @property gives it a
+   type, which is what makes it animatable at all. Two transparent→color→
+   transparent arcs 180deg apart = two lights, not one.
+
+   The middle is masked by an OPAQUE INNER SURFACE, not by this element's own
+   background: negative-z-index children paint above their parent's
+   background (painting order puts the parent's own background first), so a
+   background here would not cover the gradient — it washed straight across
+   the card face. The markup therefore nests an opaque panel inside, which is
+   in-flow content and paints above both pseudo-elements, leaving only the
+   1.5px rim and the outer bloom visible.
+
+   Compositor note: this animates a paint-only custom property, so it's
+   cheap but not free — it's used on exactly one card, never in a list. */
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes border-lights {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+.border-lights {
+  position: relative;
+  isolation: isolate;
+}
+
+.border-lights::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  z-index: -1;
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 0deg,
+    #4285f4 18deg,
+    #a040ff 34deg,
+    transparent 62deg,
+    transparent 180deg,
+    #faab00 198deg,
+    #ea4335 214deg,
+    transparent 242deg,
+    transparent 360deg
+  );
+  animation: border-lights 6s linear infinite;
+}
+
+/* A soft bloom under the rim so the lights read as light, not just a line. */
+.border-lights::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  z-index: -2;
+  opacity: 0.35;
+  filter: blur(12px);
+  background: inherit;
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 0deg,
+    #4285f4 18deg,
+    #a040ff 34deg,
+    transparent 62deg,
+    transparent 180deg,
+    #faab00 198deg,
+    #ea4335 214deg,
+    transparent 242deg,
+    transparent 360deg
+  );
+  animation: border-lights 6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Keep the lit rim, stop the travel — the card still reads as special. */
+  .border-lights::before,
+  .border-lights::after {
+    animation: none;
+  }
+}
+
 /* Outlined display text.
    - line-height is set here (not left to whatever Tailwind "leading-*"
      utility a component pairs it with) because the -webkit-text-stroke adds

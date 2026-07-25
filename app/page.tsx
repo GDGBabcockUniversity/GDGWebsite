@@ -6,6 +6,7 @@ import WhatWeDo from "@/components/sections/what-we-do";
 import AnnualStructure from "@/components/sections/annual-structure";
 import UpcomingEvents from "@/components/sections/upcoming-events";
 import FeaturedProducts from "@/components/sections/featured-products";
+import ComingSoon from "@/components/sections/coming-soon";
 import Engage from "@/components/sections/engage";
 import GalleryStrips from "@/components/sections/gallery-strips";
 import AcrossCampus from "@/components/sections/across-campus";
@@ -28,8 +29,9 @@ export default function Home() {
       {/* 2. Upcoming events, then the annual structure backdrop */}
       <UpcomingEvents />
       <AnnualStructure />
-      {/* 3. Featured products */}
+      {/* 3. Featured products, then what's nearly shipped */}
       <FeaturedProducts />
+      <ComingSoon />
       {/* 4. How students engage */}
       <Engage />
       <GalleryStrips titles={["ORBIT"]} />
