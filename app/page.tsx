@@ -26,12 +26,13 @@ export default function Home() {
       <MarqueeTicker />
       <Story />
       <WhatWeDo />
-      {/* 2. Upcoming events, then the annual structure backdrop */}
+      {/* 2. What's next — upcoming events, then what's nearly shipped. Both
+             are the reasons to come back, so they sit high on the page. */}
       <UpcomingEvents />
-      <AnnualStructure />
-      {/* 3. Featured products, then what's nearly shipped */}
-      <FeaturedProducts />
       <ComingSoon />
+      <AnnualStructure />
+      {/* 3. Featured products */}
+      <FeaturedProducts />
       {/* 4. How students engage */}
       <Engage />
       <GalleryStrips titles={["ORBIT"]} />

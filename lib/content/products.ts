@@ -101,21 +101,6 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
-/**
- * A product's preview is only shown once it's actually LIVE.
- *
- * A screenshot of a finished site under a "Coming soon" label contradicts
- * itself — the Wrapped shot is its own landing page, so the card ended up
- * showing the wordmark twice, the branding twice, and two working CTAs
- * ("Watch the year", "Get your Wrapped") on a product we're saying isn't
- * ready. Unreleased products tease with copy, not with a tour of the thing.
- * The `preview` path stays in the registry, so flipping `status` to "live"
- * turns the banner on with no other change.
- */
-export function visiblePreview(product: Product): string | undefined {
-  return product.status === "live" ? product.preview : undefined;
-}
-
 /** The three live, member-facing products featured on the homepage. */
 export const FEATURED_PRODUCTS: Product[] = PRODUCTS.filter((p) =>
   ["RADAR", "ORBIT", "Babcock 100"].includes(p.name)

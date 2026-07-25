@@ -1,4 +1,5 @@
 import { PRODUCTS } from "@/lib/content/products";
+import { PreviewBanner } from "@/components/site-preview";
 import { OUTLINE_TEXT_CLASS, PILL_CLASS } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 
@@ -46,11 +47,12 @@ export default function ComingSoon() {
             // inner panel is the opaque surface that masks the middle.
             <div key={product.name} className="border-lights group rounded-3xl">
               <div className="relative z-10 overflow-hidden rounded-3xl bg-[#161616]">
-              {/* No site preview here on purpose (see visiblePreview in the
-                  product registry): a screenshot of the finished site — its
-                  own wordmark, its own working CTAs — contradicts the
-                  "Coming soon" label and repeats everything the card
-                  already says. It teases with copy until it's live. */}
+              {/* The preview here must be a glimpse from INSIDE the product,
+                  not its landing page: a shot of the front door repeats the
+                  wordmark and branding this card already shows, and its live
+                  CTAs contradict the "Coming soon" label. Show the thing
+                  people actually want to see. */}
+              <PreviewBanner src={product.preview} />
               <div className="flex flex-col p-6 sm:p-8">
                 <span
                   className={cn(
