@@ -93,6 +93,22 @@ export function getCachedProfile(): PlatformUser | null {
   }
 }
 
+/**
+ * Merges an API response over the cached profile and stores the result.
+ *
+ * Endpoints return different subsets of the user: PUT /auth/profile carries
+ * all 27 editable columns, GET /auth/me carries the derived sections
+ * (activity, certificates, team_membership). Overwriting the cache with
+ * whichever response came last drops whatever the other one owns — that's why
+ * the profile's Activity tiles used to fall back to "—" right after sign-in.
+ */
+function mergeIntoCache(user: PlatformUser): PlatformUser {
+  const cached = getCachedProfile();
+  const merged = cached ? { ...cached, ...user } : user;
+  cacheProfile(merged);
+  return merged;
+}
+
 export function clearCachedProfile() {
   if (typeof window !== "undefined") {
     localStorage.removeItem(PROFILE_CACHE_KEY);
@@ -234,8 +250,8 @@ export async function updateProfile(
     }
     const data = await retry.json();
     const updated = data.user || data.data?.user || data.data || data;
-    cacheProfile(updated);
-    return updated;
+    const merged = mergeIntoCache(updated);
+    return merged;
   }
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
@@ -243,8 +259,7 @@ export async function updateProfile(
   }
   const data = await res.json();
   const updated = data.user || data.data?.user || data.data || data;
-  cacheProfile(updated);
-  return updated;
+  return mergeIntoCache(updated);
 }
 
 /** Verify token validity */
