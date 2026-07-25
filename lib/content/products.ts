@@ -5,7 +5,12 @@
 
 import type { GdgColor } from "@/lib/tracks";
 
-export type ProductStatus = "live" | "launching" | "in-design" | "planned";
+export type ProductStatus =
+  | "live"
+  | "launching"
+  | "coming-soon"
+  | "in-design"
+  | "planned";
 
 export interface Product {
   name: string;
@@ -26,6 +31,9 @@ export interface Product {
 export const STATUS_LABEL: Record<ProductStatus, string> = {
   live: "Live",
   launching: "Launching",
+  // Built and deployed, but deliberately not linked yet — the card shows a
+  // preview and the status, with no way through to the site.
+  "coming-soon": "Coming soon",
   "in-design": "In design",
   planned: "Next build",
 };
@@ -76,8 +84,12 @@ export const PRODUCTS: Product[] = [
     tagline: "Your year in review",
     description:
       "A shareable, story-by-story recap of the chapter's year and your place in it — launching around grad week.",
-    status: "in-design",
+    status: "coming-soon",
     color: "red",
+    // Deliberately no `href`: the site is deployed but shouldn't be visited
+    // yet, so the card renders as a plain div (no link, no arrow) — the
+    // preview shows what's coming without opening the door to it.
+    preview: "/images/products/wrapped.jpg",
   },
   {
     name: "StudySmart",
