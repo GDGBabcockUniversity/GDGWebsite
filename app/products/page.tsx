@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ArrowUpRight } from "lucide-react";
-import { PRODUCTS, STATUS_LABEL } from "@/lib/content/products";
+import { PRODUCTS, STATUS_LABEL, visiblePreview } from "@/lib/content/products";
 import { getLatestRadarPosts, RADAR_BASE_URL } from "@/lib/radar";
 import { APPLY_URL, PARTNER_EMAIL } from "@/lib/content/site";
 import { OUTLINE_TEXT_CLASS, PILL_CLASS, GDG_HEX } from "@/lib/colors";
@@ -68,7 +68,7 @@ export default async function ProductsPage() {
               >
                 {/* Live-site preview as a banner (renders nothing until the
                     screenshot exists — the card just goes text-only). */}
-                <PreviewBanner src={product.preview} />
+                <PreviewBanner src={visiblePreview(product)} />
                 <div className="flex flex-1 flex-col p-6">
                 <div className="flex items-start justify-between">
                   <span
