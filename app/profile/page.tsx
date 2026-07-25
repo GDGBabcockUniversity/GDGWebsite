@@ -34,6 +34,10 @@ import {
   Star,
   BookOpen,
   Clock,
+  Gamepad2,
+  Flame,
+  PenLine,
+  Radar as RadarIcon,
 } from "lucide-react";
 import Link from "next/link";
 import type { ProfileUpdatePayload } from "@/lib/auth-service";
@@ -52,6 +56,13 @@ import {
   formatJoinDate,
   isFoundingMember,
 } from "@/lib/member";
+import {
+  fetchMyRadarStats,
+  formatGameName,
+  formatMonthLabel,
+  readablePath,
+  type RadarStats,
+} from "@/lib/radar-service";
 
 export default function ProfilePage() {
   const { user, logout, updateUserProfile, loading, error } = useAuth();
@@ -60,6 +71,26 @@ export default function ProfilePage() {
   const [successMsg, setSuccessMsg] = useState("");
   const [deptSearch, setDeptSearch] = useState("");
   const [facultySearch, setFacultySearch] = useState("");
+  // RADAR stats are richer than the /auth/me activity summary, so they get
+  // their own fetch. Null means "not loaded / unavailable" — the section
+  // falls back to the activity counts rather than disappearing.
+  const [radar, setRadar] = useState<RadarStats | null>(null);
+  const [radarLoading, setRadarLoading] = useState(true);
+
+  useEffect(() => {
+    if (!user) return;
+    let cancelled = false;
+    fetchMyRadarStats()
+      .then((stats) => {
+        if (!cancelled) setRadar(stats);
+      })
+      .finally(() => {
+        if (!cancelled) setRadarLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [user]);
 
   // Build form state from user
   const buildFormFromUser = () => {
@@ -832,6 +863,238 @@ export default function ProfilePage() {
                         </p>
                       </div>
                     ))}
+                  </div>
+                );
+              })()}
+            </section>
+
+            {/* RADAR */}
+            <section className="rounded-3xl border border-white/15 bg-[#171717] p-6 sm:p-8">
+              <h2 className="text-lg font-semibold text-foreground mb-1 flex items-center gap-2">
+                <RadarIcon className="h-5 w-5 text-gdg-red" />
+                RADAR
+              </h2>
+              <p className="mb-6 text-xs text-muted-foreground">
+                What you&apos;ve read and played on{" "}
+                <a
+                  href="https://radar.gdgbabcock.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-2 hover:text-gdg-cream"
+                >
+                  RADAR
+                </a>
+                . Sign in there with the same account and it keeps counting.
+              </p>
+              {(() => {
+                const activity = getActivity(user);
+
+                if (radarLoading) {
+                  return (
+                    <div className="rounded-2xl border border-dashed border-white/15 bg-background p-6 text-center">
+                      <p className="text-sm text-muted-foreground">
+                        Loading your RADAR activity…
+                      </p>
+                    </div>
+                  );
+                }
+
+                // No stats endpoint reachable, or nothing recorded yet.
+                const hasAny =
+                  radar &&
+                  (radar.articles_read > 0 ||
+                    radar.games_played > 0 ||
+                    radar.active_days > 0);
+
+                if (!hasAny) {
+                  const fallbackReads = activity.radar_articles_read ?? 0;
+                  const fallbackGames = activity.radar_games_played ?? 0;
+                  if (fallbackReads === 0 && fallbackGames === 0) {
+                    return (
+                      <div className="rounded-2xl border border-dashed border-white/15 bg-background p-6 text-center">
+                        <p className="text-sm text-muted-foreground">
+                          Nothing here yet. Read an issue or play a daily on
+                          RADAR and it&apos;ll show up.
+                        </p>
+                      </div>
+                    );
+                  }
+                  return (
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="rounded-2xl border border-white/12 bg-background p-4">
+                        <p className="text-2xl font-bold text-gdg-cream">
+                          {fallbackReads}
+                        </p>
+                        <p className="mt-0.5 text-xs text-muted-foreground">
+                          Articles read
+                        </p>
+                      </div>
+                      <div className="rounded-2xl border border-white/12 bg-background p-4">
+                        <p className="text-2xl font-bold text-gdg-cream">
+                          {fallbackGames}
+                        </p>
+                        <p className="mt-0.5 text-xs text-muted-foreground">
+                          Games played
+                        </p>
+                      </div>
+                    </div>
+                  );
+                }
+
+                const tiles = [
+                  {
+                    icon: <Gamepad2 className="h-4 w-4" />,
+                    label: "Games played",
+                    value: radar.games_played,
+                    color: "blue" as const,
+                  },
+                  {
+                    icon: <Flame className="h-4 w-4" />,
+                    label: "Day streak",
+                    value: radar.current_streak,
+                    color: "red" as const,
+                  },
+                  {
+                    icon: <Star className="h-4 w-4" />,
+                    label: "Longest streak",
+                    value: radar.longest_streak,
+                    color: "yellow" as const,
+                  },
+                  {
+                    icon: <CalendarClock className="h-4 w-4" />,
+                    label: "Active days",
+                    value: radar.active_days,
+                    color: "green" as const,
+                  },
+                ];
+
+                return (
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+                      {tiles.map((tile) => (
+                        <div
+                          key={tile.label}
+                          className="rounded-2xl border border-white/12 bg-background p-4"
+                        >
+                          <div
+                            className={`flex items-center gap-1.5 ${TEXT_CLASS[tile.color]}`}
+                          >
+                            {tile.icon}
+                          </div>
+                          <p className="mt-2 text-2xl font-bold text-gdg-cream">
+                            {tile.value ?? "—"}
+                          </p>
+                          <p className="mt-0.5 text-xs text-muted-foreground">
+                            {tile.label}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {radar.games.length > 0 && (
+                      <div className="rounded-2xl border border-white/12 bg-background p-4">
+                        <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                          Best scores
+                        </p>
+                        <ul className="space-y-2">
+                          {radar.games.map((g) => (
+                            <li
+                              key={g.game}
+                              className="flex items-center justify-between text-sm"
+                            >
+                              <span className="text-gdg-cream">
+                                {formatGameName(g.game)}
+                                <span className="ml-2 text-xs text-muted-foreground">
+                                  {g.plays} {g.plays === 1 ? "play" : "plays"}
+                                </span>
+                              </span>
+                              <span className="font-bold text-gdg-cream">
+                                {g.best_score}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {(radar.most_read || radar.busiest_month) && (
+                      <div className="grid gap-4 sm:grid-cols-2">
+                        {radar.most_read && (
+                          <div className="rounded-2xl border border-white/12 bg-background p-4">
+                            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                              Most read
+                            </p>
+                            <p className="mt-1 text-sm font-bold capitalize text-gdg-cream">
+                              {readablePath(radar.most_read.slug)}
+                            </p>
+                            <p className="mt-0.5 text-xs text-muted-foreground">
+                              {Math.round(radar.most_read.seconds / 60)} minutes
+                            </p>
+                          </div>
+                        )}
+                        {radar.busiest_month && (
+                          <div className="rounded-2xl border border-white/12 bg-background p-4">
+                            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                              Busiest month
+                            </p>
+                            <p className="mt-1 text-sm font-bold text-gdg-cream">
+                              {formatMonthLabel(radar.busiest_month.month)}
+                            </p>
+                            <p className="mt-0.5 text-xs text-muted-foreground">
+                              {radar.busiest_month.active_days} active days
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {radar.writer && (
+                      <div className="rounded-2xl border border-white/12 bg-background p-4">
+                        <p className="mb-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-gdg-yellow">
+                          <PenLine className="h-3.5 w-3.5" />
+                          Your writing
+                        </p>
+                        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+                          <div>
+                            <p className="text-2xl font-bold text-gdg-cream">
+                              {radar.writer.pieces_published}
+                            </p>
+                            <p className="mt-0.5 text-xs text-muted-foreground">
+                              Pieces published
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-2xl font-bold text-gdg-cream">
+                              {radar.writer.total_readers}
+                            </p>
+                            <p className="mt-0.5 text-xs text-muted-foreground">
+                              Readers
+                            </p>
+                          </div>
+                          <div>
+                            <p className="text-2xl font-bold text-gdg-cream">
+                              {radar.writer.total_read_minutes}
+                            </p>
+                            <p className="mt-0.5 text-xs text-muted-foreground">
+                              Minutes read
+                            </p>
+                          </div>
+                        </div>
+                        {radar.writer.most_read_piece && (
+                          <p className="mt-3 text-xs text-muted-foreground">
+                            Most read:{" "}
+                            <span className="capitalize text-gdg-cream">
+                              {radar.writer.most_read_piece.title ||
+                                readablePath(radar.writer.most_read_piece.slug)}
+                            </span>{" "}
+                            — {radar.writer.most_read_piece.readers}{" "}
+                            {radar.writer.most_read_piece.readers === 1
+                              ? "reader"
+                              : "readers"}
+                          </p>
+                        )}
+                      </div>
+                    )}
                   </div>
                 );
               })()}

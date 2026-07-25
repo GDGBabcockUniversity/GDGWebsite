@@ -22,6 +22,7 @@ export interface MemberActivity {
   streak?: number;
   radar_articles_read?: number;
   radar_reading_minutes?: number;
+  radar_games_played?: number;
 }
 
 export interface MemberTeamMembership {
