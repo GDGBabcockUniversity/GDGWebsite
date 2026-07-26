@@ -13,6 +13,13 @@ const nextConfig = {
         protocol: "https",
         hostname: "api.dicebear.com",
       },
+      {
+        // Team photos uploaded through /admin are served by the auth service.
+        // `unoptimized: true` above means next/image doesn't enforce this
+        // today, but the entry has to be here if that ever flips.
+        protocol: "https",
+        hostname: "auth.gdgbabcock.com",
+      },
     ],
   },
   // Tailwind's own Lightning CSS optimize pass is disabled in

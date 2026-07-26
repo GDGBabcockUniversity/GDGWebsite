@@ -1,16 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   createTeamMember,
   deactivateTeamMember,
+  deleteTeamPhoto,
   fetchAdminTeam,
   updateTeamMember,
+  uploadTeamPhoto,
   type AdminRosterMember,
   type TeamMemberInput,
 } from "@/lib/team-service";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import ImageCropper, { OUTPUT_SIZE } from "@/components/image-cropper";
 
 const SECTIONS = ["core", "tracks", "dev", "media", "events"];
 
@@ -41,6 +44,14 @@ export default function AdminTeamPage() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Photo state. `cropSrc` is the object URL currently in the cropper;
+  // `pendingPhoto` is a cropped result held back because the member has no id
+  // yet (a brand-new member can't be uploaded to until it's been created).
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [cropSrc, setCropSrc] = useState<string | null>(null);
+  const [pendingPhoto, setPendingPhoto] = useState<string | null>(null);
+  const [photoBusy, setPhotoBusy] = useState(false);
+
   const loadMembers = async () => {
     setLoading(true);
     const all = await fetchAdminTeam();
@@ -54,11 +65,79 @@ export default function AdminTeamPage() {
     loadMembers();
   }, []);
 
+  const resetPhotoState = () => {
+    setCropSrc((current) => {
+      if (current) URL.revokeObjectURL(current);
+      return null;
+    });
+    setPendingPhoto(null);
+    setPhotoBusy(false);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
   const openCreate = () => {
     setEditingId(null);
     setForm(EMPTY_FORM);
     setError(null);
+    resetPhotoState();
     setShowForm(true);
+  };
+
+  const handleFilePicked = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      setError("That file isn't an image");
+      return;
+    }
+    setError(null);
+    setCropSrc(URL.createObjectURL(file));
+  };
+
+  /**
+   * An existing member is updated immediately — that's the least surprising
+   * behaviour for "replace photo". A new one has no id to upload against, so
+   * the crop is held and sent once the member exists.
+   */
+  const handleCropped = async (dataUrl: string) => {
+    resetPhotoState();
+    if (!editingId) {
+      setPendingPhoto(dataUrl);
+      return;
+    }
+    setPhotoBusy(true);
+    setError(null);
+    try {
+      const updated = await uploadTeamPhoto(editingId, dataUrl, OUTPUT_SIZE);
+      setForm((f) => ({ ...f, image_url: updated.image_url || "" }));
+      await loadMembers();
+    } catch (err: any) {
+      setError(err?.message || "Failed to upload photo");
+    } finally {
+      setPhotoBusy(false);
+    }
+  };
+
+  const handleRemovePhoto = async () => {
+    if (pendingPhoto) {
+      setPendingPhoto(null);
+      return;
+    }
+    if (!editingId) {
+      setForm((f) => ({ ...f, image_url: "" }));
+      return;
+    }
+    setPhotoBusy(true);
+    setError(null);
+    try {
+      await deleteTeamPhoto(editingId);
+      setForm((f) => ({ ...f, image_url: "" }));
+      await loadMembers();
+    } catch (err: any) {
+      setError(err?.message || "Failed to remove photo");
+    } finally {
+      setPhotoBusy(false);
+    }
   };
 
   const openEdit = (member: AdminRosterMember) => {
@@ -81,6 +160,7 @@ export default function AdminTeamPage() {
       display_order: member.display_order,
     });
     setError(null);
+    resetPhotoState();
     setShowForm(true);
   };
 
@@ -94,12 +174,17 @@ export default function AdminTeamPage() {
         subteam: form.subteam || undefined,
         display_order: Number(form.display_order) || 0,
       };
-      if (editingId) {
-        await updateTeamMember(editingId, payload);
-      } else {
-        await createTeamMember(payload);
+      const saved = editingId
+        ? await updateTeamMember(editingId, payload)
+        : await createTeamMember(payload);
+
+      // A crop taken before the member existed goes up now that it has an id.
+      if (pendingPhoto && saved?.id) {
+        await uploadTeamPhoto(saved.id, pendingPhoto, OUTPUT_SIZE);
       }
+
       setShowForm(false);
+      resetPhotoState();
       await loadMembers();
     } catch (err: any) {
       setError(err?.message || "Failed to save team member");
@@ -178,10 +263,76 @@ export default function AdminTeamPage() {
                 }
               />
             </Field>
-            <Field label="Image URL / path">
+            <Field label="Photo">
+              {(() => {
+                // A crop waiting to be uploaded wins over the saved URL, so
+                // the preview always shows what will actually be saved.
+                const preview = pendingPhoto || form.image_url || "";
+                return (
+                  <div className="flex items-center gap-4">
+                    <div className="h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-white/12 bg-background">
+                      {preview ? (
+                        // Deliberately a plain <img>: the source is often a
+                        // data URL that hasn't been uploaded yet, which
+                        // next/image can't take.
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={preview}
+                          alt=""
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center text-[10px] text-white/35">
+                          No photo
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="flex flex-wrap gap-2">
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFilePicked}
+                        className="hidden"
+                      />
+                      <Button
+                        type="button"
+                        disabled={photoBusy}
+                        onClick={() => fileInputRef.current?.click()}
+                        className="rounded-full bg-gdg-blue px-4 text-xs font-semibold text-white hover:bg-gdg-blue/90"
+                      >
+                        {photoBusy
+                          ? "Working…"
+                          : preview
+                            ? "Replace photo"
+                            : "Upload photo"}
+                      </Button>
+                      {preview && (
+                        <Button
+                          type="button"
+                          disabled={photoBusy}
+                          onClick={handleRemovePhoto}
+                          className="rounded-full border border-white/15 bg-transparent px-4 text-xs font-semibold text-gdg-cream hover:bg-white/5"
+                        >
+                          Remove
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                );
+              })()}
+              {pendingPhoto && (
+                <p className="mt-2 text-xs text-white/45">
+                  Uploads when you save this member.
+                </p>
+              )}
+            </Field>
+            <Field label="Image URL (fallback)">
               <Input
                 value={form.image_url ?? ""}
                 onChange={(e) => setForm({ ...form, image_url: e.target.value })}
+                placeholder="Or paste a link to an image"
               />
             </Field>
             <Field label="Lead">
@@ -328,6 +479,14 @@ export default function AdminTeamPage() {
           </tbody>
         </table>
       </div>
+
+      {cropSrc && (
+        <ImageCropper
+          src={cropSrc}
+          onCancel={resetPhotoState}
+          onCropped={handleCropped}
+        />
+      )}
     </>
   );
 }

@@ -124,3 +124,34 @@ export async function deactivateTeamMember(id: string): Promise<void> {
     throw new Error(err.message || err.error || "Failed to deactivate team member");
   }
 }
+
+/**
+ * Store a cropped photo. `dataUrl` is the canvas output from the cropper —
+ * already square and resized, so the service only validates and stores it.
+ * Returns the updated member, whose image_url now points at the stored photo.
+ */
+export async function uploadTeamPhoto(
+  id: string,
+  dataUrl: string,
+  size: number
+): Promise<AdminRosterMember> {
+  const res = await authedFetch(`/team/admin/${id}/photo`, {
+    method: "PUT",
+    body: JSON.stringify({ data_url: dataUrl, width: size, height: size }),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.message || err.error || "Failed to upload photo");
+  }
+  const data = await res.json();
+  return data.member || data.data?.member || data.data;
+}
+
+/** Remove a stored photo. Leaves a hand-pasted external image_url alone. */
+export async function deleteTeamPhoto(id: string): Promise<void> {
+  const res = await authedFetch(`/team/admin/${id}/photo`, { method: "DELETE" });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.message || err.error || "Failed to remove photo");
+  }
+}
