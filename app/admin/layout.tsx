@@ -3,9 +3,10 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { useAuth } from "@/components/auth-provider";
+import AdminSignIn from "@/components/admin-sign-in";
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
-  const { user, isAuthenticated, loading } = useAuth();
+  const { user, isAuthenticated, loading, logout } = useAuth();
 
   if (loading) {
     return (
@@ -15,7 +16,17 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     );
   }
 
-  if (!isAuthenticated || !user?.roles?.includes("admin")) {
+  // Signed out is not the same as not allowed. Offer a way in rather than a
+  // dead end — signing in here re-renders this layout and mounts whichever
+  // /admin page was originally requested.
+  if (!isAuthenticated) {
+    return <AdminSignIn />;
+  }
+
+  // Signed in, but without the role. Name the account: the usual cause is a
+  // lead signed into the wrong Google account, or one whose admin role simply
+  // hasn't been granted yet, and neither is helped by "you don't have access".
+  if (!user?.roles?.includes("admin")) {
     return (
       <main className="flex min-h-screen items-center justify-center bg-[#0f0f0f] px-6">
         <div className="max-w-md rounded-3xl border border-white/12 bg-[#161616] p-8 text-center">
@@ -23,18 +34,28 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             Admin only
           </p>
           <h1 className="mt-4 text-2xl font-bold text-gdg-cream">
-            You don't have access to this page
+            This account isn&apos;t an admin
           </h1>
           <p className="mt-3 text-sm text-white/55">
-            This area is restricted to admins. If you believe this is a
-            mistake, contact a team lead.
+            You&apos;re signed in as{" "}
+            <span className="font-medium text-gdg-cream">{user?.email}</span>,
+            which doesn&apos;t have admin access. Ask a team lead to grant it,
+            or sign in with a different account.
           </p>
-          <Link
-            href="/"
-            className="mt-6 inline-block rounded-full bg-gdg-cream px-6 py-3 text-sm font-semibold text-[#0f0f0f]"
-          >
-            Back home
-          </Link>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <button
+              onClick={() => logout()}
+              className="rounded-full bg-gdg-cream px-6 py-3 text-sm font-semibold text-[#0f0f0f]"
+            >
+              Sign in as someone else
+            </button>
+            <Link
+              href="/"
+              className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-gdg-cream hover:bg-white/5"
+            >
+              Back home
+            </Link>
+          </div>
         </div>
       </main>
     );
