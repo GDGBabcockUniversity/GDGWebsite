@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PhotoGrid from "@/components/gallery/photo-grid";
 import { dateRange, sized, youTubeId, type GicipCohort } from "@/lib/gicip";
 
 /**
@@ -13,8 +14,6 @@ import { dateRange, sized, youTubeId, type GicipCohort } from "@/lib/gicip";
 export default function CohortView({ cohort }: { cohort: GicipCohort }) {
   const range = dateRange(cohort.departureDate, cohort.returnDate);
   const filmId = youTubeId(cohort.filmUrl);
-  const featured = cohort.images.filter((g) => g.feature && g.imageUrl);
-  const rest = cohort.images.filter((g) => !g.feature && g.imageUrl);
 
   return (
     <div className="space-y-16">
@@ -161,40 +160,7 @@ export default function CohortView({ cohort }: { cohort: GicipCohort }) {
       {cohort.images.length > 0 && (
         <section>
           <SectionTitle>Photographs</SectionTitle>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-            {[...featured, ...rest].map((photo, i) => (
-              <figure
-                key={`${photo.imageUrl}-${i}`}
-                className={
-                  photo.feature
-                    ? "col-span-2 overflow-hidden rounded-2xl border border-white/12"
-                    : "overflow-hidden rounded-2xl border border-white/12"
-                }
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={sized(photo.imageUrl, {
-                    w: photo.feature ? 1200 : 700,
-                    h: 700,
-                    hotspot: photo.hotspot,
-                  })}
-                  alt={photo.alt ?? photo.caption ?? ""}
-                  className="w-full object-cover"
-                />
-                {(photo.caption || photo.location) && (
-                  <figcaption className="bg-[#171717] px-4 py-3 text-xs text-white/55">
-                    {photo.caption}
-                    {photo.location && (
-                      <span className="text-white/35">
-                        {photo.caption ? " · " : ""}
-                        {photo.location}
-                      </span>
-                    )}
-                  </figcaption>
-                )}
-              </figure>
-            ))}
-          </div>
+          <PhotoGrid images={cohort.images} />
         </section>
       )}
 

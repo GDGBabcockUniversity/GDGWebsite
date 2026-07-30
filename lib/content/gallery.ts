@@ -9,7 +9,12 @@ import type { SlideImage } from "./site";
 
 export interface GalleryStrip {
   title: string;
-  seeMoreHref: string;
+  /**
+   * Album slug in the CMS. "See more" opens that album directly when set, and
+   * falls back to the gallery index otherwise, so a strip never links to a
+   * page that does not exist yet.
+   */
+  gallerySlug?: string;
   /** Divider line colors cycle through these */
   dividerColors: GdgColor[];
   images: SlideImage[];
@@ -18,7 +23,6 @@ export interface GalleryStrip {
 export const GALLERY_STRIPS: GalleryStrip[] = [
   {
     title: "ORBIT",
-    seeMoreHref: "https://www.instagram.com/gdgbabcock/", // TODO: ORBIT gallery/album link
     dividerColors: ["green", "red", "yellow", "blue"],
     images: [
       {
@@ -65,7 +69,6 @@ export const GALLERY_STRIPS: GalleryStrip[] = [
   },
   {
     title: "FIELD TRIP.",
-    seeMoreHref: "https://www.instagram.com/gdgbabcock/", // TODO: field trip album link
     dividerColors: ["blue", "green", "red", "yellow"],
     images: [
       {
@@ -92,7 +95,6 @@ export const GALLERY_STRIPS: GalleryStrip[] = [
   },
   {
     title: "MONTHLY MEETUP",
-    seeMoreHref: "https://www.instagram.com/gdgbabcock/", // TODO: meetup album link
     dividerColors: ["yellow", "blue", "green", "red"],
     images: [
       {

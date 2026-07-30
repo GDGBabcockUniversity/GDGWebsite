@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { GALLERY_STRIPS } from "@/lib/content/gallery";
 import { BG_CLASS } from "@/lib/colors";
 import { SmartImage } from "@/components/placeholder-image";
@@ -61,15 +62,13 @@ export default function GalleryStrips({ titles }: GalleryStripsProps) {
           </div>
 
           {/* See more */}
-          <a
-            href={strip.seeMoreHref}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={strip.gallerySlug ? `/gallery/${strip.gallerySlug}` : "/gallery"}
             className="absolute bottom-4 right-4 flex items-center gap-2 rounded-full bg-gdg-cream px-4 py-2 text-xs font-semibold text-[#0f0f0f] transition-transform hover:scale-[1.04] sm:bottom-6 sm:right-6"
           >
             See more
             <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-          </a>
+          </Link>
         </div>
       ))}
     </section>
