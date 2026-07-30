@@ -149,6 +149,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setLoading(true);
     setError(null);
     try {
+      if (!auth || !googleProvider) {
+        throw new Error("Sign-in is not configured on this deployment");
+      }
       const result = await signInWithPopup(auth, googleProvider);
       await exchangeToken(result.user);
     } catch (err: any) {
@@ -177,6 +180,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(true);
       setError(null);
       try {
+        if (!auth) {
+          throw new Error("Sign-in is not configured on this deployment");
+        }
         const result = await signInWithEmailAndPassword(auth, email, password);
         await exchangeToken(result.user);
       } catch (err: any) {
@@ -208,6 +214,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(true);
       setError(null);
       try {
+        if (!auth) {
+          throw new Error("Sign-in is not configured on this deployment");
+        }
         const result = await createUserWithEmailAndPassword(
           auth,
           email,
@@ -240,7 +249,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = useCallback(async () => {
     try {
       await apiLogout();
-      await firebaseSignOut(auth);
+      if (auth) await firebaseSignOut(auth);
     } catch {
       // best effort
     } finally {

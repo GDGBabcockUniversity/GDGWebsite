@@ -21,15 +21,28 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Only initialize Firebase on the client side to avoid SSR/prerender errors
+// Client-side only, to avoid SSR/prerender errors.
+//
+// The failure is contained here on purpose. getAuth() throws
+// auth/invalid-api-key when the config is missing or wrong, and this module is
+// imported by AuthProvider, which wraps every page. Without the catch that
+// throw takes the whole site down with a client-side exception, including
+// pages that never touch auth. Leaving these undefined instead means sign-in
+// is unavailable and everything else still works.
 let app: FirebaseApp | undefined;
-let auth: Auth;
-let googleProvider: GoogleAuthProvider;
+let auth: Auth | undefined;
+let googleProvider: GoogleAuthProvider | undefined;
 
 if (typeof window !== "undefined") {
-  app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
-  auth = getAuth(app);
-  googleProvider = new GoogleAuthProvider();
+  try {
+    app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    googleProvider = new GoogleAuthProvider();
+  } catch {
+    app = undefined;
+    auth = undefined;
+    googleProvider = undefined;
+  }
 }
 
 export {

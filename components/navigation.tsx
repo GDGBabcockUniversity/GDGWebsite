@@ -41,7 +41,7 @@ export default function Navigation() {
             thickness={34}
             blur={8}
             disableRefraction={isScrolled}
-            className="hidden lg:block"
+            className="hidden xl:block"
             contentClassName="flex items-center gap-1 px-2 py-1.5"
           >
             {NAV_LINKS.filter((l) => l.primary !== false).map((link) => (
@@ -50,7 +50,7 @@ export default function Navigation() {
                 href={link.href}
                 target={link.external ? "_blank" : undefined}
                 rel={link.external ? "noopener noreferrer" : undefined}
-                className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-white/85 transition-colors hover:bg-white/10 hover:text-white"
+                className="flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium 2xl:px-4 text-white/85 transition-colors hover:bg-white/10 hover:text-white"
               >
                 {link.label}
                 {link.external && (
@@ -63,7 +63,7 @@ export default function Navigation() {
           {/* Center: logo */}
           <Link
             href="/"
-            className="rounded-full transition-transform hover:scale-[1.04] lg:absolute lg:left-1/2 lg:-translate-x-1/2"
+            className="rounded-full transition-transform hover:scale-[1.04] xl:absolute xl:left-1/2 xl:-translate-x-1/2"
             aria-label="GDG Babcock — home"
           >
             <LiquidGlass
@@ -87,7 +87,7 @@ export default function Navigation() {
           </Link>
 
           {/* Right: auth + member CTA */}
-          <div className="hidden items-center gap-2 lg:flex">
+          <div className="hidden items-center gap-2 xl:flex">
             {loading ? (
               <LiquidGlass
                 radius={999}
@@ -194,7 +194,7 @@ export default function Navigation() {
 
           {/* Mobile: menu button */}
           <button
-            className="rounded-full border border-white/15 bg-[#0f0f0f]/70 p-2.5 text-white shadow-[0_12px_36px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.16)] backdrop-blur-md lg:hidden"
+            className="rounded-full border border-white/15 bg-[#0f0f0f]/70 p-2.5 text-white shadow-[0_12px_36px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.16)] backdrop-blur-md xl:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -208,7 +208,7 @@ export default function Navigation() {
 
         {/* Mobile menu */}
         {isMobileMenuOpen && (
-          <div className="mx-auto mt-2 max-w-7xl rounded-3xl border border-white/15 bg-[#0f0f0f]/95 p-4 backdrop-blur-md lg:hidden">
+          <div className="mx-auto mt-2 max-w-7xl rounded-3xl border border-white/15 bg-[#0f0f0f]/95 p-4 backdrop-blur-md xl:hidden">
             <div className="flex flex-col gap-1">
               {NAV_LINKS.map((link) => (
                 <Link
