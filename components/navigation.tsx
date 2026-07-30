@@ -44,7 +44,7 @@ export default function Navigation() {
             className="hidden lg:block"
             contentClassName="flex items-center gap-1 px-2 py-1.5"
           >
-            {NAV_LINKS.map((link) => (
+            {NAV_LINKS.filter((l) => l.primary !== false).map((link) => (
               <Link
                 key={link.label}
                 href={link.href}

@@ -17,6 +17,15 @@ export interface NavLink {
   label: string;
   href: string;
   external?: boolean;
+  /**
+   * Shown in the header. Defaults to true.
+   *
+   * The header logo is centred on the viewport, so the link row has to stop
+   * before it: roughly seven items at 1440px. Anything beyond that runs under
+   * the logo and the last labels become unreadable. Links marked false stay in
+   * the footer's Explore column, which has no such limit.
+   */
+  primary?: boolean;
 }
 
 export const NAV_LINKS: NavLink[] = [
@@ -24,8 +33,8 @@ export const NAV_LINKS: NavLink[] = [
   { label: "What We Do", href: "/#what-we-do" },
   { label: "Events", href: "/events" },
   { label: "Products", href: "/products" },
-  { label: "GICIP", href: "/gicip" },
-  { label: "Gallery", href: "/gallery" },
+  { label: "GICIP", href: "/gicip", primary: false },
+  { label: "Gallery", href: "/gallery", primary: false },
   { label: "Team", href: "/team" },
   { label: "Apply", href: APPLY_URL, external: true },
   { label: "Partner", href: "/#partner" },
