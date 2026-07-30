@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import TeamRosterClient from "@/components/team-roster-client";
-import { fetchTeamRoster, type RosterMember } from "@/lib/team-service";
+import { fetchTeamRoster, type RosterMember } from "@/lib/team-cms";
 import type { TeamMember, TeamSection, TeamYear } from "@/lib/team-data";
 
 export const metadata: Metadata = {

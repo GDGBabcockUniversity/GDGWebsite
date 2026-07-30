@@ -56,6 +56,7 @@ import {
   formatJoinDate,
   isFoundingMember,
 } from "@/lib/member";
+import { fetchTeamMembershipFor } from "@/lib/team-cms";
 import {
   fetchMyRadarStats,
   formatGameName,
@@ -76,6 +77,25 @@ export default function ProfilePage() {
   // falls back to the activity counts rather than disappearing.
   const [radar, setRadar] = useState<RadarStats | null>(null);
   const [radarLoading, setRadarLoading] = useState(true);
+  // The roster lives in the CMS, so the volunteer badge is matched there on the
+  // member's platform id. Falls back to the auth record for anyone whose roster
+  // entry has no id set yet.
+  const [cmsMembership, setCmsMembership] = useState<{
+    role: string;
+    section: string;
+    subteam: string | null;
+  } | null>(null);
+
+  useEffect(() => {
+    if (!user?.id) return;
+    let cancelled = false;
+    fetchTeamMembershipFor(user.id).then((m) => {
+      if (!cancelled) setCmsMembership(m);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [user?.id]);
 
   useEffect(() => {
     if (!user) return;
@@ -303,10 +323,10 @@ export default function ProfilePage() {
                         Founding member
                       </span>
                     )}
-                    {getTeamMembership(user) && (
+                    {(cmsMembership ?? getTeamMembership(user)) && (
                       <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full bg-gdg-green/15 text-gdg-green border border-gdg-green/30">
                         <Users className="h-3.5 w-3.5" />
-                        GDG Babcock Volunteer — {getTeamMembership(user)!.role}
+                        GDG Babcock Volunteer — {(cmsMembership ?? getTeamMembership(user))!.role}
                       </span>
                     )}
                   </div>
@@ -602,7 +622,7 @@ export default function ProfilePage() {
                 array. Read-only, and hidden entirely when unlinked —
                 most members aren't on a volunteer team at all. */}
             {(() => {
-              const membership = getTeamMembership(user);
+              const membership = cmsMembership ?? getTeamMembership(user);
               if (!membership) return null;
               const sectionLabel =
                 TEAM_SECTIONS.find((s) => s.id === membership.section)?.label ??

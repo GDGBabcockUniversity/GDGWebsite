@@ -74,8 +74,8 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           <Link href="/admin/users" className="hover:text-white">
             Users
           </Link>
-          <Link href="/admin/team" className="hover:text-white">
-            Team
+          <Link href="/studio" className="hover:text-white">
+            Studio
           </Link>
           <Link href="/admin/analytics" className="hover:text-white">
             Analytics

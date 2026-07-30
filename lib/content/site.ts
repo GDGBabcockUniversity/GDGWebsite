@@ -24,6 +24,7 @@ export const NAV_LINKS: NavLink[] = [
   { label: "What We Do", href: "/#what-we-do" },
   { label: "Events", href: "/events" },
   { label: "Products", href: "/products" },
+  { label: "GICIP", href: "/gicip" },
   { label: "Team", href: "/team" },
   { label: "Apply", href: APPLY_URL, external: true },
   { label: "Partner", href: "/#partner" },

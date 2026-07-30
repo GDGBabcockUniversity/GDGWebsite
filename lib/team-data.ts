@@ -1,7 +1,7 @@
 /**
  * Team structure — the section/subteam org chart shared by the /team page
  * and the home team-preview section. The roster itself (names, roles,
- * photos, links) now lives in Postgres, served via lib/team-service.ts —
+ * photos, links) now lives in the CMS, served via lib/team-cms.ts —
  * this file only keeps the presentation structure that groups it.
  */
 

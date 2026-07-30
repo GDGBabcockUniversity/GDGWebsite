@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { fetchTeamRoster } from "@/lib/team-service";
+import { fetchTeamRoster } from "@/lib/team-cms";
 import { GDG_HEX, TEXT_CLASS, colorByIndex } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 

@@ -20,6 +20,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "auth.gdgbabcock.com",
       },
+      {
+        // GICIP cohort images come from the shared content CDN.
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+      },
     ],
   },
   // Tailwind's own Lightning CSS optimize pass is disabled in
