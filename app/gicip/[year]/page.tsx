@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import CohortView, { ArchiveList } from "@/components/gicip/cohort-view";
+import CohortPage from "@/components/gicip/cohort-page";
 import { getCohort, getCohortSummaries, sized } from "@/lib/gicip";
 
 interface PageProps {
@@ -13,19 +13,19 @@ export const revalidate = 3600;
 // Pre-rendered per published cohort. An empty list is fine: the route still
 // resolves on demand, so a cohort published later needs no redeploy.
 export async function generateStaticParams() {
-  const summaries = await getCohortSummaries();
-  return summaries.map((c) => ({ year: c.slug }));
+  const years = await getCohortSummaries();
+  return years.map((y) => ({ year: String(y.year) }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const cohort = await getCohort(params.year);
+  const cohort = await getCohort(Number(params.year));
   if (!cohort) return { title: "GICIP" };
 
   const image = sized(cohort.coverImageUrl, { w: 1200, h: 630 });
   return {
     title: cohort.title,
     description: cohort.summary,
-    alternates: { canonical: `/gicip/${cohort.slug}` },
+    alternates: { canonical: `/gicip/${cohort.year}` },
     openGraph: {
       title: cohort.title,
       description: cohort.summary,
@@ -35,8 +35,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function GicipCohortPage({ params }: PageProps) {
-  const [cohort, summaries] = await Promise.all([
-    getCohort(params.year),
+  const year = Number(params.year);
+  const [cohort, years] = await Promise.all([
+    getCohort(year),
     getCohortSummaries(),
   ]);
 
@@ -49,10 +50,9 @@ export default async function GicipCohortPage({ params }: PageProps) {
           href="/gicip"
           className="mb-8 inline-block text-sm font-medium text-gdg-red hover:text-gdg-cream"
         >
-          All cohorts
+          GICIP
         </Link>
-        <CohortView cohort={cohort} />
-        <ArchiveList cohorts={summaries} currentSlug={cohort.slug} />
+        <CohortPage cohort={cohort} years={years} />
       </div>
     </main>
   );

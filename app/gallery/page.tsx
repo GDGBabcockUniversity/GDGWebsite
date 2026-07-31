@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { getGalleries, sized } from "@/lib/gicip";
+import GalleryIndex from "@/components/gallery/gallery-index";
+import { getGalleries } from "@/lib/gicip";
 import { SOCIAL_LINKS } from "@/lib/content/site";
 
 export const metadata: Metadata = {
@@ -11,17 +11,6 @@ export const metadata: Metadata = {
 };
 
 export const revalidate = 3600;
-
-function albumDate(date?: string): string | null {
-  if (!date) return null;
-  const d = new Date(date);
-  if (Number.isNaN(d.getTime())) return null;
-  return d.toLocaleDateString("en-GB", {
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  });
-}
 
 export default async function GalleryPage() {
   const galleries = await getGalleries();
@@ -56,48 +45,7 @@ export default async function GalleryPage() {
             </a>
           </div>
         ) : (
-          <ul className="mt-12 grid gap-6 sm:grid-cols-2">
-            {galleries.map((gallery) => {
-              const cover =
-                gallery.coverImageUrl ?? gallery.images[0]?.imageUrl;
-              const when = albumDate(gallery.date);
-              return (
-                <li key={gallery.slug}>
-                  <Link
-                    href={`/gallery/${gallery.slug}`}
-                    className="group block overflow-hidden rounded-3xl border border-white/12 bg-[#171717] transition-transform hover:scale-[1.005]"
-                  >
-                    <div className="aspect-[4/3] overflow-hidden bg-black">
-                      {cover ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={sized(cover, { w: 900, h: 675 })}
-                          alt={gallery.title}
-                          loading="lazy"
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      ) : null}
-                    </div>
-                    <div className="p-5">
-                      <p className="font-semibold text-gdg-cream">
-                        {gallery.title}
-                      </p>
-                      <p className="mt-1 text-xs text-white/45">
-                        {[when, `${gallery.images.length} photographs`]
-                          .filter(Boolean)
-                          .join(" · ")}
-                      </p>
-                      {gallery.description && (
-                        <p className="mt-2 text-sm leading-relaxed text-white/60">
-                          {gallery.description}
-                        </p>
-                      )}
-                    </div>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          <GalleryIndex galleries={galleries} />
         )}
       </div>
     </main>

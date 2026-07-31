@@ -12,6 +12,11 @@ import {
 import { getTrack, type GdgColor } from "@/lib/tracks";
 import { GDG_HEX } from "@/lib/colors";
 import { cn } from "@/lib/utils";
+import {
+  YearSwitcher,
+  useYearSwipe,
+  step,
+} from "@/components/year-switcher";
 
 /** Track subteams get their brand color; other sections have no accent. */
 function subteamColor(section: string, subteam: string): GdgColor | undefined {
@@ -182,6 +187,14 @@ export default function TeamRosterClient({ years }: { years: TeamYear[] }) {
   const [yearId, setYearId] = useState(years[0]?.id ?? "current");
   const year = years.find((y) => y.id === yearId) ?? years[0];
 
+  // Years run newest first, so a swipe left moves to the older team.
+  const yearIndex = years.findIndex((y) => y.id === yearId);
+  const goYear = (direction: -1 | 1) => {
+    const next = step(yearIndex, years.length, direction);
+    if (next !== null) setYearId(years[next]!.id);
+  };
+  const swipe = useYearSwipe(() => goYear(-1), () => goYear(1));
+
   const sectionsWithMembers = useMemo(
     () =>
       TEAM_SECTIONS.map((def) => ({
@@ -215,24 +228,12 @@ export default function TeamRosterClient({ years }: { years: TeamYear[] }) {
           </p>
 
           {/* Year tabs */}
-          {years.length > 1 && (
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-              {years.map((y) => (
-                <button
-                  key={y.id}
-                  onClick={() => setYearId(y.id)}
-                  className={cn(
-                    "cursor-pointer rounded-full px-5 py-2 text-sm font-medium transition-all",
-                    y.id === yearId
-                      ? "bg-gdg-cream text-[#0f0f0f]"
-                      : "border border-white/20 text-white/70 hover:bg-white/10 hover:text-white"
-                  )}
-                >
-                  {y.label}
-                </button>
-              ))}
-            </div>
-          )}
+          <YearSwitcher
+            options={years.map((y) => ({ id: y.id, label: y.label }))}
+            activeId={yearId}
+            onSelect={setYearId}
+            className="mt-10"
+          />
 
           {/* Section jump-pills (current-year structure) */}
           {sectionsWithMembers.length > 1 && (
@@ -251,7 +252,7 @@ export default function TeamRosterClient({ years }: { years: TeamYear[] }) {
         </div>
       </section>
 
-      <section className="px-4 pb-24 sm:px-6 lg:px-8">
+      <section className="px-4 pb-24 sm:px-6 lg:px-8" {...swipe}>
         <div className="container mx-auto max-w-7xl">
           {!year || year.members.length === 0 ? (
             <div className="mx-auto max-w-lg rounded-3xl border border-dashed border-white/20 bg-[#161616] p-10 text-center">

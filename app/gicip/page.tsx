@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import CohortView, { ArchiveList } from "@/components/gicip/cohort-view";
+import CohortPage from "@/components/gicip/cohort-page";
 import { getCurrentCohort, getCohortSummaries } from "@/lib/gicip";
 
 export const metadata: Metadata = {
@@ -9,8 +9,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/gicip" },
 };
 
-// The cohort record changes rarely once a year is closed, and during a trip an
-// hour is fresh enough for a page that is not the live feed.
 export const revalidate = 3600;
 
 const PROGRAMME_DESCRIPTION = [
@@ -19,7 +17,7 @@ const PROGRAMME_DESCRIPTION = [
 ];
 
 export default async function GicipPage() {
-  const [cohort, summaries] = await Promise.all([
+  const [cohort, years] = await Promise.all([
     getCurrentCohort(),
     getCohortSummaries(),
   ]);
@@ -28,10 +26,7 @@ export default async function GicipPage() {
     <main className="min-h-screen bg-[#0f0f0f] px-6 pb-24 pt-36">
       <div className="mx-auto max-w-4xl">
         {cohort ? (
-          <>
-            <CohortView cohort={cohort} />
-            <ArchiveList cohorts={summaries} currentSlug={cohort.slug} />
-          </>
+          <CohortPage cohort={cohort} years={years} />
         ) : (
           <>
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-gdg-red">
@@ -47,7 +42,6 @@ export default async function GicipPage() {
                 </p>
               ))}
             </div>
-            <ArchiveList cohorts={summaries} />
           </>
         )}
       </div>

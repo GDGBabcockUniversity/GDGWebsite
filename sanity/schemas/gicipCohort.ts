@@ -1,9 +1,14 @@
 import { defineField, defineType } from "sanity";
 
-// A GICIP cohort: one year of the university's immersion programme. Each year
-// is a self-contained record of the route, the people, the photographs, the
-// film and the writing. /gicip shows the newest cohort in full and lists the
-// earlier ones beneath, so a new year is added by creating one document.
+// A GICIP cohort: one year of the university's immersion programme.
+//
+// One document per year, and the year is the key: it orders the archive and it
+// is the URL, so 2026 lives at /gicip/2026. Creating next year's cohort means
+// creating one document and typing the year.
+//
+// Each cohort holds everything about that year in one place: the route, the
+// people, the photographs, the film and the writing. /gicip shows the newest
+// and lets visitors move between years from there.
 export default defineType({
   name: "gicipCohort",
   title: "GICIP Cohort",
@@ -13,23 +18,16 @@ export default defineType({
       name: "year",
       title: "Year",
       type: "number",
-      description: "Calendar year of the trip, e.g. 2026. Orders the archive.",
+      description:
+        "Calendar year of the trip, e.g. 2026. This is the key: it orders the archive and forms the URL, /gicip/2026. One cohort per year.",
       validation: (Rule) => Rule.required().integer().min(2017),
     }),
     defineField({
       name: "title",
       title: "Title",
       type: "string",
-      description: 'e.g. "GICIP 2026"',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      description: "URL segment: /gicip/<slug>.",
-      options: { source: "title", maxLength: 40 },
-      validation: (Rule) => Rule.required(),
+      description:
+        'Optional. Defaults to "GICIP 2026". Set it only for a year that needs a different name.',
     }),
     defineField({
       name: "isPublished",

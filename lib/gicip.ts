@@ -67,7 +67,6 @@ export interface WritingLink {
 export interface GicipCohort {
   year: number;
   title: string;
-  slug: string;
   departureDate?: string;
   returnDate?: string;
   cohortSize?: number;
@@ -85,12 +84,16 @@ export interface GicipCohort {
 export type GicipCohortSummary = {
   year: number;
   title: string;
-  slug: string;
   summary?: string;
   cohortSize?: number;
   coverImageUrl?: string;
   hostCount: number;
 };
+
+/** The name a cohort goes by when its title is left blank. */
+export function cohortTitle(year: number, title?: string): string {
+  return title?.trim() || `GICIP ${year}`;
+}
 
 // ─── Transport ──────────────────────────────────────────────────────────────
 
@@ -119,7 +122,6 @@ const IMAGE_FIELDS = `
 const COHORT_FIELDS = `
   year,
   title,
-  "slug": slug.current,
   departureDate,
   returnDate,
   cohortSize,
@@ -143,12 +145,11 @@ const COHORT_FIELDS = `
 `;
 
 function normalise(raw: Partial<GicipCohort> | null): GicipCohort | null {
-  if (!raw || typeof raw.year !== "number" || !raw.slug || !raw.title) return null;
+  if (!raw || typeof raw.year !== "number") return null;
   return {
     ...raw,
     year: raw.year,
-    title: raw.title,
-    slug: raw.slug,
+    title: cohortTitle(raw.year, raw.title),
     hosts: raw.hosts ?? [],
     participants: raw.participants ?? [],
     images: raw.images ?? [],
@@ -167,13 +168,12 @@ export async function getCurrentCohort(): Promise<GicipCohort | null> {
   );
 }
 
-/** One cohort by slug, for /gicip/<slug>. */
-export async function getCohort(slug: string): Promise<GicipCohort | null> {
+/** One cohort by year, for /gicip/2026. */
+export async function getCohort(year: number): Promise<GicipCohort | null> {
+  if (!Number.isInteger(year)) return null;
   return normalise(
     await run<Partial<GicipCohort>>(
-      `*[_type == "gicipCohort" && isPublished == true && slug.current == ${JSON.stringify(
-        slug
-      )}][0]{${COHORT_FIELDS}}`
+      `*[_type == "gicipCohort" && isPublished == true && year == ${year}][0]{${COHORT_FIELDS}}`
     )
   );
 }
@@ -183,12 +183,12 @@ export async function getCohortSummaries(): Promise<GicipCohortSummary[]> {
   return (
     (await run<GicipCohortSummary[]>(
       `*[_type == "gicipCohort" && isPublished == true] | order(year desc){
-        year, title, "slug": slug.current, summary, cohortSize,
+        year, title, summary, cohortSize,
         "coverImageUrl": coverImage.asset->url,
         "hostCount": count(hosts)
       }`
     )) ?? []
-  );
+  ).map((c) => ({ ...c, title: cohortTitle(c.year, c.title) }));
 }
 
 // ─── Galleries ──────────────────────────────────────────────────────────────

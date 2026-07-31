@@ -1,4 +1,3 @@
-import Link from "next/link";
 import PhotoGrid from "@/components/gallery/photo-grid";
 import { dateRange, sized, youTubeId, type GicipCohort } from "@/lib/gicip";
 
@@ -223,37 +222,5 @@ function Figure({
       <dd className={`text-3xl font-bold ${tone}`}>{value}</dd>
       <dt className="mt-1 text-xs text-white/45">{label}</dt>
     </div>
-  );
-}
-
-export function ArchiveList({
-  cohorts,
-  currentSlug,
-}: {
-  cohorts: { year: number; title: string; slug: string; hostCount: number }[];
-  currentSlug?: string;
-}) {
-  const earlier = cohorts.filter((c) => c.slug !== currentSlug);
-  if (earlier.length === 0) return null;
-
-  return (
-    <section className="mt-20 border-t border-white/10 pt-12">
-      <SectionTitle>Earlier cohorts</SectionTitle>
-      <ul className="grid gap-3 sm:grid-cols-2">
-        {earlier.map((c) => (
-          <li key={c.slug}>
-            <Link
-              href={`/gicip/${c.slug}`}
-              className="flex items-baseline justify-between rounded-2xl border border-white/12 bg-[#171717] px-5 py-4 transition-colors hover:bg-white/5"
-            >
-              <span className="font-semibold text-gdg-cream">{c.title}</span>
-              <span className="text-xs text-white/40">
-                {c.hostCount > 0 ? `${c.hostCount} visits` : ""}
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </section>
   );
 }
