@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Partners() {
   return (
@@ -54,13 +55,14 @@ export default function Partners() {
                 worldwide to bring AI education within everyone’s reach.
               </p>
             </div>
-            <a
+            <Link
               href="https://cyberiadlabs.com/"
+              target="_blank"
               className="mt-7 inline-flex min-h-11 items-center gap-2 rounded-full bg-gdg-cream px-5 py-3 text-sm font-semibold text-[#0f0f0f] transition-colors hover:bg-white active:bg-gdg-yellow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gdg-blue motion-reduce:transition-none"
             >
               Visit Cyberiad Labs
               <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </article>
       </div>
