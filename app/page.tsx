@@ -11,6 +11,7 @@ import Engage from "@/components/sections/engage";
 import GalleryStrips from "@/components/sections/gallery-strips";
 import AcrossCampus from "@/components/sections/across-campus";
 import Partner from "@/components/sections/partner";
+import Partners from "@/components/sections/partners";
 import TeamPreview from "@/components/sections/team-preview";
 import RadarLatest from "@/components/sections/radar-latest";
 
@@ -38,7 +39,8 @@ export default function Home() {
       <GalleryStrips titles={["ORBIT"]} />
       {/* 5. How we work across campus */}
       <AcrossCampus />
-      {/* 6. Partnership CTA */}
+      {/* 6. Current partners and partnership CTA */}
+      <Partners />
       <Partner />
       {/* 7. Team preview */}
       <TeamPreview />
