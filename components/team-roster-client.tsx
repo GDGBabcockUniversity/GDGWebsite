@@ -83,16 +83,24 @@ function MemberRow({
   members,
   accentColor,
   accentOffset,
+  fourColumns = false,
 }: {
   members: TeamMember[];
   accentColor?: GdgColor;
   accentOffset: number;
+  fourColumns?: boolean;
 }) {
   if (members.length === 0) return null;
   return (
     <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
       {members.map((member, i) => (
-        <div key={member.name} className="w-[45%] max-w-[300px] sm:w-[330px] sm:max-w-[360px]">
+        <div
+          key={member.name}
+          className={cn(
+            "w-[45%] max-w-[300px] sm:w-[330px] sm:max-w-[360px]",
+            fourColumns && "lg:w-[calc(25%-1.5rem)] lg:max-w-[300px]"
+          )}
+        >
           <TeamMemberCard
             name={member.name}
             role={member.role}
@@ -110,23 +118,53 @@ function MemberRow({
 }
 
 /**
- * Leads get their own row, always — a flex-wrap on the full member list
- * would only sort leads first, not guarantee they land on a separate visual
- * row. Splitting into two row containers makes "leads on the first row"
- * (organizer + co-organizer, track lead, etc.) an actual layout guarantee.
+ * Core Team honors explicit CMS rows in display order. Unassigned members
+ * and other sections use separate lead/member rows.
  */
 function GroupBlock({
   members,
   accentColor,
+  isCore = false,
 }: {
   members: TeamMember[];
   accentColor?: GdgColor;
+  isCore?: boolean;
 }) {
   const leads = members.filter((m) => m.isLead);
   const rest = members.filter((m) => !m.isLead);
+  const rowNumbers = isCore
+    ? [...new Set(members.flatMap((m) => m.layoutRow ? [m.layoutRow] : []))].sort((a, b) => a - b)
+    : [];
+  if (rowNumbers.length > 0) {
+    let accentOffset = 0;
+    const unassigned = members.filter((m) => !m.layoutRow);
+    return (
+      <div className="space-y-8">
+        {rowNumbers.map((row) => {
+          const rowMembers = members.filter((m) => m.layoutRow === row);
+          const offset = accentOffset;
+          accentOffset += rowMembers.length;
+          return (
+            <MemberRow
+              key={row}
+              members={rowMembers}
+              accentColor={accentColor}
+              accentOffset={offset}
+              fourColumns
+            />
+          );
+        })}
+        {unassigned.length > 0 && <GroupBlock members={unassigned} accentColor={accentColor} />}
+      </div>
+    );
+  }
   return (
     <div className="space-y-8">
-      <MemberRow members={leads} accentColor={accentColor} accentOffset={0} />
+      <MemberRow
+        members={leads}
+        accentColor={accentColor}
+        accentOffset={0}
+      />
       <MemberRow
         members={rest}
         accentColor={accentColor}
@@ -173,7 +211,7 @@ function Section({ def, members }: { def: SectionDef; members: TeamMember[] }) {
                 </>
               )}
               <div className={cn(g.subteam ? "mt-6 lg:mt-0" : "")}>
-                <GroupBlock members={g.members} accentColor={color} />
+                <GroupBlock members={g.members} accentColor={color} isCore={def.id === "core"} />
               </div>
             </div>
           );

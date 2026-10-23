@@ -20,6 +20,8 @@ export interface TeamMember {
   subteam?: string;
   /** Leads render first, in the first row of their group. */
   isLead?: boolean;
+  /** Core Team: explicit CMS row; Display order controls placement within it. */
+  layoutRow?: number;
   image: string;
   wordsToLiveBy: string;
   links: {

@@ -29,6 +29,7 @@ export interface RosterMember {
   spotify_track_url: string | null;
   team_year: string;
   display_order: number;
+  layout_row?: number;
 }
 
 const PROJECT_ID = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
@@ -50,6 +51,7 @@ interface CmsMember {
   wordsToLiveBy?: string | null;
   teamYear?: string;
   displayOrder?: number;
+  layoutRow?: number;
   platformUserId?: string | null;
   links?: {
     twitter?: string | null;
@@ -66,7 +68,7 @@ interface CmsMember {
 const QUERY = `*[_type == "teamMemberProfile" && isPublic == true]
   | order(section asc, displayOrder asc, name asc){
     _id, name, role, section, subteam, isLead, wordsToLiveBy,
-    teamYear, displayOrder, platformUserId, links, music,
+    teamYear, displayOrder, layoutRow, platformUserId, links, music,
     "photoUrl": photo.asset->url,
     "photoHotspot": photo.hotspot{x, y}
   }`;
@@ -94,6 +96,10 @@ function toRosterMember(m: CmsMember): RosterMember {
     spotify_track_url: m.music?.url ?? null,
     team_year: m.teamYear ?? "current",
     display_order: m.displayOrder ?? 0,
+    layout_row:
+      Number.isSafeInteger(m.layoutRow) && m.layoutRow! > 0
+        ? m.layoutRow
+        : undefined,
   };
 }
 

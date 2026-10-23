@@ -27,6 +27,7 @@ function toTeamMember(m: RosterMember): TeamMember | null {
     section: (m.section as TeamSection) ?? "core",
     subteam: m.subteam ?? undefined,
     isLead: m.is_lead,
+    layoutRow: m.layout_row,
     image: m.image_url,
     wordsToLiveBy: m.words_to_live_by ?? "",
     links: {

@@ -75,6 +75,15 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "layoutRow",
+      title: "Layout row",
+      type: "number",
+      description:
+        "Core Team only. Members with the same row number appear together, up to four per row on desktop. Use Display order to arrange them left to right. For 2–4: assign two people to row 1 and four to row 2. Leave blank for automatic layout, below numbered rows.",
+      hidden: ({ document }) => document?.section !== "core",
+      validation: (Rule) => Rule.integer().min(1),
+    }),
+    defineField({
       name: "displayOrder",
       title: "Display order",
       type: "number",
