@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
       // Auth-gated / private surfaces — no SEO value, keep them out of the index.
-      disallow: ["/admin", "/profile", "/onboarding", "/api/"],
+      disallow: ["/admin", "/profile", "/onboarding", "/unsubscribe", "/api/"],
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
     host: SITE_URL,

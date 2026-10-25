@@ -1,5 +1,7 @@
 # GDG Babcock — Main Website
 
+[![Keyway Secrets](https://www.keyway.sh/badge.svg?repo=GDGBabcockUniversity/GDGWebsite)](https://www.keyway.sh/vaults/GDGBabcockUniversity/GDGWebsite)
+
 The home of **Google Developer Group, Babcock University** on the web:
 [gdgbabcock.com](https://gdgbabcock.com). The 2026 redesign turns the site
 into the front door of the whole GDG Babcock ecosystem — members sign up
@@ -96,6 +98,11 @@ NEXT_PUBLIC_AUTH_API_URL=https://auth.gdgbabcock.com
 # Omit these and those sections fall back to an editorial "Read RADAR" card.
 NEXT_PUBLIC_SANITY_PROJECT_ID=…
 NEXT_PUBLIC_SANITY_DATASET=production
+
+# Email service behind /unsubscribe. Server-only: the page posts to our own
+# /api/unsubscribe, which forwards the token on. Without it the page still
+# renders and the confirm step reports that the service is unavailable.
+EMAIL_SERVICE_URL=https://email.gdgbabcock.com
 ```
 
 Without the Firebase keys the site renders but sign-in is disabled. Note that
