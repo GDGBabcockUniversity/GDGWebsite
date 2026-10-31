@@ -1,5 +1,5 @@
-import { ArrowRight } from "lucide-react";
-import { getLatestRadarPosts, RADAR_BASE_URL } from "@/lib/radar";
+import { ArrowRight, ExternalLink } from "lucide-react";
+import { getLatestRadarIssues, RADAR_BASE_URL } from "@/lib/radar";
 import { SmartImage } from "@/components/placeholder-image";
 
 function formatDate(iso?: string) {
@@ -11,9 +11,9 @@ function formatDate(iso?: string) {
   });
 }
 
-/** "Latest from RADAR" — 3 newest posts, or an editorial fallback panel */
+/** "Latest from RADAR" — 3 newest issues, linking directly to radar.gdgbabcock.com */
 export default async function RadarLatest() {
-  const posts = await getLatestRadarPosts();
+  const issues = await getLatestRadarIssues();
 
   return (
     <section className="bg-[#0f0f0f]">
@@ -38,38 +38,59 @@ export default async function RadarLatest() {
           </a>
         </div>
 
-        {posts ? (
+        {issues && issues.length > 0 ? (
           <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {posts.map((post) => (
-              <a
-                key={post.slug}
-                href={post.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col overflow-hidden rounded-3xl border border-white/12 bg-[#161616] transition-colors hover:border-white/30"
-              >
-                <SmartImage
-                  src={post.imageUrl}
-                  alt={post.title}
-                  label="RADAR article cover"
-                  className="aspect-[16/10] w-full"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-                <div className="flex flex-1 flex-col p-5">
-                  <p className="text-xs text-white/50">
-                    {formatDate(post.publishedAt)}
-                  </p>
-                  <h3 className="mt-2 text-lg font-bold leading-snug text-gdg-cream group-hover:text-white">
-                    {post.title}
-                  </h3>
-                  {post.description && (
-                    <p className="mt-2 line-clamp-2 text-sm text-white/60">
-                      {post.description}
-                    </p>
-                  )}
-                </div>
-              </a>
-            ))}
+            {issues.map((issue) => {
+              const editionLabel =
+                issue.issueNumber != null
+                  ? `Issue #${String(issue.issueNumber).padStart(3, "0")}`
+                  : "Edition";
+
+              return (
+                <a
+                  key={issue.slug}
+                  href={issue.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col overflow-hidden rounded-3xl border border-white/12 bg-[#161616] transition-all duration-300 hover:-translate-y-1 hover:border-white/30 hover:shadow-2xl hover:shadow-gdg-blue/5"
+                >
+                  <div className="relative aspect-16/10 w-full overflow-hidden bg-[#1f1f1f]">
+                    <SmartImage
+                      src={issue.imageUrl}
+                      alt={issue.title}
+                      label="RADAR issue cover"
+                      className="h-full w-full transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                    <div className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/75 px-3 py-1 backdrop-blur-md">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-gdg-blue">
+                        {editionLabel}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-1 flex-col p-6">
+                    <div className="flex items-center justify-between text-xs text-white/50">
+                      <span>{formatDate(issue.publishedAt)}</span>
+                      <span className="flex items-center gap-1 text-[11px] font-semibold text-white/40 transition-colors group-hover:text-gdg-blue">
+                        Read
+                        <ExternalLink className="h-3 w-3" />
+                      </span>
+                    </div>
+
+                    <h3 className="mt-3 text-lg font-bold leading-snug text-gdg-cream transition-colors group-hover:text-white">
+                      {issue.title}
+                    </h3>
+
+                    {issue.description && (
+                      <p className="mt-2.5 line-clamp-2 text-sm leading-relaxed text-white/60">
+                        {issue.description}
+                      </p>
+                    )}
+                  </div>
+                </a>
+              );
+            })}
           </div>
         ) : (
           <div className="mt-14 rounded-3xl border border-white/12 bg-[#161616] p-8 sm:p-12">
@@ -84,7 +105,7 @@ export default async function RadarLatest() {
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gdg-blue transition-colors hover:text-white"
             >
-              Browse the latest on radar.gdgbabcock.com
+              Browse all issues on radar.gdgbabcock.com
               <ArrowRight className="h-4 w-4" aria-hidden />
             </a>
           </div>
