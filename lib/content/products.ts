@@ -84,7 +84,7 @@ export const PRODUCTS: Product[] = [
     tagline: "Your year in review",
     description:
       "A shareable, story-by-story recap of the chapter's year and your place in it — launching around grad week.",
-    status: "coming-soon",
+    status: "planned",
     color: "red",
     // Deliberately no `href`: the site is deployed but shouldn't be visited
     // yet, so the card renders as a plain div (no link, no arrow) — the
